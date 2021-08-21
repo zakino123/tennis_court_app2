@@ -1,24 +1,55 @@
-# README
+# ◯アプリ概要
+より好条件なテニスコート検索を便利にするアプリです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# ◯使用技術
+## ・フロントエンド
+HTML&CSS
 
-Things you may want to cover:
+Javvascript
 
-* Ruby version
+## ・バックエンド
+Ruby 2.7.4
 
-* System dependencies
+Ruby on Rails 6.0
 
-* Configuration
+## ・開発環境
+Docker
 
-* Database creation
+MySQL
 
-* Database initialization
+## ・テストコード解析・静的コード解析
+Rspec
 
-* How to run the test suite
+Rubocop
 
-* Services (job queues, cache servers, search engines, etc.)
+# ◯実装機能
+・会員登録
 
-* Deployment instructions
+・ログイン機能
 
-* ...
+・プロフィールページ機能
+
+・コメント機能
+
+・検索機能
+
+・お気に入り登録機能
+
+・投稿に関する
+
+# ◯アプリ開発背景
+私はテニスが好きで、よく休日に友人とテニスをしに行くのですが、テニスコートを予約する際に、不便と感じる箇所がありました。以下に不便な箇所を列挙致します。
+
+・Googleマップ等でテニスコートを検索しても、値段が分かりにくく、一つ一つコートの値段を各ホームページに確認する必要があった。
+
+・テニスコートを予約する際に、位置を確認するためにGooglemap、空き状況を確認するためにテニスベアを活用するのですが、一つのコートを調べる際に行き来して手間がかかる。
+
+・テニスベアなどの予約アプリの検索機能が不十分(現在地から近い順、空いているコート数順、料金安い順等がない)
+
+以上の問題点から、テニスコートの予約が不便に感じていました。よって、このアプリを開発して、より快適に好条件なテニスコートを見つけられると考えております。
+
+# ◯工夫した点
+
+# ◯現在の問題点
+
+# ◯今後の開発予定
