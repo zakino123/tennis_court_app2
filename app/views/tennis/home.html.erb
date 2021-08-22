@@ -1,10 +1,26 @@
 <div class="center jumbotron">
   <h1>お気に入りのテニスコートを見つけよう！</h1>
   <div>
-    <p>住所などのキーワードを入力して下さい！</p>
     <p>価格が安い順<p>
-    <%= link_to "検索", '#', class: "btn btn-lg btn-primary" %>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="地名などキーワードを入力して下さい" aria-label="Search">
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              価格が安い順
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">距離が近い順</a></li>
+              <li><a class="dropdown-item" href="#">空きコート数順</a></li>
+            </ul>
+          </div>
+          <%= link_to "検索", '#', class: "btn btn-lg btn-primary" %>
+        </form>
+      </div>
+    </nav>
   </div>
+  <button type="button" class="btn btn-outline-success">現在地取得</button>
   <div>
     <h2>検索結果</h2>
     <p>まだ検索されていません。</p>
