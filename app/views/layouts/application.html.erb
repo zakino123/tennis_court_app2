@@ -9,29 +9,15 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-      </script>
-    <![endif]-->
+    <%= render 'layouts/shim' %>
   </head>
 
-  <body>
-    <body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <%= link_to image_tag("Tennis_search.png", alt: "テニスコートサーチ ロゴ", width: "500px"), "#" %>
-        <nav>
-          <ul class="nav navbar-right">
-            <li><%= link_to "ホーム",  '#' %></li>
-            <li><%= link_to "ログイン",  '#' %></li>
-            <li><%= link_to "新規登録", '#' %></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <body>  
+    <%= render 'layouts/header' %>
     <div class="container">
+      <h1 class="text-center mt-sm-3">お気に入りのテニスコートを見つけよう！</h1>
       <%= yield %>
     </div>
-  </body>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

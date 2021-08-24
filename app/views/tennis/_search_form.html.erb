@@ -1,0 +1,22 @@
+<div class="center jumbotron">
+  <div>
+    <nav class="navbar bg-light">
+      <div class="container">
+        <form class="d-flex">
+          <input class="form-control me-2 w-auto" type="search" placeholder="地名などキーワードを入力して下さい" aria-label="Search">
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle me-2" data-bs-toggle="dropdown" aria-expanded="false">
+              価格が安い順
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">距離が近い順</a></li>
+              <li><a class="dropdown-item" href="#">空きコート数順</a></li>
+            </ul>
+          </div>
+          <%= link_to "検索", '#', class: "btn btn-lg btn-primary" %>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <button type="button" class="btn btn-outline-success mx-auto" style="width: 200px;">現在地取得</button>
+</div>
