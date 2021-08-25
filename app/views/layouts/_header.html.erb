@@ -1,8 +1,8 @@
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fst-italic">
-  <%= link_to "Tennis court search", '#', class: "h5 my-0 me-md-auto fw-normal fs-1 ps-5 text-info" %>
+  <%= link_to "Tennis court search", root_path, class: "h5 my-0 me-md-auto fw-normal fs-1 ps-5 text-info" %>
   <nav class="my-2 my-md-0 me-md-3 float-end">
-    <%= link_to "ホーム", '#', class: "p-4 fs-3 text-dark" %>
+    <%= link_to "ホーム", root_path, class: "p-4 fs-3 text-dark" %>
     <%= link_to "ログイン", '#', class: "p-4 fs-3 text-dark" %>
-    <%= link_to "新規登録", '#', class: "p-4 fs-3 text-dark" %>
+    <%= link_to "新規登録", user_create_path, class: "p-4 fs-3 text-dark" %>
   </nav>
 </header>
