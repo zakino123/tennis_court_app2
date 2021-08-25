@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/question', to: 'tennis#question'
   get '/contact', to: 'tennis#contact'
   get '/user_create', to: 'users#new'
+  resources :users
 end
