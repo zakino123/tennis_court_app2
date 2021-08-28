@@ -10,6 +10,11 @@
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control mb-3' %>
 
+      <%= f.label :remember_me, class: "checkbox inline mb-3" do %>
+        <%= f.check_box :remember_me %>
+        <span>ログイン状態を維持したい場合はチェックを入れてください。</span>
+      <% end %>
+
       <%= f.submit "ログイン", class: "btn btn-primary mb-3" %>
     <% end %>
 
