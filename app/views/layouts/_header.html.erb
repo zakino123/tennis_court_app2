@@ -5,7 +5,7 @@
     <% if logged_in? %>
       <%= link_to "マイページ", current_user, class: "p-4 fs-3 text-dark" %>
       <%= link_to "コート投稿", '#', class: "p-4 fs-3 text-dark" %>
-      <%= link_to "ログアウト", logout_path, class: "p-4 fs-3 text-dark" %>
+      <%= link_to "ログアウト", logout_path, method: :delete, class: "p-4 fs-3 text-dark" %>
     <% else %>
       <%= link_to "ログイン", login_path, class: "p-4 fs-3 text-dark" %>
       <%= link_to "新規登録", user_create_path, class: "p-4 fs-3 text-dark" %>
