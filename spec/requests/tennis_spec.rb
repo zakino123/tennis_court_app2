@@ -25,25 +25,3 @@ RSpec.describe "Access to Tennis", type: :request do
     end
   end
 end
-
-# RSpec.describe 'Access to tennis home', type: :request do
-#   before { get root_path }
-#   example 'ホームページが正常に表示されているか確認' do
-#       is_expected.to have_link nil, href: root_path, count: 3
-#       is_expected.to have_link 'ログイン', href: login_path
-#       is_expected.to have_link '新規登録', href: user_create_path
-#     end
-#   end
-# end
-
-# RSpec.describe "SiteLayoutTest", type: :feature do
-#   before { visit root_path }
-#   subject { page }
-#   scenario "layout links" do
-#     is_expected.to have_link nil, href: root_path, count: 3
-#     is_expected.to have_link nil, href: login_path
-#     is_expected.to have_link nil, href: user_create_path
-#     is_expected.to have_link nil, href: search_path
-#     is_expected.to have_link nil, href: contact_path
-#   end
-# end
