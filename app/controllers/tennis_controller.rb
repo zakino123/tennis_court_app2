@@ -5,9 +5,6 @@ class TennisController < ApplicationController
   def search
   end
 
-  def question
-  end
-
   def contact
   end
 end

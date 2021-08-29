@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
-  describe "GET /new" do
-    it "returns http success" do
-      get "/sessions/new"
-      expect(response).to have_http_status(:success)
+  describe "GET login" do
+    it "ログイン画面の表示に成功" do
+      get login_path
+      expect(response).to have_http_status(200)
     end
   end
 

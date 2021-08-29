@@ -1,31 +1,49 @@
 require 'rails_helper'
 
-RSpec.describe "Tennis", type: :request do
+RSpec.describe "Access to Tennis", type: :request do
   describe "GET /" do
-    it "should get root" do
-      get "/"
-      expect(response).to have_http_status(:success)
+    before { get root_path }
+    example "ホーム画面の表示に成功" do
+      expect(response).to have_http_status(200)
+    end
+    example "タイトル表示が正常" do
+      assert_select "title", "テニスコートサーチ"
     end
   end
 
   describe "GET search" do
-    it "should get search_path" do
-      get "/search"
-      expect(response).to have_http_status(:success)
+    example "検索画面の表示に成功" do
+      get search_path
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET question" do
-    it "should get question_path" do
-      get "/question"
-      expect(response).to have_http_status(:success)
-    end
-  end
-  
   describe "GET contact" do
-    it "should get contact_path" do
-      get "/contact"
-      expect(response).to have_http_status(:success)
+    example "お問合せ/よくある質問画面の表示に成功" do
+      get contact_path
+      expect(response).to have_http_status(200)
     end
   end
 end
+
+# RSpec.describe 'Access to tennis home', type: :request do
+#   before { get root_path }
+#   example 'ホームページが正常に表示されているか確認' do
+#       is_expected.to have_link nil, href: root_path, count: 3
+#       is_expected.to have_link 'ログイン', href: login_path
+#       is_expected.to have_link '新規登録', href: user_create_path
+#     end
+#   end
+# end
+
+# RSpec.describe "SiteLayoutTest", type: :feature do
+#   before { visit root_path }
+#   subject { page }
+#   scenario "layout links" do
+#     is_expected.to have_link nil, href: root_path, count: 3
+#     is_expected.to have_link nil, href: login_path
+#     is_expected.to have_link nil, href: user_create_path
+#     is_expected.to have_link nil, href: search_path
+#     is_expected.to have_link nil, href: contact_path
+#   end
+# end
