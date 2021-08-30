@@ -89,4 +89,9 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include("は50文字以内で入力してください")
   end
+
+  it "remember_digestがnilの場合falseを返す" do
+    user = FactoryBot.create(:user)
+    expect(user.authenticated?('')).to be_falsy
+  end
 end

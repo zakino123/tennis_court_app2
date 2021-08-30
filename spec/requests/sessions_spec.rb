@@ -24,4 +24,22 @@ RSpec.describe "Sessions", type: :request do
       end
     end
   end
+
+  describe "ログイン時にcookieにトークンを保存するか" do
+    before do
+      @user = FactoryBot.create(:user)
+    end
+    it "cookieに値を保存する" do
+      post login_path, params: { session: { email: @user.email,
+                                    password: @user.password,
+                                    remember_me: '1' } }
+      expect(response.cookies['remember_token']).to_not eq nil
+    end
+    it "cookieに値を保存しない" do
+      post login_path, params: { session: { email: @user.email,
+                                    password: @user.password,
+                                    remember_me: '0' } }
+      expect(response.cookies['remember_token']).to eq nil
+    end
+  end
 end
