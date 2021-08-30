@@ -16,6 +16,12 @@ RSpec.describe "user_login", type: :feature do
         expect(page).to have_css("a", text: "マイページ")
         expect(page).to have_css("a", text: "ログアウト")
       end
+      it 'ログアウト後の画面の確認' do
+        click_link "ログアウト"
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_css("a", text: "ログイン")
+        expect(page).to_not have_css("a", text: "ログアウト")
+      end
     end
 
     context '誤った値を入力した場合' do
