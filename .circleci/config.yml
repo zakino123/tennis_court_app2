@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  ruby
 
 jobs:
   test:
@@ -6,12 +9,13 @@ jobs:
       - image: circleci/ruby:2.7.4-node
         environment:
           RAILS_ENV: test
+          DATABASE_HOST: 127.0.0.1 
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: circleci_parctice_test
-    working_directory: ~/circleci_parctice
+    working_directory: ~/tennis_court_app/src
     steps:
       - checkout
       - run:
