@@ -27,6 +27,10 @@ jobs:
             bundle exec rake db:create
             bundle exec rake db:migrate
       - run:
+          name: yarn Install
+          command: yarn install
+      - run: bundle exec bin/webpack
+      - run:
           name: RSpec
           command: bundle exec rspec
 
