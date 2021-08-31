@@ -6,7 +6,6 @@ jobs:
       - image: circleci/ruby:2.7.4-node
         environment:
           RAILS_ENV: test
-          DATABASE_HOST: 127.0.0.1 
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
@@ -21,6 +20,11 @@ jobs:
       - run:
           name: "waiting DB start"
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run:
+          name: "initialize DB"
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:migrate
       - run:
           name: RSpec
           command: bundle exec rspec
