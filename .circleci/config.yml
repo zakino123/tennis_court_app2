@@ -1,7 +1,4 @@
-version: 2.1
-
-orbs:
-  ruby
+version: 2
 
 jobs:
   test:
