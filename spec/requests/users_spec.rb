@@ -67,4 +67,42 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
+  describe "destroyアクション" do
+    before do
+      @user = FactoryBot.create(:user, admin: true)
+      @other_user = FactoryBot.create(:user)
+    end
+    context "管理者ユーザーの場合" do
+      before do
+        get users_path(@user)
+        session_params = { session: { email: @user.email, password: @user.password } }
+        post login_path, params: session_params
+      end
+      it "ユーザーを削除に成功" do
+        expect {
+          delete user_path(@user), params: { id: @user.id }
+        }.to change(User, :count).by(-1)
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "管理者以外のユーザーの場合" do
+      before do
+        get users_path(@other_user)
+        session_params = { session: { email: @other_user.email, password: @other_user.password } }
+        post login_path, params: session_params
+      end
+      it "他ユーザーを削除できない" do
+        delete user_path(@user), params: { id: @user.id }
+        expect(response).to redirect_to root_path
+      end
+      it "自ユーザーを削除成功" do
+        get edit_user_path(@other_user)
+        expect {
+          delete user_path(@other_user), params: { id: @other_user.id }
+        }.to change(User, :count).by(-1)
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
 end
