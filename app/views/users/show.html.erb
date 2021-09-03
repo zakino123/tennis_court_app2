@@ -2,6 +2,10 @@
 <%# <%= f.file_field :image class:"" %>
 <h1><%= @user.name %>さんのマイページ</H1>
 <%= link_to "ユーザー情報変更", edit_user_path(current_user), class: "p-4 fs-3 text-dark" %>
+<% if current_user.admin? && !current_user?(@user) %>
+  | <%= link_to "削除", user, method: :delete,
+                                data: { confirm: "削除してよろしいですか?" } %>
+<% end %>
 <div class="container">
   <div classe="">
     <h2>お気に入りしたコート</h2>
