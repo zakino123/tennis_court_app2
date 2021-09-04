@@ -91,7 +91,7 @@ RSpec.describe "Users", type: :request do
       end
       it "ユーザーを削除に成功" do
         expect {
-          delete user_path(@user), params: { id: @user.id }
+          delete user_path(@other_user), params: { id: @other_user.id }
         }.to change(User, :count).by(-1)
         expect(response).to redirect_to root_path
       end

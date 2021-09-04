@@ -25,11 +25,62 @@ RSpec.describe "Courts", type: :request do
   end
   describe "showアクション" do
     before do
+      @user = FactoryBot.create(:user)
       @court = FactoryBot.create(:court)
+      session_params = { session: { email: @user.email, password: @user.password } }
+      post login_path, params: session_params
     end
-    example "ユーザー新規登録の画面表示に成功" do
+    example "コート新規登録の画面表示に成功" do
       get court_path(@court)
       expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "editアクション" do
+    before do
+      @user = FactoryBot.create(:user)
+      @other_user = FactoryBot.create(:user)
+      @admin_user = FactoryBot.create(:user, admin: true)
+      @court = FactoryBot.create(:court, user_id: @user.id)
+    end
+    
+    context "正しいユーザーがログインした場合" do
+      before do
+        session_params = { session: { email: @user.email, password: @user.password } }
+        post login_path, params: session_params
+      end
+      it "edit画面表示の成功" do
+        get edit_court_path(@court)
+        expect(response).to have_http_status "200"
+      end
+    end
+    context "管理ユーザーがログインした場合" do
+      before do
+        session_params = { session: { email: @admin_user.email, password: @admin_user.password } }
+        post login_path, params: session_params
+      end
+      it "edit画面表示の成功" do
+        get edit_court_path(@court)
+        expect(response).to have_http_status "200"
+      end
+    end
+    context "他ユーザーがログインした場合" do
+      before do
+        session_params = { session: { email: @other_user.email, password: @other_user.password } }
+        post login_path, params: session_params
+      end
+      it "ホームにリダイレクト" do
+        get edit_court_path(@court)
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "ログインしていない場合" do
+      it "ログインページにリダイレクト" do
+        get edit_court_path(@court)
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to login_path
+      end
     end
   end
 end
