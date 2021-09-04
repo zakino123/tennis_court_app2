@@ -27,7 +27,7 @@ RSpec.describe "user_create", type: :feature do
       end
       subject { page }
       it 'エラーメッセージ表示' do
-        is_expected.to have_selector('.alert-danger', text: '4つの誤りが確認されました。')
+        is_expected.to have_css('.alert-danger', text: '4つの誤りが確認されました。')
       end
     end
   end

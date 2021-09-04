@@ -213,3 +213,10 @@ ja:
         email: メールアドレス
         password: パスワード
         pssword_confirmation: パスワード(確認用)
+
+ja:
+  activerecord:
+    attributes:
+      court:
+        name: 施設名
+        address: アドレス

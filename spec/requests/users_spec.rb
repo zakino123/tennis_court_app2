@@ -8,6 +8,16 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe "showアクション" do
+    before do
+      @user = FactoryBot.create(:user)
+    end
+    example "ユーザー新規登録の画面表示に成功" do
+      get user_path(@user)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe "indexアクション" do
     before do
       @user = FactoryBot.create(:user)

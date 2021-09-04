@@ -10,10 +10,11 @@ class CourtsController < ApplicationController
   end
 
   def create
-    @court = Court.new(court_params)
+    # @court = Court.new(court_params)
+    @court = current_user.courts.new(court_params)
     if @court.save
       flash[:success] = "コート情報を受け付けました！"
-      redirect_back_or @user
+      redirect_back_or root_path
     else
       render 'new'
     end
@@ -25,7 +26,8 @@ class CourtsController < ApplicationController
   private
 
     def court_params
-      params.permit(:name, :address)
+      # params.permit(:name, :address)
+      params.require(:court).permit(:name, :address)
     end
 
     def logged_in_user
