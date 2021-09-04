@@ -1,0 +1,12 @@
+<% if @court.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= @court.errors.count %>つの誤りが確認されました。
+    </div>
+    <ul>
+    <% @court.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
