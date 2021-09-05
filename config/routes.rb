@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'tennis#home'
   get '/search', to: 'tennis#search'
-  get '/contact', to: 'tennis#contact'
   get '/user_create', to: 'users#new'
   resources :users
   get '/login', to: 'sessions#new'
@@ -10,4 +9,5 @@ Rails.application.routes.draw do
   resources :courts
   post '/courts', to: 'courts#create'
   post '/guest_login', to: "guest_sessions#create"
+  resources :contacts
 end
