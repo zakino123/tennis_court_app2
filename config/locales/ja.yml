@@ -220,3 +220,11 @@ ja:
       court:
         name: 施設名
         address: アドレス
+
+ja:
+  activerecord:
+    attributes:
+      contact:
+        name: 名前
+        email: メールアドレス
+        message: お問合せ内容
