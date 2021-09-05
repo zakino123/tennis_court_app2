@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :courts
   post '/courts', to: 'courts#create'
-  post 'guest_login', to: "guest_sessions#create"
+  post '/guest_login', to: "guest_sessions#create"
 end
