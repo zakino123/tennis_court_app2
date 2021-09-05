@@ -83,4 +83,52 @@ RSpec.describe "Courts", type: :request do
       end
     end
   end
+
+  describe "destroyアクション" do
+    before do
+      @user = FactoryBot.create(:user)
+      @other_user = FactoryBot.create(:user)
+      @admin_user = FactoryBot.create(:user, admin: true)
+      @court = FactoryBot.create(:court, user_id: @user.id)
+    end
+    context "ユーザーが正しい場合" do
+      before do
+        get login_path
+        session_params = { session: { email: @user.email, password: @user.password } }
+        post login_path, params: session_params
+      end
+      it "コートを削除に成功" do
+        get edit_court_path(@court)
+        expect {
+          delete court_path(@court), params: { id: @court.id }
+        }.to change(Court, :count).by(-1)
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "管理者ユーザーの場合" do
+      before do
+        get login_path
+        session_params = { session: { email: @admin_user.email, password: @admin_user.password } }
+        post login_path, params: session_params
+      end
+      it "コートを削除に成功" do
+        get edit_court_path(@court)
+        expect {
+          delete court_path(@court), params: { id: @court.id }
+        }.to change(Court, :count).by(-1)
+      end
+    end
+    context "関係ないユーザーの場合" do
+      before do
+        get login_path
+        session_params = { session: { email: @other_user.email, password: @other_user.password } }
+        post login_path, params: session_params
+      end
+      it "コート情報を削除失敗" do
+        get edit_court_path(@court)
+        delete court_path(@court), params: { id: @court.id }
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
 end

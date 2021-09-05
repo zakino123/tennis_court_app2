@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Edit", type: :feature do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, admin: true) }
+  let(:court) { FactoryBot.create(:court) }
   describe "コート情報の作成" do
     before do
       visit user_create_path
