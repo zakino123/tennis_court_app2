@@ -34,7 +34,6 @@ class CourtsController < ApplicationController
   private
 
     def court_params
-      # params.permit(:name, :address)
       params.require(:court).permit(:name, :address)
     end
 

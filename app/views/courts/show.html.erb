@@ -2,10 +2,8 @@
 <div class="container">
   <div class="">
     <h2>施設名：<%= @court.name %></h2>
-    <% if current_user.id == @court.user.id %>
-      <%= link_to "コート情報変更", edit_court_path(current_user), class: "p-4 fs-3 text-dark" %>
-    <% elsif current_user.admin %>
-      <%= link_to "コート情報変更", edit_court_path(current_user), class: "p-4 fs-3 text-dark" %>
+    <% if current_user.id == @court.user.id or current_user.admin %>
+      <%= link_to "コート情報変更", edit_court_path(@court), class: "p-4 fs-3 text-dark" %>
     <% end %>
   </div>
   <div class="">
