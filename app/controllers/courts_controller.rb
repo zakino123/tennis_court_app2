@@ -25,6 +25,16 @@ class CourtsController < ApplicationController
     end
   end
 
+  def update
+    @court = Court.find(params[:id])
+    if @court.update(court_params)
+      flash[:success] = "アカウント情報を更新しました。"
+      redirect_to @court
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     Court.find(params[:id]).destroy
     flash[:success] = "コート情報を削除しました。"

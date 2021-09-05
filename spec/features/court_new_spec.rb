@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Edit", type: :feature do
-  let(:user) { FactoryBot.create(:user, admin: true) }
+  let(:user) { FactoryBot.create(:user) }
   let(:court) { FactoryBot.create(:court) }
   describe "コート情報の作成" do
     before do
@@ -17,7 +17,7 @@ RSpec.feature "Edit", type: :feature do
       before do
         fill_in "施設名", with: "test"
         fill_in "住所", with: "test"
-        click_button "コートを投稿する"
+        click_button "コート情報を投稿する"
       end
       it "作成に成功" do
         expect(page).to have_selector('.alert-success', text: 'コート情報を受け付けました')
@@ -27,7 +27,7 @@ RSpec.feature "Edit", type: :feature do
       before do
         fill_in "施設名", with: ""
         fill_in "住所", with: ""
-        click_button "コートを投稿する"
+        click_button "コート情報を投稿する"
       end
       subject { page }
       it "作成に失敗" do
