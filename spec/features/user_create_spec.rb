@@ -9,10 +9,14 @@ RSpec.describe "user_create", type: :feature do
         fill_in 'メールアドレス', with: 'testuser@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード(確認用)', with: 'password'
+        attach_file 'プロフィール画像', "#{Rails.root}/spec/fixtures/images/test.jpeg"
         click_button 'ユーザー作成'
       end
       it 'ユーザー作成成功メッセージ取得' do
         expect(page).to have_selector('.alert-success', text: 'テニスコートサーチにようこそ！')
+      end
+      it "画像アップロード" do
+        expect(page).to have_selector("img[src$='test.jpeg']")
       end
     end
 
