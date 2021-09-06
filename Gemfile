@@ -14,6 +14,10 @@ gem 'faker',                   '2.1.2'
 
 gem "dotenv-rails"
 
+gem 'carrierwave'
+
+gem 'mini_magick'
+
 gem 'bcrypt', '3.1.13'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'tennis#home'
-  get '/search', to: 'tennis#search'
+  root 'courts#index'
+  get '/search', to: 'courts#search'
   get '/user_create', to: 'users#new'
   resources :users
   get '/login', to: 'sessions#new'

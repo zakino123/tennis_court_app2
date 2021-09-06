@@ -11,6 +11,12 @@ class CourtsController < ApplicationController
     @court = Court.find(params[:id])
   end
 
+  def index
+  end
+
+  def search
+  end
+
   def edit
     @court = Court.find(params[:id])
   end
@@ -44,7 +50,7 @@ class CourtsController < ApplicationController
   private
 
     def court_params
-      params.require(:court).permit(:name, :address)
+      params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude)
     end
 
     def logged_in_user

@@ -1,6 +1,14 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages' %>
 
+  <%= f.label :image, "プロフィール画像" %>
+  <% if @user.image? %>
+    <%= image_tag @user.image.url %>
+  <% else %>
+    <%= image_tag "/assets/default.jpeg", :size => '100x100' %>
+  <% end %>
+  <%= f.file_field :image, class: "btn btn-outline-secondary rounded-pill", accept: 'image/jpeg,image/gif,image/png' %>
+
   <%= f.label :name, "ニックネーム" %>
   <%= f.text_field :name, class: "mb-3 form-control", placeholder: '30文字以内で入力してください。' %>
 
