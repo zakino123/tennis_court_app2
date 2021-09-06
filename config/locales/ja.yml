@@ -220,6 +220,12 @@ ja:
       court:
         name: 施設名
         address: アドレス
+        price: 料金
+        hour: 時間
+        number: コート数
+        latitude: 緯度
+        longitude: 経度
+        remarks: 備考
 
 ja:
   activerecord:

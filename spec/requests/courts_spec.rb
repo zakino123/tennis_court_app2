@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "Courts", type: :request do
+  describe "GET /" do
+    before { get root_path }
+    example "ホーム画面の表示に成功" do
+      expect(response).to have_http_status(200)
+    end
+    example "タイトル表示が正常" do
+      assert_select "title", "テニスコートサーチ"
+    end
+  end
+
+  describe "GET search" do
+    example "検索画面の表示に成功" do
+      get search_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe "newアクション" do
     before do
       @user = FactoryBot.create(:user)

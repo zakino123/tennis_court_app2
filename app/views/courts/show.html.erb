@@ -6,7 +6,11 @@
       <%= link_to "コート情報変更", edit_court_path(@court), class: "p-4 fs-3 text-dark" %>
     <% end %>
   </div>
-  <%= image_tag @court.image.url %>
+  <% if @court.image? %>
+    <%= image_tag @court.image.url %>
+  <% else %>
+    <%= image_tag "/assets/default.jpeg", :size => '100x100' %>
+  <% end %>
   <div class="">
     <h3>コート情報
     <div class="">

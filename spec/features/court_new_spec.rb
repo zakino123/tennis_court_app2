@@ -17,23 +17,38 @@ RSpec.feature "New", type: :feature do
       before do
         fill_in "施設名", with: "test"
         fill_in "住所", with: "test"
+        fill_in "料金", with: 1
+        fill_in "時間当たりの", with: 1
+        fill_in "コート数", with: 1
+        fill_in "緯度", with: "test"
+        fill_in "経度", with: "test"
+        fill_in "備考", with: "test"
+        attach_file '施設画像', "#{Rails.root}/spec/fixtures/images/test.jpeg"
         click_button "コート情報を投稿する"
       end
-      it "作成に成功" do
+      it "作成に成功 " do
         expect(page).to have_selector('.alert-success', text: 'コート情報を受け付けました')
+      end
+      it "画像アップロード" do
+        expect(page).to have_selector("img[src$='test.jpeg']")
       end
     end
     context "誤った値を入力した場合" do
       before do
         fill_in "施設名", with: ""
         fill_in "住所", with: ""
+        fill_in "料金", with: ""
+        fill_in "時間当たりの", with: ""
+        fill_in "コート数", with: ""
+        fill_in "緯度", with: ""
+        fill_in "経度", with: ""
+        fill_in "備考", with: ""
         click_button "コート情報を投稿する"
       end
       subject { page }
       it "作成に失敗" do
-        is_expected.to have_css('.alert-danger', text: '2つの誤りが確認されました。')
+        is_expected.to have_css('.alert-danger', text: '7つの誤りが確認されました。')
       end
     end
-
   end
 end

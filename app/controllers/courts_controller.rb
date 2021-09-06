@@ -25,7 +25,7 @@ class CourtsController < ApplicationController
     @court = current_user.courts.new(court_params)
     if @court.save
       flash[:success] = "コート情報を受け付けました！"
-      redirect_back_or root_path
+      redirect_to @court
     else
       render 'new'
     end
