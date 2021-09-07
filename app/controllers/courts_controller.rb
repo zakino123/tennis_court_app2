@@ -9,12 +9,29 @@ class CourtsController < ApplicationController
 
   def show
     @court = Court.find(params[:id])
+    gon.court = @court
   end
 
   def index
   end
 
   def search
+    results = Geocoder.search(params[:location])
+    if results.empty?
+      flash[:notice] = "検索フォームに文字が入っていないか、位置情報を取得できる値でない可能性があります。"
+      redirect_to root_path
+    else
+      selection = params[:keyword]
+      latitude = results.first.coordinates[0]
+      longitude = results.first.coordinates[1]
+      courts = Court.within_box(20, latitude, longitude)
+      case selection
+      when 'near'
+        @courts = Court.near(results.first.coordinates, 20).page(params[:page]).per(10)
+      else
+        @courts = courts
+      end
+    end
   end
 
   def edit

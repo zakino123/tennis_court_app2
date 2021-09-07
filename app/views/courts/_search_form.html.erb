@@ -1,6 +1,38 @@
 <h1 class="text-center mt-sm-3">お気に入りのテニスコートを見つけよう！</h1>
 <div class="center jumbotron">
-  <div>
+
+  <%= form_with url: search_path, :method => 'get' do |f| %>
+
+    <%= f.text_field :location, placeholder: "住所や行きたい場所を入力してください。" %>
+    <%= f.select :keyword, [
+      ['距離が近い順', 'near']
+    ] %>
+    <%= f.submit '検索', class: "button p-2" %>
+  <% end %>
+  <button id="get_current_spot" type="button" class="button p-2">現在地取得</button>
+
+<script>
+  function geoFindMe() {
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      document.getElementById('location').value = `${latitude},${longitude}`;
+    }
+
+    function error() {
+      alert('エラーが発生しました。')
+    }
+
+    if(!navigator.geolocation) {
+       alert('Geolocation is not supported by your browser');
+    } else {
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  }
+
+  document.querySelector('#get_current_spot').addEventListener('click', geoFindMe);
+</script>
+  <%# <div>
     <nav class="navbar bg-light">
       <div class="container">
         <form class="d-flex">
@@ -15,9 +47,9 @@
             </ul>
           </div>
           <%= link_to "検索", search_path, class: "btn btn-lg btn-primary" %>
-        </form>
+        <%# </form>
       </div>
     </nav>
   </div>
-  <button type="button" class="btn btn-outline-success mx-auto" style="width: 200px;">現在地取得</button>
+  <button type="button" class="btn btn-outline-success mx-auto" style="width: 200px;">現在地取得</button> %>
 </div>

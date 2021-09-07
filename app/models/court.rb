@@ -1,4 +1,8 @@
 class Court < ApplicationRecord
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
+  geocoded_by :address
+  before_validation :geocode
   belongs_to :user
   mount_uploader :image, ImageUploader
   # validates :user_id, presence: true
@@ -10,4 +14,13 @@ class Court < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :remarks, length: { maximum: 200 }
+
+  class << self
+    def within_box(distance, latitude, longitude)
+      distance = distance
+      center_point = [latitude, longitude]
+      box = Geocoder::Calculations.bounding_box(center_point, distance)
+      self.within_bounding_box(box)
+    end
+  end
 end
