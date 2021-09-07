@@ -213,6 +213,7 @@ ja:
         email: メールアドレス
         password: パスワード
         pssword_confirmation: パスワード(確認用)
+        image: 画像
 
 ja:
   activerecord:
@@ -226,6 +227,7 @@ ja:
         latitude: 緯度
         longitude: 経度
         remarks: 備考
+        image: 画像
 
 ja:
   activerecord:

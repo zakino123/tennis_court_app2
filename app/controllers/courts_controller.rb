@@ -9,6 +9,7 @@ class CourtsController < ApplicationController
 
   def show
     @court = Court.find(params[:id])
+    gon.court = @court
   end
 
   def index

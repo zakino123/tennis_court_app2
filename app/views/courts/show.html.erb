@@ -2,15 +2,54 @@
 <div class="container">
   <div class="">
     <h2>施設名：<%= @court.name %></h2>
-    <% if current_user.id == @court.user.id or current_user.admin %>
+    <% if logged_in? && (current_user.id == @court.user.id or current_user.admin) %>
       <%= link_to "コート情報変更", edit_court_path(@court), class: "p-4 fs-3 text-dark" %>
     <% end %>
   </div>
+  
   <% if @court.image? %>
     <%= image_tag @court.image.url %>
   <% else %>
     <%= image_tag "/assets/default.jpeg", :size => '100x100' %>
   <% end %>
+
+  <script type="text/javascript">
+    function initMap() {
+      var test ={lat: <%= @court.latitude %>, lng: <%= @court.longitude %>};
+      var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15, 
+                center: test
+                });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      var contentString = '住所：<%= @court.address %>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+                    position:test,
+                    map: map,
+                    title: contentString
+                  });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+
+  <script async defer
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAad1MyGwwNhYQtzNT0BV2ujiWOtDWnjg8&callback=initMap">
+  </script>
+
+  <style type="text/css">
+    #map { height: 200px;
+          width: 70%;}
+  </style>
+
+  <div id="map"></div>
+
   <div class="">
     <h3>コート情報
     <div class="">

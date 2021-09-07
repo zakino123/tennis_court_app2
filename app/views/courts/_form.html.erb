@@ -15,6 +15,9 @@
   <%= f.label :address, "住所" %>
   <%= f.text_field :address, class: "mb-3 form-control", placeholder: '住所を入力してください。' %>
 
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
+
   <%= f.label :price, "料金" %>
   <%= f.number_field :price, class: "mb-3 form-control", placeholder: '料金を入力してください。' %>
 
@@ -24,11 +27,11 @@
   <%= f.label :number, "コート数" %>
   <%= f.number_field :number, class: "mb-3 form-control", placeholder: 'コート数を入力してください。' %>
 
-  <%= f.label :latitude, "緯度" %>
-  <%= f.text_field :latitude, class: "mb-3 form-control", placeholder: '時間を入力してください。' %>
+  <%# <%= f.label :latitude, "緯度" %>
+  <%# <%= f.text_field :latitude, class: "mb-3 form-control", placeholder: '時間を入力してください。' %>
 
-  <%= f.label :longitude, "経度" %>
-  <%= f.text_field :longitude, class: "mb-3 form-control", placeholder: 'コート数を入力してください。' %>
+  <%# <%= f.label :longitude, "経度" %>
+  <%# <%= f.text_field :longitude, class: "mb-3 form-control", placeholder: 'コート数を入力してください。' %>
 
   <%= f.label :remarks, "備考" %>
   <%= f.text_field :remarks, class: "mb-3 form-control", placeholder: '他に何かあればご記入下さい。' %>

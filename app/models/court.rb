@@ -1,7 +1,8 @@
 class Court < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
-  after_validation :geocode
+  geocoded_by :address
+  before_validation :geocode
   belongs_to :user
   mount_uploader :image, ImageUploader
   # validates :user_id, presence: true
@@ -20,14 +21,6 @@ class Court < ApplicationRecord
       center_point = [latitude, longitude]
       box = Geocoder::Calculations.bounding_box(center_point, distance)
       self.within_bounding_box(box)
-    end
-
-    def geocode
-      uri = URI.escape("https://maps.googleapis.com/maps/api/geocode/json?address="+self.address.gsub(" ", "")+"&key=[ここにAPIキー]")
-      res = HTTP.get(uri).to_s
-      response = JSON.parse(res)
-      self.latitude = response["results"][0]["geometry"]["location"]["lat"]
-      self.longitude = response["results"][0]["geometry"]["location"]["lng"]
     end
   end
 end

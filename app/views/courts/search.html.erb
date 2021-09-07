@@ -4,7 +4,12 @@
 <div class="flex flex-wrap justify-between w-11/12 mx-auto">
   <% if @courts.any? %>
     <% @courts.each do |court| %>
-      <%= link_to image_tag(court.image.url), court, id: "detail-" + court.id.to_s, class: 'my-5 mx-auto spot-card' %>
+      <% if court.image? %>
+        <%= link_to image_tag(court.image.url), court, id: "detail-" + court.id.to_s, class: 'my-5 mx-auto spot-card' %>
+      <% else %>
+        <%= link_to image_tag("/assets/default.jpeg"), court, id: "detail-" + court.id.to_s, class: 'my-5 mx-auto spot-card' %>
+      <% end %>
+      
     <% end %>
   <% else %>
     <p class="text-2xl sm:text-3xl mx-auto my-10">検索結果は見つかりませんでした。</p>
