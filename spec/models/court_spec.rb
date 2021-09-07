@@ -36,18 +36,6 @@ RSpec.describe Court, type: :model do
     expect(court.errors[:number]).to include("を入力してください")
   end
 
-  it "緯度がない場合は無効" do
-    court = FactoryBot.build(:court, latitude: nil)
-    court.valid?
-    expect(court.errors[:latitude]).to include("を入力してください")
-  end
-
-  it "経度がない場合は無効" do
-    court = FactoryBot.build(:court, longitude: nil)
-    court.valid?
-    expect(court.errors[:longitude]).to include("を入力してください")
-  end
-
   it "施設名が50文字以下は有効" do
     court = FactoryBot.build(:court, name: 'a' * 50 )
     court.valid?

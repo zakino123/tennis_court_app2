@@ -14,7 +14,7 @@ RSpec.describe "Courts", type: :request do
   describe "GET search" do
     example "検索画面の表示に成功" do
       get search_path
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(302)
     end
   end
 

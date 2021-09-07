@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :court do
     name { "tenniscourt" }
-    address { "address" }
+    address { "埼玉県蓮田市黒浜" }
     association :user
     price { 100 }
     hour { 1 }
