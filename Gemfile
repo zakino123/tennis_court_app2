@@ -18,6 +18,12 @@ gem 'carrierwave'
 
 gem 'mini_magick'
 
+gem 'geocoder'
+
+gem 'gon'
+
+gem 'geokit-rails'
+
 gem 'bcrypt', '3.1.13'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'
