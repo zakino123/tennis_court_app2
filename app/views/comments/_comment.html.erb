@@ -9,4 +9,8 @@
   <span class="timestamp">
     <%= time_ago_in_words(comment.created_at) %> 前に投稿
   </span>
+  <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
+    <%= link_to "削除", court_comment_path(comment.court.id, comment.id), method: :delete,
+                                data: { confirm: "削除してよろしいですか?" } %>
+  <% end %>
 </li>

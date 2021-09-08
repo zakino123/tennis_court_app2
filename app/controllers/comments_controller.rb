@@ -14,6 +14,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @court = Court.find(params[:court_id])
+    comment = Comment.find_by(id: params[:id], court_id: params[:court_id])
+    comment.destroy
+    flash[:success] = "コメントを削除しました。"
+    redirect_to @court
   end
 
   private
