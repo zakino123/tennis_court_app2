@@ -65,13 +65,18 @@
       <h3>コート数</h3>
     </div>
   </div>
-
-  <div class="">
-    <h2>コメント<h2>
-    <ul>
-      <li>コメント1</li>
-      <li>コメント2</li>
-      <li>コメント3</li>
-    </ul>
+  <div class="col-md-8">
+    <h3>コメント： <%= @court.comments.count %>件</h3>
+    <% if logged_in? %>
+      <%= render 'shared/comment_form' %>
+    <% else %>
+      <h4>ログイン後、コメント可能になります。</h4>
+    <% end %>
+    <% if @court.comments.any? %>
+      <ol class="microposts">
+        <%= render @comments %>
+      </ol>
+      <%# <%= paginate @comments %>
+    <% end %>
   </div>
 </div>

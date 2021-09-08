@@ -1,0 +1,12 @@
+<% if @comment.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= @comment.errors.count %>つの誤りが確認されました。
+    </div>
+    <ul>
+    <% @comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

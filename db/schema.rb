@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_09_08_044101) do
     t.integer "price"
     t.integer "hour"
     t.text "remarks"
-    t.string "image"
+    t.text "image"
     t.float "latitude"
     t.float "longitude"
     t.integer "number"

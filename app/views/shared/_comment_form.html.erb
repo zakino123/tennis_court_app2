@@ -1,0 +1,12 @@
+<%# <%= form_with(model: @comment, local: true) do |f| %>
+  <%# <%= render 'shared/comment_error_messages' %>
+  <%# <div class="field">
+    <%= f.text_field :context, placeholder: "コメントの記入をお願いします。" %>
+  <%# </div>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
+<%# <% end %>
+
+<%= form_with model: [@court, @comment], local: true , class: "comment-form" do |f| %>
+  <%= f.text_area :context, rows: "2", class: "form-control"%>  
+  <%= f.submit "コメントする", class: "form-button" %> 
+<% end %>

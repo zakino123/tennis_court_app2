@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   post '/courts', to: 'courts#create'
   post '/guest_login', to: "guest_sessions#create"
   resources :contacts
+  resources :courts do
+    resources :comments, only: [:create, :destroy]
+  end
 end
