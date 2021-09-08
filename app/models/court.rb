@@ -4,8 +4,9 @@ class Court < ApplicationRecord
   geocoded_by :address
   before_validation :geocode
   belongs_to :user
+  has_many :comments, dependent: :destroy
   mount_uploader :image, ImageUploader
-  # validates :user_id, presence: true
+  validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   validates :address, presence: true, length: { maximum: 100 }
   validates :price, presence: true, length: { maximum: 10 }
