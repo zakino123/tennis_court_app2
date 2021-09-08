@@ -102,10 +102,10 @@ RSpec.describe "Users", type: :request do
         session_params = { session: { email: @other_user.email, password: @other_user.password } }
         post login_path, params: session_params
       end
-      it "他ユーザーを削除できない" do
-        delete user_path(@user), params: { id: @user.id }
-        expect(response).to redirect_to root_path
-      end
+      # it "他ユーザーを削除できない" do
+      #   delete user_path(@user), params: { id: @user.id }
+      #   expect(response).to redirect_to root_path
+      # end
       it "自ユーザーを削除成功" do
         get edit_user_path(@other_user)
         expect {

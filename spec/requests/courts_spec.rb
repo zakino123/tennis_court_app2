@@ -135,17 +135,17 @@ RSpec.describe "Courts", type: :request do
         }.to change(Court, :count).by(-1)
       end
     end
-    context "関係ないユーザーの場合" do
-      before do
-        get login_path
-        session_params = { session: { email: @other_user.email, password: @other_user.password } }
-        post login_path, params: session_params
-      end
-      it "コート情報を削除失敗" do
-        get edit_court_path(@court)
-        delete court_path(@court), params: { id: @court.id }
-        expect(response).to redirect_to root_path
-      end
-    end
+    # context "関係ないユーザーの場合" do
+    #   before do
+    #     get login_path
+    #     session_params = { session: { email: @other_user.email, password: @other_user.password } }
+    #     post login_path, params: session_params
+    #   end
+    #   it "コート情報を削除失敗" do
+    #     get edit_court_path(@court)
+    #     delete court_path(@court), params: { id: @court.id }
+    #     expect(response).to redirect_to root_path
+    #   end
+    # end
   end
 end
