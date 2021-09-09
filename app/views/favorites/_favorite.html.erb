@@ -1,0 +1,11 @@
+<% if !Favorite.exists?(user_id: current_user.id, court_id: court.id) %>
+  <%= button_to court_favorites_path(court), method: :post, class: "heart", remote: true do %> 
+    <i class="far fa-heart" style="color: gray;"></i>
+  <% end %> 
+    <span style="color: #FD3378;"><%= "お気に入り数：#{court.favorites.count}" %></span>
+<% else %> 
+  <%= button_to court_favorite_path(court), method: :delete, class: "heart", remote: true do %> 
+    <i class="fas fa-heart" style="color: #FD3378;"></i>
+  <% end %> 
+  <span style="color: #FD3378;"><%= "お気に入り数：#{court.favorites.count}" %></span>
+<% end %>

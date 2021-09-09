@@ -10,10 +10,8 @@ class CourtsController < ApplicationController
   def show
     @court = Court.find(params[:id])
     gon.court = @court
-    # @comments = @court.comments.all(params[:page])
     @comment = Comment.new
     @comments = @court.comments.includes(:user)
-    # @comment = current_user.comments.build if logged_in?
   end
 
   def index

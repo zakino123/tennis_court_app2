@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :contacts
   resources :courts do
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
+  
 end

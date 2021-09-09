@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_044101) do
+ActiveRecord::Schema.define(version: 2021_09_09_071837) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "context"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 2021_09_08_044101) do
     t.index ["user_id"], name: "index_courts_on_user_id"
   end
 
+  create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "court_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_id"], name: "index_favorites_on_court_id"
+    t.index ["user_id", "court_id"], name: "index_favorites_on_user_id_and_court_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -62,4 +72,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_044101) do
   add_foreign_key "comments", "courts"
   add_foreign_key "comments", "users"
   add_foreign_key "courts", "users"
+  add_foreign_key "favorites", "courts"
+  add_foreign_key "favorites", "users"
 end

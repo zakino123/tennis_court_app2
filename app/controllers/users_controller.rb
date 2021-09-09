@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc).pluck(:court_id)
+    @favorites = Court.find(favorites)
   end
 
   def create

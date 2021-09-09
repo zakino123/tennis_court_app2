@@ -1,5 +1,8 @@
 <h1>施設情報</H1>
 <div class="container">
+  <div class='star-btn' id="favorite_<%= @court.id %>">
+    <%= render "favorites/favorite", court: @court %>
+  </div>
   <div class="">
     <h2>施設名：<%= @court.name %></h2>
     <% if logged_in? && (current_user.id == @court.user.id or current_user.admin) %>
