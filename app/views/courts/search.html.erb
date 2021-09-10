@@ -9,6 +9,9 @@
       <% else %>
         <%= link_to image_tag("/assets/default.jpeg"), court, id: "detail-" + court.id.to_s, class: 'my-5 mx-auto spot-card' %>
       <% end %>
+      施設名：<%= court.name %>
+      1時間あたりの料金：<%= court.price %>円
+      コート数：<%= court.number %>面
       
     <% end %>
   <% else %>

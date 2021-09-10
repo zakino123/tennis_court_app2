@@ -5,7 +5,9 @@
 
     <%= f.text_field :location, placeholder: "住所や行きたい場所を入力してください。" %>
     <%= f.select :keyword, [
-      ['距離が近い順', 'near']
+      ['距離が近い順', 'near'],
+      ['１時間当たりのコート料金が安い順', 'inexpensive'],
+      ['コート数が多い順', 'number']
     ] %>
     <%= f.submit '検索', class: "button p-2" %>
   <% end %>

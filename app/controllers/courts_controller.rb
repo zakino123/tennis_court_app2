@@ -32,8 +32,12 @@ class CourtsController < ApplicationController
       case selection
       when 'near'
         @courts = Court.near(results.first.coordinates, 20).page(params[:page]).per(10)
+      when 'inexpensive'
+        @courts = courts.order(price: :asc).page(params[:page]).per(10)
+      when 'number'
+        @courts = courts.order(number: :desc).page(params[:page]).per(10)
       else
-        @courts = courts
+        @courts = courts.page(params[:page]).per(10)
       end
     end
   end
