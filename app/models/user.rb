@@ -36,4 +36,8 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  def already_liked?(court)
+    favorites.exists?(court_id: court.id)
+  end
 end

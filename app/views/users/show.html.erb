@@ -14,7 +14,6 @@
     <h2>お気に入りしたコート</h2>
     <% if @favorites.present? %>
       <% @favorites.each do |favorite| %>
-        <%= image_tag favorite.image, class: "post-img" %>
         施設名：<%= favorite.name %>
         <span>料金：<%= favorite.price %>円/<%= favorite.hour %>時間</span>
       <% end %>

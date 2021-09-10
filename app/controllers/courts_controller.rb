@@ -12,6 +12,7 @@ class CourtsController < ApplicationController
     gon.court = @court
     @comment = Comment.new
     @comments = @court.comments.includes(:user)
+    @favorite = Favorite.new
   end
 
   def index
