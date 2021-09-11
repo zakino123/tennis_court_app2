@@ -8,9 +8,13 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.2",
+    "autoprefixer": "^10.3.4",
     "bootstrap": "^5.1.0",
+    "glob-parent": "^6.0.1",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.15",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
@@ -18,5 +22,24 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.0.0"
-  }
+  },
+  "description": "より好条件なテニスコート検索を便利にするアプリです。",
+  "main": "babel.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "tailwindcss build app/javascript/css/tailwind.css -o app/javascript/packs/application.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakino123/tennis_court_app2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zakino123/tennis_court_app2/issues"
+  },
+  "homepage": "https://github.com/zakino123/tennis_court_app2#readme"
 }
