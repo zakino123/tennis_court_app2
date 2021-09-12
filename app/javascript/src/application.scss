@@ -1,10 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 header {
   background-color: #CCFF66;
+}
+
+.image-home {
+  text-align: center;
+  background-size: cover;
+  background-position: 50% 30%;
 }
 
 footer {
@@ -35,24 +42,3 @@ $gray-medium-light: #eaeaea;
     margin: 0 0 30px 0;
   }
 }
-
-// .field_with_errors {
-//   @extend .has-error;
-//   .form-control {
-//     color: $state-danger-text;
-//   }
-// }
-
-// .checkbox {
-//   margin-top: -10px;
-//   margin-bottom: 10px;
-//   span {
-//     margin-left: 20px;
-//     font-weight: normal;
-//   }
-// }
-
-// #session_remember_me {
-//   width: auto;
-//   margin-left: 0;
-// }

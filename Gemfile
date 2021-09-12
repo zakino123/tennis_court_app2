@@ -10,6 +10,8 @@ gem 'font-awesome-sass'
 
 gem 'jquery-rails'
 
+gem 'rails-ujs'
+
 gem 'rails-i18n'
 
 gem 'kaminari'

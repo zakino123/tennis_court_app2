@@ -1,16 +1,22 @@
-<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fst-italic">
-  <%= link_to "Tennis court search", root_path, class: "h5 my-0 me-md-auto fw-normal fs-1 ps-5 text-info" %>
-  <nav class="my-2 my-md-0 me-md-3 float-end">
-    <%= link_to "ホーム", root_path, class: "p-4 fs-3 text-dark" %>
-    <% if logged_in? %>
-      <%= link_to "マイページ", current_user, class: "p-4 fs-3 text-dark" %>
-      <%= link_to "コート投稿", new_court_path, class: "p-4 fs-3 text-dark" %>
-      <%= link_to "ユーザー一覧", users_path, class: "p-4 fs-3 text-dark" %>
-      <%= link_to "ログアウト", logout_path, method: :delete, class: "p-4 fs-3 text-dark" %>
-    <% else %>
-      <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "p-4 fs-3 text-dark" %>
-      <%= link_to "ログイン", login_path, class: "p-4 fs-3 text-dark" %>
-      <%= link_to "新規登録", user_create_path, class: "p-4 fs-3 text-dark" %>
-    <% end %>
-  </nav>
+<header class="border-b border-gray-300">
+  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center py-1">
+    <div class="header-left flex-row md:flex">
+      <div class="text-center mb-3 md:mb-0">
+        <%= link_to "Tennis court search", root_path, class: "h5 my-0 me-md-auto fw-normal fs-1 ps-5 text-info" %>
+        <nav class="my-2 my-md-0 me-md-3 float-end text-2xl">
+          <%= link_to "ホーム", root_path, class: "p-4 fs-3 text-dark" %>
+          <% if logged_in? %>
+            <%= link_to "マイページ", current_user, class: "m-2 text-dark" %>
+            <%= link_to "コート投稿", new_court_path, class: "m-2 text-dark" %>
+            <%= link_to "ユーザー一覧", users_path, class: "m-2 text-dark" %>
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "m-2 text-dark" %>
+          <% else %>
+            <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "p-4 fs-3 text-dark" %>
+            <%= link_to "ログイン", login_path, class: "p-4 fs-3 text-dark" %>
+            <%= link_to "新規登録", user_create_path, class: "p-4 fs-3 text-dark" %>
+          <% end %>
+        </nav>
+      </div>
+    </div>
+  </div>
 </header>

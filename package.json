@@ -29,7 +29,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "tailwindcss build app/javascript/css/tailwind.css -o app/javascript/packs/application.js"
+    "build": "tailwindcss build app/javascript/src/application.scss -o app/javascript/css/tailwind.css"
   },
   "repository": {
     "type": "git",
