@@ -7,14 +7,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.page(params[:page]).per(12)
   end
 
   def show
     @user = User.find(params[:id])
-    # courts = Court.where(user_id: @user.id).order(created_at: :desc)
-    # @courts = Court.find(courts).page(params[:page])
-    @courts = @user.courts.page(params[:page]).per(6)
+    @courts = @user.courts.page(params[:page]).per(3)
     favorites = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:court_id)
     @favorites = Court.find(favorites)
   end
