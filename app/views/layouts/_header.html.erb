@@ -1,15 +1,15 @@
-<header class="border-b border-gray-300">
-  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center py-1">
-    <div class="header-left flex-row md:flex">
+<header class="bg-teal-100">
+  <div class="container flex">
+    <div class="flex-row md:flex">
       <div class="text-center mb-3 md:mb-0">
-        <%= link_to "Tennis court search", root_path, class: "h5 my-0 me-md-auto fw-normal fs-1 ps-5 text-info" %>
-        <nav class="my-2 my-md-0 me-md-3 float-end text-2xl">
-          <%= link_to "ホーム", root_path, class: "p-4 fs-3 text-dark" %>
+        <%= link_to "Tennis court search", root_path, class: "my-0 text-green-400 fs-1 title-font" %>
+        <nav class="md:ml-3 md:mt-4 text-2xl">
+          <%= link_to "ホーム", root_path, class: "ml-2 m-2 hover:text-blue-400" %>
           <% if logged_in? %>
-            <%= link_to "マイページ", current_user, class: "m-2 text-dark" %>
-            <%= link_to "コート投稿", new_court_path, class: "m-2 text-dark" %>
-            <%= link_to "ユーザー一覧", users_path, class: "m-2 text-dark" %>
-            <%= link_to "ログアウト", logout_path, method: :delete, class: "m-2 text-dark" %>
+            <%= link_to "マイページ", current_user, class: "m-2 hover:text-blue-400" %>
+            <%= link_to "コート投稿", new_court_path, class: "m-2 hover:text-blue-400" %>
+            <%= link_to "ユーザー一覧", users_path, class: "m-2 hover:text-blue-400" %>
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "m-2 hover:text-blue-400" %>
           <% else %>
             <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "p-4 fs-3 text-dark" %>
             <%= link_to "ログイン", login_path, class: "p-4 fs-3 text-dark" %>
