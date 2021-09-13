@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc).pluck(:court_id)
+    # courts = Court.where(user_id: @user.id).order(created_at: :desc)
+    # @courts = Court.find(courts).page(params[:page])
+    @courts = @user.courts.page(params[:page]).per(6)
+    favorites = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:court_id)
     @favorites = Court.find(favorites)
   end
 
