@@ -13,6 +13,14 @@
   font-family: 'Kaushan Script', cursive;
 }
 
+.user-form {
+  width: 500px;
+}
+
+.form-wide {
+  width: 450px;
+}
+
 .pagination {
   justify-content: center;
   padding-bottom: 6px;
@@ -39,10 +47,10 @@
   color: #fff;
 }
 
-// #error_explanation {
-//   color: red;
-//   ul {
-//     color: red;
-//     margin: 0 0 30px 0;
-//   }
-// }
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
