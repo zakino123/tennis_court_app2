@@ -13,26 +13,31 @@
   font-family: 'Kaushan Script', cursive;
 }
 
-// footer {
-//   background-color: #FFDDFF;
-// }
+.pagination {
+  justify-content: center;
+  padding-bottom: 6px;
+}
 
-// $gray-medium-light: #eaeaea;
+.pagination>li>a {          
+  border: none;
+  color: #ED8936;
+}
 
-// @mixin box_sizing {
-//   -moz-box-sizing:    border-box;
-//   -webkit-box-sizing: border-box;
-//   box-sizing:         border-box;
-// }
+.pagination>.active>.page-link {
+  background-color: #ED8936;
+  border-color: #ED8936;
+}
 
-// .debug_dump {
-//   clear: both;
-//   float: left;
-//   width: 100%;
-//   margin-top: 45px;
-//   @include box_sizing;
-// }
+.pagination>.active>a {     
+  background: #ED8936;
+  border-radius: 20px;
+}
 
+.pagination>li>a:hover {        
+  border-radius: 20px;
+  background: #FBD38D;
+  color: #fff;
+}
 
 // #error_explanation {
 //   color: red;
