@@ -11,7 +11,7 @@ class CourtsController < ApplicationController
     @court = Court.find(params[:id])
     gon.court = @court
     @comment = Comment.new
-    @comments = @court.comments.includes(:user)
+    @comments = @court.comments.includes(:user).page(params[:page])
     @favorite = Favorite.new
   end
 

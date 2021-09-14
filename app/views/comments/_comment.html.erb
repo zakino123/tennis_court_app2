@@ -1,16 +1,21 @@
-<li id="comment-<%= comment.id %>">
+<li id="comment-<%= comment.id %>" class="flex py-2 border-t-2 border-black border-b-2">
   <% if comment.user.image? %>
-    <%= image_tag comment.user.image.url %>
+    <%= link_to image_tag(comment.user.image.url, width: '100'), comment.user %>
   <% else %>
-    <%= image_tag "/assets/default.jpeg", :size => '100x100' %>
+    <%= link_to image_tag("/assets/default.jpeg", width: '100'), comment.user %>
   <% end %>
-  <span class="user"><%= link_to comment.user.name, comment.user %></span>
-  <span class="content"><%= comment.context %></span>
-  <span class="timestamp">
-    <%= time_ago_in_words(comment.created_at) %> 前に投稿
-  </span>
-  <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
-    <%= link_to "削除", court_comment_path(comment.court.id, comment.id), method: :delete,
-                                data: { confirm: "削除してよろしいですか?" } %>
-  <% end %>
+  <div class="ml-2 my-auto">
+    <p class="user">
+      <%= link_to comment.user.name, comment.user %>
+      <span class="timestamp">
+      <%= time_ago_in_words(comment.created_at) %> 前に投稿
+      </span>
+    </p>
+    <p class="content"><%= comment.context %></p>
+    <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
+      <%= link_to court_comment_path(comment.court.id, comment.id), method: :delete, data: { confirm: "削除してよろしいですか?" } do %>
+        <span class="text-red-500 hover:text-red-700">削除</span>
+      <% end %>
+    <% end %>
+  </div>
 </li>

@@ -1,6 +1,4 @@
 class Court < ApplicationRecord
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
   geocoded_by :address
   before_validation :geocode
   belongs_to :user

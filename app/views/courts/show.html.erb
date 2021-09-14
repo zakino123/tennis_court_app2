@@ -1,40 +1,71 @@
-<h1>施設情報</H1>
 <div class="container">
-  <div class='star-btn' id="favorite_<%= @court.id %>">
-    <%= render "favorites/favorite", court: @court %>
+  <div class="text-center">
+    <h1 class="text-3xl sm:text-4xl text-center py-4">施設情報</h1>
   </div>
-  <div class="">
-    <h2>施設名：<%= @court.name %></h2>
-    <% if logged_in? && (current_user.id == @court.user.id or current_user.admin) %>
-      <%= link_to "コート情報変更", edit_court_path(@court), class: "p-4 fs-3 text-dark" %>
-    <% end %>
+  <div class="grid sm:grid-cols-2 gap-6 mt-4">
+    <div class="col-span-1">
+      <div class="mt-2">
+        <h2 class="font-bold mb-2 text-4xl"><%= @court.name %></h2>
+      </div>
+      <div class="mb-4">
+        <p>ユーザー：<span><%= link_to @court.user.name, user_path(@court.user), class: "hover:underline" %></span></p>
+      </div>
+      <div class="flex mb-2">
+        <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded' id="favorite_<%= @court.id %>">
+          <%= render "favorites/favorite", court: @court %>
+        </div>
+        <% if logged_in? && (current_user.id == @court.user.id or current_user.admin) %>
+          <%= link_to "コート情報変更", edit_court_path(@court), class: "inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>
+        <% end %>
+      </div>
+      <% if @court.image? %>
+        <%= image_tag @court.image.url, size: '1000x1000', class: 'border-2' %>
+      <% else %>
+        <%= image_tag "/assets/default.jpeg", size: '1000x1000', class: 'border-2' %>
+      <% end %>
+      <div class="text-center my-2">
+        <%= link_to '予約サイトへGo!', "#{@court.reserve}", class: "inline-block text-gray-100 bg-pink-500 border border-yellow-500 hover:text-pink-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>
+      </div>
+    </div>
+    <div class="col-span-1 my-auto">
+      <h2 class="text-center font-bold mb-2 text-2xl">コート情報</h2>
+      <table class="border-2 shadow-md bg-white mx-auto">
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">料金</th>  <th class="pl-2"><%= @court.price %>円/1時間</th>
+        </tr>
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">コート数</th><th class="pl-2"><%= @court.number %>面</th>
+        </tr>
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">住所</th><th class="pl-2"><%= @court.address %></th>
+        </tr>
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">目的地まで</th>
+          <% if logged_in? %>
+            <th>
+              <button class="button"><a href="https://www.google.com/maps/search/?api=1&query=<%= @court.latitude %>,<%= @court.longitude %> " class="font-bold pl-2 underline text-red-400">GoogleMapでルートを検索</a></button>
+            </th>
+          <% end %>
+        </tr>
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">マップ確認</th>
+          <th id="map"></th>
+        </tr>
+        <tr class="border-2">
+          <th class="py-2 font-bold border-r-2">備考</th>
+          <% if @court.remarks.present? %>
+            <th class="pl-2"><%= @court.remarks %></th>
+          <% else %>
+            <th class="pl-2">記載なし</th>
+          <% end %>
+        </tr>
+      </table>
+    </div>
   </div>
-  
-  <% if @court.image? %>
-    <%= image_tag @court.image.url %>
-  <% else %>
-    <%= image_tag "/assets/default.jpeg", :size => '100x100' %>
-  <% end %>
-
-  <div id="map"></div>
-
-  <div class="">
-    <h3>コート情報
-    <div class="">
-      <h3><%= @court.address %></h3>
-    </div>
-    <div class="">
-      <h3>料金</h3>
-    </div>
-    <div class="">
-      <h3>予約url</h3>
-    </div>
-    <div class="">
-      <h3>コート数</h3>
-    </div>
-  </div>
-  <div class="col-md-8">
-    <h3>コメント： <%= @court.comments.count %>件</h3>
+</div>
+<div class="container py-2">
+  <div class="col-md-8 mx-auto">
+    <h3 class="font-bold text-xl mb-2">コメント： <%= @court.comments.count %>件</h3>
     <% if logged_in? %>
       <%= render 'shared/comment_form' %>
     <% else %>
@@ -44,7 +75,7 @@
       <ol class="microposts">
         <%= render @comments %>
       </ol>
-      <%# <%= paginate @comments %>
+      <%= paginate @comments %>
     <% end %>
   </div>
 </div>
