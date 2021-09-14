@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_071837) do
+ActiveRecord::Schema.define(version: 2021_09_14_024046) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "context"
@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(version: 2021_09_09_071837) do
     t.float "latitude"
     t.float "longitude"
     t.integer "number"
+    t.string "reserve"
+    t.index ["address"], name: "index_courts_on_address", unique: true, length: 255
+    t.index ["latitude"], name: "index_courts_on_latitude", unique: true
+    t.index ["longitude"], name: "index_courts_on_longitude", unique: true
     t.index ["user_id"], name: "index_courts_on_user_id"
   end
 
