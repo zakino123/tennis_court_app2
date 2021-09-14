@@ -77,7 +77,7 @@ class CourtsController < ApplicationController
   private
 
     def court_params
-      params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude)
+      params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve)
     end
 
     def logged_in_user
