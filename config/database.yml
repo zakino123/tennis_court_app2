@@ -50,7 +50,7 @@ test:
 #
 production:
   <<: *default
-  database: tennis_court_app_production
+  database: tennis_court_app2_production
   username: root
   password: <%= ENV['RDS_DB_PASSWORD'] %>
   host: <%= ENV['RDS_DB_HOSTNAME'] %>
