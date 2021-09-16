@@ -4,11 +4,11 @@ FactoryBot.define do
     address { "埼玉県蓮田市黒浜" }
     association :user
     price { 100 }
-    hour { 1 }
     number { 5 }
-    latitude { "test" }
-    longitude { "test" }
+    latitude { 139.6732 }
+    longitude { 35.9899 }
     remarks { "test" }
     image { "test" }
+    reserve { "test" }
   end
 end

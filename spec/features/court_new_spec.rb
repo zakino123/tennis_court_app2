@@ -17,9 +17,9 @@ RSpec.feature "New", type: :feature do
       before do
         fill_in "施設名", with: "test"
         fill_in "住所", with: "埼玉県蓮田市黒浜"
-        fill_in "料金", with: 1
-        fill_in "時間当たりの", with: 1
+        fill_in "1時間あたりの料金", with: 1
         fill_in "コート数", with: 1
+        fill_in "予約URL", with: "test"
         fill_in "備考", with: "test"
         attach_file '施設画像', "#{Rails.root}/spec/fixtures/images/test.jpeg"
         click_button "コート情報を投稿する"
@@ -35,9 +35,9 @@ RSpec.feature "New", type: :feature do
       before do
         fill_in "施設名", with: ""
         fill_in "住所", with: ""
-        fill_in "料金", with: ""
-        fill_in "時間当たりの", with: ""
+        fill_in "1時間あたりの料金", with: ""
         fill_in "コート数", with: ""
+        fill_in "予約URL", with: ""
         fill_in "備考", with: ""
         click_button "コート情報を投稿する"
       end

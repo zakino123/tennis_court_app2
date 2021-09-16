@@ -31,10 +31,10 @@ RSpec.describe Court, type: :model do
     expect(court.errors[:price]).to include("を入力してください")
   end
 
-  it "時間がない場合は無効" do
-    court.hour = nil
+  it "予約URLがない場合は無効" do
+    court.reserve = nil
     court.valid?
-    expect(court.errors[:hour]).to include("を入力してください")
+    expect(court.errors[:reserve]).to include("を入力してください")
   end
 
   it "コート数がない場合は無効" do
@@ -83,12 +83,6 @@ RSpec.describe Court, type: :model do
     court.hour = '1' * 10
     court.valid?
     expect(court).to be_valid
-  end
-
-  it "時間が11桁以上は無効" do
-    court.hour = '1' * 11
-    court.valid?
-    expect(court.errors[:hour]).to include(I18n.t('errors.messages.too_long', count: 10))
   end
 
   it "コート数が10桁以下は有効" do

@@ -12,14 +12,14 @@ RSpec.feature "Edit", type: :feature do
       click_button 'ユーザー作成'
     end
     it "編集に成功" do
-      click_link "ユーザー情報変更"
+      click_link "ユーザー情報編集"
       fill_in "ニックネーム", with: "test"
       click_button "変更"
 
       expect(user.reload.name).to eq "test"
     end
     it "編集に失敗" do
-      click_link "ユーザー情報変更"
+      click_link "ユーザー情報編集"
       fill_in "メールアドレス", with: "test@invalid"
       click_button "変更"
 

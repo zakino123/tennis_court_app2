@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.feature "New", type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:court) { FactoryBot.create(:court) }
+  let(:favorite) { FactoryBot.create(:factorybot ,user_id: user.id, court_id: court.id) }
+
   describe "コートコメントの作成" do
     before do
       visit user_create_path
