@@ -43,6 +43,13 @@ RSpec.describe Court, type: :model do
     expect(court.errors[:number]).to include("を入力してください")
   end
 
+  it "住所が重複している場合は無効"  do
+    court1 = FactoryBot.create(:court, address: "test")
+    court2 = FactoryBot.build(:court, address: "test")
+    court2.valid?
+    expect(court2.errors[:address]).to include(I18n.t('errors.messages.taken'))
+  end
+
   it "施設名が50文字以下は有効" do
     court.name = 'a' * 50 
     court.valid?
