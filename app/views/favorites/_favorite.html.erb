@@ -1,10 +1,10 @@
 <% if current_user.already_liked?(@court) %>
-  <%= link_to court_favorite_path(@court), method: :delete, remote: true do %>
-    <i class="m-2 fas fa-star fa-lg fill-current" style="color: #ECC94B;"></i>
+  <%= link_to court_favorite_path(@court), method: :delete, remote: true, class: "test" do %>
+    <i class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
   <% end %>
 <% else %>
-  <%= link_to court_favorites_path(@court), method: :post, remote: true do %>
-    <i class="m-2 fas fa-star fa-lg fill-current" style="color: gray;"></i>
+  <%= link_to court_favorites_path(@court), method: :post, remote: true, class: "test" do %>
+    <i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
   <% end %>
 <% end %>
 <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
