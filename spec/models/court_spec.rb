@@ -86,12 +86,6 @@ RSpec.describe Court, type: :model do
     expect(court.errors[:price]).to include(I18n.t('errors.messages.too_long', count: 10))
   end
 
-  it "時間が10桁以下は有効" do
-    court.hour = '1' * 10
-    court.valid?
-    expect(court).to be_valid
-  end
-
   it "コート数が10桁以下は有効" do
     court.number = '1' * 10
     court.valid?
