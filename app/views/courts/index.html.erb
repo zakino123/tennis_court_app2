@@ -1,11 +1,11 @@
 <%= render 'courts/search_form' %>
 <div class="text-center">
   <h1 class="text-2xl sm:text-3xl text-center my-10">検索結果<br><span class="text-lg sm:text-2xl border-b-2 border-black">(検索ワードの地点から半径10km以内を表示)</span></h1>
-  <p class="text-lg sm:text-2xl">まだ検索されていません。</p>
+  <p class="text-lg sm:text-2xl ">まだ検索されていません。</p>
 </div>
-<div class="p-10">
+<div class="container py-4">
   <h2 class="text-lg text-center font-bold mb-2">お気に入り数が多いコート</h2>
-  <div class="flex justify-center space-x-5 xl:space-x-32">
+  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @all_ranks.present? %>
       <% @all_ranks.each do |court| %>
         <li class="bg-green-100 hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
@@ -26,11 +26,11 @@
         </li>
       <% end %>
     <% end %>
-  </div>
+  </ul>
 </div>
-<div class="p-10">
-  <h2 class="text-lg text-center font-bold mb-2">お気に入り数が多いコート</h2>
-  <div class="flex justify-center space-x-5 xl:space-x-32">
+<div class="container py-4">
+  <h2 class="text-lg text-center font-bold mb-2">最近投稿されたコート</h2>
+  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @latest_courts.present? %>
       <% @latest_courts.each do |court| %>
         <li class="bg-green-100 hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
@@ -51,5 +51,5 @@
         </li>
       <% end %>
     <% end %>
-  </div>
+  </ul>
 </div>
