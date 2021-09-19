@@ -3,8 +3,8 @@
   <h1 class="text-2xl sm:text-3xl text-center my-10">検索結果<br><span class="text-lg sm:text-2xl border-b-2 border-black">(検索ワードの地点から半径10km以内を表示)</span></h1>
   <p class="text-lg sm:text-2xl">検索結果が見つかりました。</p>
 </div>
-<div class="p-10">
-  <div class="flex justify-center space-x-5 xl:space-x-32">
+<div class="container py-4 ">
+  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @courts.any? %>
       <% @courts.each do |court| %>
         <li class="bg-green-100 hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
@@ -27,5 +27,6 @@
     <% else %>
       <p class="text-lg sm:text-2xl">検索結果は見つかりませんでした。</p>
     <% end %>
-  </div>
+  </ul>
+  <%= paginate @courts %>
 </div>
