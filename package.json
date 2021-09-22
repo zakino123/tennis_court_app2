@@ -22,24 +22,5 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.0.0"
-  },
-  "description": "より好条件なテニスコート検索を便利にするアプリです。",
-  "main": "babel.config.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "build": "tailwindcss build app/javascript/src/application.scss -o app/javascript/css/tailwind.css"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zakino123/tennis_court_app2.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zakino123/tennis_court_app2/issues"
-  },
-  "homepage": "https://github.com/zakino123/tennis_court_app2#readme"
+  }
 }
