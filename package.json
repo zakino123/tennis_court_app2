@@ -22,10 +22,5 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.0.0"
-  },
-  "description": "より好条件なテニスコート検索を便利にするアプリです。",
-  "main": "babel.config.js",
-  "directories": {
-    "lib": "lib"
   }
 }
