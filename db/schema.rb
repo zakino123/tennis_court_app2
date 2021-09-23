@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_024046) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
-    t.integer "hour"
     t.text "remarks"
     t.text "image"
     t.float "latitude"
