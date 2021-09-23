@@ -17,8 +17,8 @@ class CourtsController < ApplicationController
 
   def index
     @courts = Court.all.page(params[:page])
-    @all_ranks = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(5).pluck(:court_id))
-    @latest_courts = Court.includes(:user).order(created_at: :desc).limit(5)
+    @all_ranks = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(4).pluck(:court_id))
+    @latest_courts = Court.includes(:user).order(created_at: :desc).limit(4)
   end
 
   def search
