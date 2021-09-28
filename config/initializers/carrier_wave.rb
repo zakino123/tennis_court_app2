@@ -7,5 +7,6 @@ if Rails.env.production?
       region: "ap-northeast-1"
     }
     config.fog_directory = "tennis-court-app2"
+    config.asset_host = "https://static.tennis-court-app.com"
   end
 end
