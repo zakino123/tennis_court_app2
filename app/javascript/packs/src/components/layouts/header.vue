@@ -1,0 +1,25 @@
+<template>
+  <header class="bg-green-100">
+    <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center py-1">
+      <div class="header-left flex-row md:flex">
+        <div class="text-center mb-3 md:mb-0">
+          <router-link to="/" class="h5 my-0 fw-normal fs-1 ps-5 text-info title-font">Tennis court search</router-link>
+          <nav class="ml-3 mt-4 float-end text-base md:text-2xl">
+            <router-link to="/" class="ml-2 m-2 hover:text-blue-400">ホーム</router-link>
+            <router-link to="/login" class="m-1 hover:text-blue-400">ログイン</router-link>
+            <router-link to="users/new" class="m-1 hover:text-blue-400">新規登録</router-link>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+export default {
+  name: 'global_header'
+}
+</script>
+
+<style scoped>
+</style>
