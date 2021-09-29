@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      resources :contacts
+    end
+  end
   root 'courts#index'
   get '/search', to: 'courts#search'
   get '/user_create', to: 'users#new'

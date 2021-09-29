@@ -6,7 +6,7 @@
         <%= render 'shared/contact_error_messages' %>
 
         <%= f.label :name, "名前", {class: "text-lg font-bold"} %>
-        <%= f.text_field :name, class: 'form-control mb-4', placeholder: '名前を入力してください。' %>
+        <%= f.text_field :name, class: 'form-control mb-4', placeholder: '30文字以内で入力してください。' %>
 
         <%= f.label :email, "メールアドレス", {class: "text-lg font-bold"} %>
         <%= f.email_field :email, class: 'form-control mb-4', placeholder: 'メールアドレスを入力してください。' %>

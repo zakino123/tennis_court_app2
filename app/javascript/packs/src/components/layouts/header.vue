@@ -7,7 +7,7 @@
           <nav class="ml-3 mt-4 float-end text-base md:text-2xl">
             <router-link to="/" class="ml-2 m-2 hover:text-blue-400">ホーム</router-link>
             <router-link to="/login" class="m-1 hover:text-blue-400">ログイン</router-link>
-            <router-link to="users/new" class="m-1 hover:text-blue-400">新規登録</router-link>
+            <router-link to="/users/new" class="m-1 hover:text-blue-400">新規登録</router-link>
           </nav>
         </div>
       </div>
