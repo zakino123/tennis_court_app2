@@ -66,4 +66,6 @@ set :ssh_options, {
   keys: %w(~/.ssh/tennis_court_app2.pem),
   forward_agent: true,
   auth_methods: %w(publickey),
+  :keepalive => true,
+  :keepalive_interval => 60
 }
