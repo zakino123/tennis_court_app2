@@ -12,7 +12,9 @@ set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 append :linked_files, "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "node_modules"
 
-# set :pty, true
+set :pty, true
+
+set :ssh_options, :keepalive => true
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
