@@ -4,7 +4,7 @@
       <% if @user.image? %>
         <%= image_tag @user.image.url, :size => '200x200', class: "inline-block w-full h-40 mx-auto items-start" %>
       <% else %>
-        <%= image_tag "/assets/default.jpeg", :size => '200x200', class: "inline-block w-full h-40 mx-auto items-start" %>
+        <%= image_tag "/assets/default.jpg", :size => '200x200', class: "inline-block w-full h-40 mx-auto items-start" %>
       <% end %>
       <div class="text-center text-gray-700 text-xl font-bold mt-3">
         <%= @user.name %>さんのマイページ
