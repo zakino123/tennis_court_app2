@@ -4,7 +4,7 @@
   <p class="text-lg sm:text-2xl">検索結果が見つかりました。</p>
 </div>
 <div class="container py-4 ">
-  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @courts.any? %>
       <% @courts.each do |court| %>
         <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
