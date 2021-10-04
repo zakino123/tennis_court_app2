@@ -8,7 +8,7 @@
   <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @all_ranks.present? %>
       <% @all_ranks.each do |court| %>
-        <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
+        <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow card">
           <% if court.image? %>
             <%= link_to image_tag(court.image.url), court, size: "200x200" %>
           <% else %>
@@ -33,7 +33,7 @@
   <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @latest_courts.present? %>
       <% @latest_courts.each do |court| %>
-        <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
+        <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow card">
           <% if court.image? %>
             <%= link_to image_tag(court.image.url), court, size: "200x200" %>
           <% else %>
