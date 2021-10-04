@@ -1,9 +1,9 @@
 <header class="bg-green-100">
-  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center py-1">
-    <div class="header-left flex-row md:flex">
-      <div class="text-center mb-3 md:mb-0">
-        <%= link_to "Tennis court search", root_path, class: "h5 my-0 fw-normal fs-1 ps-5 text-info title-font" %>
-        <nav class="ml-3 mt-4 float-end text-base md:text-2xl">
+  <div class="container py-1">
+    <div class="mx-auto">
+      <div class="text-center mb-3 md:mb-0  lg:flex">
+        <%= link_to "Tennis court search", root_path, class: "my-auto fs-1 text-info title-font" %>
+        <nav class="mt-3 text-base sm:text-xl md:text-2xl">
           <%= link_to "ホーム", root_path, class: "ml-2 m-2 hover:text-blue-400" %>
           <% if logged_in? %>
             <%= link_to "マイページ", current_user, class: "m-1 hover:text-blue-400" %>
