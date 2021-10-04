@@ -125,7 +125,7 @@ PCだけでなく、スマートフォンでも違和感無く利用できるよ
 ![ER図](https://user-images.githubusercontent.com/75520329/135751526-2757eda3-471f-4f32-8907-aaeea99e5ac8.png)
 
 # ◯テーブル設計
-
+![table-design](https://user-images.githubusercontent.com/75520329/135859677-5e017e32-c149-4a4d-9b7f-0cb290b906c8.png)
 
 # ◯今後の開発予定
 ・VueによるSPAの実装
