@@ -12,7 +12,7 @@
           <% if court.image? %>
             <%= link_to image_tag(court.image.url), court, size: "200x200" %>
           <% else %>
-            <%= link_to image_tag("/assets/default_court.png"), court, size: "200x200" %>
+            <%= link_to image_tag(asset_path("default_court.png")), court, size: "200x200" %>
           <% end %>
           <div class="text-center">
             <p class="font-bold underline mt-2"><%= link_to court.name, court_path(court), class: "hover:text-green-600"%></p>
@@ -37,7 +37,7 @@
           <% if court.image? %>
             <%= link_to image_tag(court.image.url), court, size: "200x200" %>
           <% else %>
-            <%= link_to image_tag("/assets/default_court.png"), court, size: "200x200" %>
+            <%= link_to image_tag(asset_path("default_court.png")), court, size: "200x200" %>
           <% end %>
           <div class="text-center">
             <p class="font-bold underline mt-2"><%= link_to court.name, court_path(court), class: "hover:text-green-600"%></p>
