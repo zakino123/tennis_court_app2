@@ -19,7 +19,7 @@
   <div class="posts-info lg:col-span-3 mb-4 lg:mt-4">
     <div classe="">
       <h2 class="text-2xl text-center font-bold mb-4">お気に入りコート</h2>
-      <ul class="flex justify-center space-x-5 xl:space-x-32">
+      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <% if @favorites.present? %>
           <% @favorites.each do |favorite| %>
             <li class="bg-green-100 mx-auto hover:bg-white  border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
@@ -46,7 +46,7 @@
     </div>
     <div classe="">
       <h2 class="text-2xl text-center font-bold my-3">投稿したコート</h2>
-      <ul class="flex justify-center space-x-5 xl:space-x-32">
+      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <% if @courts.present? %>
           <% @courts.each do |court| %>
             <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow court-card">
