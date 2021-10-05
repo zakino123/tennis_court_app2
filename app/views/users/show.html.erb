@@ -2,9 +2,9 @@
   <div class="user-info col-span-1 container mx-auto my-auto w-64">
     <div class="user-image justify-items-center mt-6 w-64 justify-center">
       <% if @user.image? %>
-        <%= link_to image_tag(@user.image.url), @user, :size => '200x200', class: "inline-block w-full h-40 mx-auto items-start" %>
+        <%= link_to image_tag(@user.image.url), @user, :size => '200x200', class: "w-full h-40 mx-auto items-start" %>
       <% else %>
-        <%= link_to image_tag(asset_path("default.jpg")), @user, :size => '200x200', class: "inline-block w-full h-40 mx-auto items-start" %>
+        <%= link_to image_tag(asset_path("default.jpg")), @user, :size => '200x200', class: "w-full h-40 mx-auto items-start" %>
       <% end %>
       <div class="text-center text-gray-700 text-xl font-bold mt-3">
         <%= @user.name %>さんのマイページ

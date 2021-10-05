@@ -22,6 +22,16 @@
   width: 450px;
 }
 
+@media screen and (max-width: 480px) {
+  .user-form {
+    width: 350px;
+  }
+  
+  .form-wide {
+    width: 320px;
+  }
+}
+
 .pagination {
   justify-content: center;
   padding-bottom: 6px;
