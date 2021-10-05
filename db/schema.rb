@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_024046) do
+ActiveRecord::Schema.define(version: 2021_10_05_023425) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "context"
@@ -60,6 +60,21 @@ ActiveRecord::Schema.define(version: 2021_09_14_024046) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "tag_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "court_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["court_id"], name: "index_tag_maps_on_court_id"
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
+  end
+
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -77,4 +92,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_024046) do
   add_foreign_key "courts", "users"
   add_foreign_key "favorites", "courts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "tag_maps", "courts"
+  add_foreign_key "tag_maps", "tags"
 end

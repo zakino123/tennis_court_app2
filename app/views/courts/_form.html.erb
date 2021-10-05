@@ -27,6 +27,9 @@
   <%= f.label :reserve, "予約URL", {class: "text-lg font-bold"} %>
   <%= f.text_field :reserve, class: "mb-3 form-control", placeholder: '予約URLを貼り付けてください。' %>
 
+  <%= f.label :tag_name, "タグ付け(半角スペースで複数タグ付けできます)", {class: "text-lg font-bold"} %>
+  <%= f.text_field :tag_name, class: "mb-3 form-control", placeholder: '例：オムニ 埼玉 クレー' %>
+
   <%= f.label :remarks, "備考", {class: "text-lg font-bold"} %>
   <%= f.text_field :remarks, class: "mb-3 form-control", placeholder: '他に何かあればご記入下さい。' %>
 

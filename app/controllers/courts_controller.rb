@@ -9,6 +9,7 @@ class CourtsController < ApplicationController
 
   def show
     @court = Court.find(params[:id])
+    @court_tags = @court.tags
     gon.court = @court
     @comment = Comment.new
     @comments = @court.comments.includes(:user).page(params[:page])
@@ -16,12 +17,14 @@ class CourtsController < ApplicationController
   end
 
   def index
+    @tag_list = Tag.all.page(params[:page])
     @courts = Court.all.page(params[:page])
     @all_ranks = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(4).pluck(:court_id))
     @latest_courts = Court.includes(:user).order(created_at: :desc).limit(4)
   end
 
   def search
+    @tag_list = Tag.all
     results = Geocoder.search(params[:location])
     if results.empty?
       flash[:notice] = "検索フォームに文字が入っていないか、位置情報を取得できる値でない可能性があります。"
@@ -44,13 +47,21 @@ class CourtsController < ApplicationController
     end
   end
 
+  def tagsearch
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @tag_court_lists = @tag.courts.all.page(params[:page]).per(12)
+  end
+
   def edit
     @court = Court.find(params[:id])
   end
 
   def create
     @court = current_user.courts.new(court_params)
+    tag_list = params[:court][:tag_name].split(nil) 
     if @court.save
+      @court.save_tag(tag_list) 
       flash[:success] = "コート情報を受け付けました！"
       redirect_to @court
     else

@@ -6,6 +6,11 @@
     <div class="col-span-1">
       <div class="mt-2">
         <h2 class="font-bold mb-2 text-4xl"><%= @court.name %></h2>
+        <h4>タグ:</h4>
+        <% @court_tags.each do |tag| %>
+          <span><%= link_to tag.tag_name, tag_courts_path(tag_id: tag.id) %><%= "(#{tag.courts.count})" %></span>
+        <% end %>
+
       </div>
       <div class="mb-4">
         <p>ユーザー：<span><%= link_to @court.user.name, user_path(@court.user), class: "hover:underline" %></span></p>
