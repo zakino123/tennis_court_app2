@@ -9,6 +9,22 @@
       <div class="text-center text-gray-700 text-xl font-bold mt-3">
         <%= @user.name %>さんのマイページ
       </div>
+      <div class="text-center">
+        <p class="text-xl h-6 mt-1">投稿数：<%= @user.courts.count %></p>
+        </div>
+      <div class="text-center my-2 flex">
+        <%= link_to "フォロー#{@user.followings.count}", following_user_path(@user), class: "text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" %>
+        <%= link_to "フォロワー#{@user.followers.count}", followers_user_path(@user), class: "text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2" %>
+      </div>
+      <% if logged_in? && @user != current_user%>
+        <div id="follow_form" class="text-center my-3">
+          <% if current_user.following?(@user) %>
+            <%= render "unfollow" %>
+          <% else %>
+            <%= render "follow" %>
+          <% end %>
+        </div>
+      <% end %>
       <% if current_user == @user %>
         <div class="text-center my-2">
           <%= link_to 'ユーザー情報編集', edit_user_path(current_user), class: "inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>

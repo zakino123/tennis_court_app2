@@ -17,5 +17,10 @@ Rails.application.routes.draw do
   resources :tags do
     get 'courts', to: 'courts#tagsearch'
   end
-  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :follow_relationships, only: [:create, :destroy]
 end

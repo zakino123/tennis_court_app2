@@ -48,6 +48,16 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def following
+    @user =User.find(params[:id])
+    @users =@user.followings.page(params[:page]).per(12)
+  end
+
+  def followers
+    @user =User.find(params[:id])
+    @users =@user.followers.page(params[:page]).per(12)
+  end
+
   private
 
     def user_params

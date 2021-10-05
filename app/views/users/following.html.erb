@@ -1,0 +1,30 @@
+<div class="container pb-4">
+  <div class="text-center">
+    <h1 class="text-2xl sm:text-3xl text-center py-4">フォロー一覧</h1>
+  </div>
+  <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <% @users.each do |user| %>
+      <li class="mt-2 mx-auto bg-green-100 hover:bg-white border-2 border-gray-300 list-none hover:shadow card">
+        <% if user.image? %>
+          <%= link_to image_tag(user.image.url), user, size: "200x200" %>
+        <% else %>
+          <%= link_to image_tag(asset_path("default.jpg")), user, size: "200x200" %>
+        <% end %>
+        <div class="text-center">
+          <p class="font-bold underline mt-2"><%= link_to user.name, user_path(user), class: "hover:text-green-600"%></p>
+          <p class="text-xl h-6 mt-1">投稿数：<%= user.courts.count %></p>
+        </div>
+        <div>
+          <% if logged_in? && (current_user == user or current_user.admin) %>
+            <div class="text-center my-2">
+              <%= link_to user, method: :delete, data: { confirm: "削除してもよろしいですか?" } do %>
+                <p class="inline-block text-red-500 bg-gray-100 border-2 hover:text-gray-100 hover:bg-red-500 hover:shadow font-base px-4 py-2 rounded text-base">ユーザー削除</p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @users %>
+</div>

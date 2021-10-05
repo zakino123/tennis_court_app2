@@ -1,0 +1,4 @@
+<%= form_with(model: current_user.following_relationships.find_by(following_id: @user.id),method: :delete) do |f| %>
+  <%= f.hidden_field :following_id %>  
+  <%= f.submit "フォロー解除", class: "inline-block text-gray-100 bg-red-500 border border-yellow-500 hover:text-red-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>
+<% end %>
