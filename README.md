@@ -47,6 +47,8 @@ Rubocop
 
 ・ログイン / ゲストログイン / Cookieを利用した永続的セッション
 
+・フォロー / フォロー解除
+
 ・お気に入りコート表示機能
 
 ・投稿したコート一覧
@@ -59,6 +61,8 @@ Rubocop
 ・施設画像添付
 
 ・テニスコート検索機能[Geocoding API]
+
+・タグ検索機能
 
 ・テニスコートお気に入り登録機能
 
@@ -125,7 +129,7 @@ PCだけでなく、スマートフォンでも違和感無く利用できるよ
 ![ER図](https://user-images.githubusercontent.com/75520329/135751526-2757eda3-471f-4f32-8907-aaeea99e5ac8.png)
 
 # ◯テーブル設計
-![table-design](https://user-images.githubusercontent.com/75520329/135859677-5e017e32-c149-4a4d-9b7f-0cb290b906c8.png)
+![table-design](https://user-images.githubusercontent.com/75520329/136000662-55c8823c-5b9b-4a8e-96fa-a2fcd8b90030.png)
 
 # ◯今後の開発予定
 ・VueによるSPAの実装
