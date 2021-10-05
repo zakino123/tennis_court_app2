@@ -31,7 +31,7 @@ class Court < ApplicationRecord
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
     old_tags.each do |old|
-      self.court_tags.delete Tag.find_by(tag_name: old)
+      self.tags.delete Tag.find_by(tag_name: old)
     end
     new_tags.each do |new|
       court_tag = Tag.find_or_create_by(tag_name: new)

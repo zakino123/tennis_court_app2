@@ -71,7 +71,9 @@ class CourtsController < ApplicationController
 
   def update
     @court = Court.find(params[:id])
+    tag_list = params[:court][:tag_name].split(nil) 
     if @court.update(court_params)
+      @court.save_tag(tag_list)
       flash[:success] = "アカウント情報を更新しました。"
       redirect_to @court
     else
