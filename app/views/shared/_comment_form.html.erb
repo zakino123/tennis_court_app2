@@ -1,6 +1,6 @@
 <%= form_with model: [@court, @comment], local: true , class: "comment-form" do |f| %>
   <%= f.text_area :context, rows: "2", class: "form-control mb-2"%>  
   <div class="text-center">
-    <%= f.submit "コメントする", class: "inline-block text-gray-100 bg-teal-500 border border-yellow-500 hover:text-teal-500 hover:bg-white font-base px-4 py-2 rounded text-base mb-2" %> 
+    <%= f.submit "コメントする", class: "inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base mb-2" %> 
   </div>
 <% end %>
