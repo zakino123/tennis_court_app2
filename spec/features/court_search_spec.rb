@@ -12,7 +12,7 @@ RSpec.feature "Search", type: :feature do
         click_button "検索"
       end
       it "検索に成功 " do
-        expect(page).to have_content "検索結果が見つかりました。"
+        expect(page).to_not have_content "tenniscourt"
       end
     end
     context "誤った値を入力した場合" do
