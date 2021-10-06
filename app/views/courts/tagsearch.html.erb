@@ -1,27 +1,9 @@
 <%= render 'courts/search_form' %>
-<div class="text-center">
-  <h1 class="text-2xl sm:text-3xl text-center my-10">検索結果<br><span class="text-lg sm:text-2xl border-b-2 border-black">(検索ワードの地点から半径10km以内を表示)</span></h1>
-</div>
 <div class="container py-4 ">
   <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% if @tag_court_lists.any? %>
       <% @tag_court_lists.each do |court| %>
-        <li class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow card">
-        <% if court.image? %>
-          <%= link_to image_tag(court.image.url), court, size: "200x200" %>
-        <% else %>
-          <%= link_to image_tag(asset_path("default_court.png")), court, size: "200x200" %>
-        <% end %>
-        <div class="text-center">
-          <p class="font-bold underline mt-2"><%= link_to court.name, court_path(court), class: "hover:text-green-600"%></p>
-          <p class="text-xl h-6 mt-1">料金：<%= court.price %>円/時間</p>
-          <div class="mt-2">
-            <span><i class="fas fa-star fa-lg fill-current text-yellow-500"></i><%= court.favorites.count %></span>
-            <span class="font-bold underline ml-6"><i class="far fa-user mr-2"></i><%= link_to court.user.name, user_path(court.user), class: "hover:text-green-600" %></span>
-            <p class="text-xl h-6 mt-1">コート数：<%= court.number %>面</p>
-          </div>
-        </div>
-        </li>
+        <%= render court %>
       <% end %>
     <% end %>
   </ul>
