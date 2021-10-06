@@ -27,7 +27,7 @@ class CourtsController < ApplicationController
     @tag_list = Tag.all
     results = Geocoder.search(params[:location])
     if results.empty?
-      flash[:notice] = "検索フォームに文字が入っていないか、位置情報を取得できる値でない可能性があります。"
+      flash[:danger] = "検索フォームに文字が入っていないか、位置情報を取得できる値でない可能性があります。"
       redirect_to root_path
     else
       selection = params[:keyword]
