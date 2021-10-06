@@ -5,6 +5,8 @@ require:
 
 # 対象外
 AllCops:
+  TargetRubyVersion: 2.7.4
+  TargetRailsVersion: 6.1.4
   Exclude:
     - "vendor/**/*"
     - "bin/**"
@@ -72,3 +74,9 @@ Metrics/MethodLength:
   Max: 25
   Exclude:
     - "db/migrate/*.rb"
+
+Metrics/BlockLength:
+  Max: 130
+
+Metrics/ClassLength:
+  Max: 102

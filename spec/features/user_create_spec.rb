@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'user_create', type: :feature do
+  jpeg_file_path = Rails.root.join('spec/fixtures/images/test.jpeg')
   describe 'ユーザーを新規登録する場合' do
     context '正しい値を入力した場合' do
       before do
@@ -9,7 +10,7 @@ RSpec.describe 'user_create', type: :feature do
         fill_in 'メールアドレス', with: 'testuser@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード(確認用)', with: 'password'
-        attach_file 'プロフィール画像', "#{Rails.root}/spec/fixtures/images/test.jpeg"
+        attach_file 'プロフィール画像', jpeg_file_path
         click_button 'ユーザー作成'
       end
       it 'ユーザー作成成功メッセージ取得' do

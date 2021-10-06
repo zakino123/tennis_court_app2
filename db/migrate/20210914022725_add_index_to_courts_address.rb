@@ -1,7 +1,9 @@
 class AddIndexToCourtsAddress < ActiveRecord::Migration[6.1]
   def change
-    add_index :courts, :address, unique: true, length: { address: 255 }
-    add_index :courts, :latitude, unique: true
-    add_index :courts, :longitude, unique: true
+    change_table :courts, bulk: true do |t|
+      t.index :address, unique: true, limit: 255
+      t.index :latitude, unique: true
+      t.index :longitude, unique: true
+    end
   end
 end

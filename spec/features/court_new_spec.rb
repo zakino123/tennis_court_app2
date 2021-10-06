@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature 'New', type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:court) { FactoryBot.create(:court) }
+  jpeg_file_path = Rails.root.join('spec/fixtures/images/test.jpeg')
   describe 'コート情報の作成' do
     before do
       visit user_create_path
@@ -21,7 +22,7 @@ RSpec.feature 'New', type: :feature do
         fill_in 'コート数', with: 1
         fill_in '予約URL', with: 'test'
         fill_in '備考', with: 'test'
-        attach_file '施設画像', "#{Rails.root}/spec/fixtures/images/test.jpeg"
+        attach_file '施設画像', jpeg_file_path
         click_button 'コート情報を投稿する'
       end
       it '作成に成功 ' do
