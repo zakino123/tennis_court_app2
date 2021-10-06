@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :courts
   post '/courts', to: 'courts#create'
-  post '/guest_login', to: "guest_sessions#create"
+  post '/guest_login', to: 'guest_sessions#create'
   resources :contacts
   resources :courts do
-    resources :comments, only: [:create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy]
+    resources :favorites, only: %i[create destroy]
   end
   resources :tags do
     get 'courts', to: 'courts#tagsearch'
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :follow_relationships, only: [:create, :destroy]
+  resources :follow_relationships, only: %i[create destroy]
 end

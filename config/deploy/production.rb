@@ -54,12 +54,12 @@
 #     # password: "please use keys"
 #   }
 
-server "52.198.215.207", user: "satoshi", roles: %w{app db web}
+server '52.198.215.207', user: 'satoshi', roles: %w[app db web]
 
 set :ssh_options, {
-  keys: %w(~/.ssh/tennis_court_app2.pem),
+  keys: %w[~/.ssh/tennis_court_app2.pem],
   forward_agent: true,
-  auth_methods: %w(publickey),
-  :keepalive => true,
-  :keepalive_interval => 60
+  auth_methods: %w[publickey],
+  keepalive: true,
+  keepalive_interval: 60
 }

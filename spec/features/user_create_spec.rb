@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "user_create", type: :feature do
+RSpec.describe 'user_create', type: :feature do
   describe 'ユーザーを新規登録する場合' do
     context '正しい値を入力した場合' do
       before do
@@ -15,7 +15,7 @@ RSpec.describe "user_create", type: :feature do
       it 'ユーザー作成成功メッセージ取得' do
         expect(page).to have_selector('.alert-success', text: 'テニスコートサーチにようこそ！')
       end
-      it "画像アップロード" do
+      it '画像アップロード' do
         expect(page).to have_selector("img[src$='test.jpeg']")
       end
     end

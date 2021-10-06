@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "user_login", type: :feature do
+RSpec.describe 'user_login', type: :feature do
   describe 'ユーザーがログインする場合' do
     before do
-      @user = FactoryBot.create(:user, email: "testuser@example.com")
+      @user = FactoryBot.create(:user, email: 'testuser@example.com')
     end
     context '正しい値を入力した場合' do
       before do
@@ -13,14 +13,14 @@ RSpec.describe "user_login", type: :feature do
         click_button 'ログイン'
       end
       it 'ログイン画面の表示' do
-        expect(page).to have_css("a", text: "マイページ")
-        expect(page).to have_css("a", text: "ログアウト")
+        expect(page).to have_css('a', text: 'マイページ')
+        expect(page).to have_css('a', text: 'ログアウト')
       end
       it 'ログアウト後の画面の確認' do
-        click_link "ログアウト"
+        click_link 'ログアウト'
         expect(page).to have_current_path(root_path)
-        expect(page).to have_css("a", text: "ログイン")
-        expect(page).to_not have_css("a", text: "ログアウト")
+        expect(page).to have_css('a', text: 'ログイン')
+        expect(page).to_not have_css('a', text: 'ログアウト')
       end
     end
 

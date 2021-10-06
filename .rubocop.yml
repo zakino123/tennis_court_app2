@@ -55,7 +55,7 @@ Style/RedundantSelf:
 
 # 変数の代入(A)、メソッドの呼び出し等(B)、条件分岐(C)から算出される複雑度
 Metrics/AbcSize:
-  Max: 30
+  Max: 45
 
 # 循環的複雑度 ≒ 分岐の数
 Metrics/CyclomaticComplexity:
@@ -69,6 +69,6 @@ Layout/LineLength:
 
 # メソッドの行数
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
   Exclude:
     - "db/migrate/*.rb"

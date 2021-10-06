@@ -20,9 +20,9 @@ class Court < ApplicationRecord
 
   class << self
     def within_box(distance, latitude, longitude)
-      distance = distance
+      @distance = distance
       center_point = [latitude, longitude]
-      box = Geocoder::Calculations.bounding_box(center_point, distance)
+      box = Geocoder::Calculations.bounding_box(center_point, @distance)
       self.within_bounding_box(box)
     end
   end

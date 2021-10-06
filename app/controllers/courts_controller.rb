@@ -1,5 +1,5 @@
 class CourtsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :edit, :create, :destroy]
+  before_action :logged_in_user, only: %i[new edit create destroy]
   before_action :permit_update_delete, only: [:edit]
 
   def new
@@ -26,23 +26,23 @@ class CourtsController < ApplicationController
     @tag_list = Tag.all
     results = Geocoder.search(params[:location])
     if results.empty?
-      flash[:danger] = "検索フォームに文字が入っていないか、位置情報を取得できる値でない可能性があります。"
+      flash[:danger] = '検索結果は見つかりませんでした。'
       redirect_to root_path
     else
       selection = params[:keyword]
       latitude = results.first.coordinates[0]
       longitude = results.first.coordinates[1]
       courts = Court.within_box(20, latitude, longitude)
-      case selection
-      when 'near'
-        @courts = Court.near(results.first.coordinates, 20).page(params[:page]).per(12)
-      when 'inexpensive'
-        @courts = courts.order(price: :asc).page(params[:page]).per(12)
-      when 'number'
-        @courts = courts.order(number: :desc).page(params[:page]).per(12)
-      else
-        @courts = courts.page(params[:page]).per(12)
-      end
+      @courts = case selection
+                when 'near'
+                  Court.near(results.first.coordinates, 20).page(params[:page]).per(12)
+                when 'inexpensive'
+                  courts.order(price: :asc).page(params[:page]).per(12)
+                when 'number'
+                  courts.order(number: :desc).page(params[:page]).per(12)
+                else
+                  courts.page(params[:page]).per(12)
+                end
     end
   end
 
@@ -58,10 +58,10 @@ class CourtsController < ApplicationController
 
   def create
     @court = current_user.courts.new(court_params)
-    tag_list = params[:court][:tag_name].split(nil) 
+    tag_list = params[:court][:tag_name].split(nil)
     if @court.save
-      @court.save_tag(tag_list) 
-      flash[:success] = "コート情報を受け付けました！"
+      @court.save_tag(tag_list)
+      flash[:success] = 'コート情報を受け付けました！'
       redirect_to @court
     else
       render 'new'
@@ -70,10 +70,10 @@ class CourtsController < ApplicationController
 
   def update
     @court = Court.find(params[:id])
-    tag_list = params[:court][:tag_name].split(nil) 
+    tag_list = params[:court][:tag_name].split(nil)
     if @court.update(court_params)
       @court.save_tag(tag_list)
-      flash[:success] = "アカウント情報を更新しました。"
+      flash[:success] = 'アカウント情報を更新しました。'
       redirect_to @court
     else
       render 'edit'
@@ -82,38 +82,38 @@ class CourtsController < ApplicationController
 
   def destroy
     Court.find(params[:id]).destroy
-    flash[:success] = "コート情報を削除しました。"
+    flash[:success] = 'コート情報を削除しました。'
     redirect_to root_url
   end
 
   private
 
-    def court_params
-      params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve)
-    end
+  def court_params
+    params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve)
+  end
 
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインをお願いします。"
-        redirect_to login_url
-      end
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = 'ログインをお願いします。'
+      redirect_to login_url
     end
+  end
 
-    def permit_update_delete
-      @court = Court.find(params[:id])
-      unless @court.user_id == current_user.id or current_user.admin
-        flash[:notice] = "投稿者以外の編集・削除はできません。"
-        redirect_to root_path
-      end
+  def permit_update_delete
+    @court = Court.find(params[:id])
+    unless (@court.user_id == current_user.id) || current_user.admin
+      flash[:notice] = '投稿者以外の編集・削除はできません。'
+      redirect_to root_path
     end
+  end
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
 
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 end

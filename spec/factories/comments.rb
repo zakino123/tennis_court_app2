@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    context { "test" }
+    context { 'test' }
     association :user
     association :court
   end
