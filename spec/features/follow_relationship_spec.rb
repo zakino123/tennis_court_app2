@@ -28,6 +28,5 @@ RSpec.feature "Follow", type: :feature do
         expect(page).to have_content "フォロー"
       end
     end
-
   end
 end

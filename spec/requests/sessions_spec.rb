@@ -16,7 +16,6 @@ RSpec.describe "Sessions", type: :request do
 
     context "ユーザーがログアウトした時" do
       it "falseを返すこと" do
-
         delete logout_path
 
         expect(response).to have_http_status(302)

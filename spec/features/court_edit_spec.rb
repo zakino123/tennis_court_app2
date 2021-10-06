@@ -32,6 +32,5 @@ RSpec.feature "Edit", type: :feature do
         expect(court.reload.name).to_not eq ""
       end
     end
-
   end
 end

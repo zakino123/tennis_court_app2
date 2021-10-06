@@ -2,7 +2,6 @@ class CourtsController < ApplicationController
   before_action :logged_in_user, only: [:new, :edit, :create, :destroy]
   before_action :permit_update_delete, only: [:edit]
 
-
   def new
     @court = Court.new
   end

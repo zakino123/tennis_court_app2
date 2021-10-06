@@ -12,6 +12,7 @@ class FavoritesController < ApplicationController
   end
 
   private
+
   def set_court
     @court = Court.find(params[:court_id])
   end

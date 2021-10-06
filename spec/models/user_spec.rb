@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   it "正しい名前、メール、パスワードがある場合は有効" do
     user = FactoryBot.build(:user)
     expect(user).to be_valid
@@ -25,7 +24,7 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include("を入力してください")
   end
 
-  it "メールアドレスが重複している場合は無効"  do
+  it "メールアドレスが重複している場合は無効" do
     user1 = FactoryBot.create(:user, email: "test@example.com")
     user2 = FactoryBot.build(:user, email: "test@example.com")
     user2.valid?
@@ -63,7 +62,7 @@ RSpec.describe User, type: :model do
 
   it "メールアドレスのフォーマットが正しい場合は有効" do
     addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
-      first.last@foo.jp alice+bob@baz.cn]
+                   first.last@foo.jp alice+bob@baz.cn]
 
     addresses.each do |valid_address|
       expect(FactoryBot.build(:user, email: valid_address)).to be_valid
@@ -72,7 +71,7 @@ RSpec.describe User, type: :model do
 
   it "メールアドレスのフォーマットが誤っている場合は無効" do
     addresses = %w[user@example,com user_at_foo.org user.name@example.
-      foo@bar_baz.com foo@bar+baz.com]
+                   foo@bar_baz.com foo@bar+baz.com]
 
     addresses.each do |invalid_address|
       expect(FactoryBot.build(:user, email: invalid_address)).to be_invalid

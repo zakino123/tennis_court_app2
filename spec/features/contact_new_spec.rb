@@ -28,6 +28,5 @@ RSpec.feature "New", type: :feature do
         is_expected.to have_css('.alert-danger', text: '4つの誤りが確認されました。')
       end
     end
-
   end
 end

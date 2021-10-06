@@ -2,11 +2,12 @@ class User < ApplicationRecord
   has_many :courts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :following_relationships,foreign_key: "follower_id", class_name: "FollowRelationship",  dependent: :destroy
+  has_many :following_relationships,foreign_key: "follower_id", class_name: "FollowRelationship", dependent: :destroy
   has_many :followings, through: :following_relationships
   has_many :follower_relationships,foreign_key: "following_id",class_name: "FollowRelationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
   attr_accessor :remember_token
+
   before_save { self.email = email.downcase }
   mount_uploader :image, ImageUploader
   validates :name, presence: true, length: { maximum: 30 }
@@ -34,6 +35,7 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     return false if remember_digest.nil?
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 

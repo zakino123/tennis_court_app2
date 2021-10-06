@@ -61,7 +61,7 @@ RSpec.describe Contact, type: :model do
 
   it "メールアドレスのフォーマットが正しい場合は有効" do
     addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
-      first.last@foo.jp alice+bob@baz.cn]
+                   first.last@foo.jp alice+bob@baz.cn]
 
     addresses.each do |valid_address|
       expect(FactoryBot.build(:contact, email: valid_address)).to be_valid
@@ -70,7 +70,7 @@ RSpec.describe Contact, type: :model do
 
   it "メールアドレスのフォーマットが誤っている場合は無効" do
     addresses = %w[user@example,com user_at_foo.org user.name@example.
-      foo@bar_baz.com foo@bar+baz.com]
+                   foo@bar_baz.com foo@bar+baz.com]
 
     addresses.each do |invalid_address|
       expect(FactoryBot.build(:contact, email: invalid_address)).to be_invalid

@@ -25,6 +25,5 @@ RSpec.feature "Edit", type: :feature do
 
       expect(user.reload.email).to_not eq "test@invalid"
     end
-
   end
 end

@@ -43,7 +43,7 @@ RSpec.describe Court, type: :model do
     expect(court.errors[:number]).to include("を入力してください")
   end
 
-  it "住所が重複している場合は無効"  do
+  it "住所が重複している場合は無効" do
     court1 = FactoryBot.create(:court, address: "test")
     court2 = FactoryBot.build(:court, address: "test")
     court2.valid?

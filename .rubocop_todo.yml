@@ -10,109 +10,109 @@
 # Cop supports --auto-correct.
 # Configuration parameters: TreatCommentsAsGroupSeparators, ConsiderPunctuation, Include.
 # Include: **/*.gemfile, **/Gemfile, **/gems.rb
-Bundler/OrderedGems:
-  Exclude:
-    - 'Gemfile'
+# Bundler/OrderedGems:
+#   Exclude:
+#     - 'Gemfile'
 
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/ArgumentAlignment:
-  Exclude:
-    - 'bin/webpack'
-    - 'bin/webpack-dev-server'
-    - 'db/seeds.rb'
+# Layout/ArgumentAlignment:
+#   Exclude:
+#     - 'bin/webpack'
+#     - 'bin/webpack-dev-server'
+#     - 'db/seeds.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: with_first_element, with_fixed_indentation
-Layout/ArrayAlignment:
-  Exclude:
-    - 'spec/models/contact_spec.rb'
-    - 'spec/models/user_spec.rb'
+# Layout/ArrayAlignment:
+#   Exclude:
+#     - 'spec/models/contact_spec.rb'
+#     - 'spec/models/user_spec.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: leading, trailing
-Layout/DotPosition:
-  Exclude:
-    - 'bin/yarn'
+# Layout/DotPosition:
+#   Exclude:
+#     - 'bin/yarn'
 
 # Offense count: 7
 # Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/models/user.rb'
-    - 'bin/bundle'
+# Layout/EmptyLineAfterGuardClause:
+#   Exclude:
+#     - 'app/models/user.rb'
+#     - 'bin/bundle'
 
 # Offense count: 9
 # Cop supports --auto-correct.
-Layout/EmptyLines:
-  Exclude:
-    - 'app/controllers/courts_controller.rb'
-    - 'config/application.rb'
-    - 'config/deploy/production.rb'
+# Layout/EmptyLines:
+#   Exclude:
+#     - 'app/controllers/courts_controller.rb'
+#     - 'config/application.rb'
+#     - 'config/deploy/production.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: around, only_before
-Layout/EmptyLinesAroundAccessModifier:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/favorites_controller.rb'
+# Layout/EmptyLinesAroundAccessModifier:
+#   Exclude:
+#     - 'app/controllers/application_controller.rb'
+#     - 'app/controllers/favorites_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AllowAliasSyntax, AllowedMethods.
 # AllowedMethods: alias_method, public, protected, private
-Layout/EmptyLinesAroundAttributeAccessor:
-  Exclude:
-    - 'app/models/user.rb'
+# Layout/EmptyLinesAroundAttributeAccessor:
+#   Exclude:
+#     - 'app/models/user.rb'
 
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'db/schema.rb'
-    - 'spec/features/contact_new_spec.rb'
-    - 'spec/features/court_edit_spec.rb'
-    - 'spec/features/follow_relationship_spec.rb'
-    - 'spec/features/users_edit_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/requests/sessions_spec.rb'
+# Layout/EmptyLinesAroundBlockBody:
+#   Exclude:
+#     - 'db/schema.rb'
+#     - 'spec/features/contact_new_spec.rb'
+#     - 'spec/features/court_edit_spec.rb'
+#     - 'spec/features/follow_relationship_spec.rb'
+#     - 'spec/features/users_edit_spec.rb'
+#     - 'spec/models/user_spec.rb'
+#     - 'spec/requests/sessions_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'spec/mailers/previews/contact_preview.rb'
+# Layout/EmptyLinesAroundClassBody:
+#   Exclude:
+#     - 'spec/mailers/previews/contact_preview.rb'
 
 # Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'Gemfile'
-    - 'app/models/user.rb'
-    - 'config/initializers/geocoder.rb'
-    - 'spec/models/court_spec.rb'
-    - 'spec/models/user_spec.rb'
+# Layout/ExtraSpacing:
+#   Exclude:
+#     - 'Gemfile'
+#     - 'app/models/user.rb'
+#     - 'config/initializers/geocoder.rb'
+#     - 'spec/models/court_spec.rb'
+#     - 'spec/models/user_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/FirstHashElementIndentation:
-  Exclude:
-    - 'config/environments/development.rb'
+# Layout/FirstHashElementIndentation:
+#   Exclude:
+#     - 'config/environments/development.rb'
 
 # Offense count: 11
 # Cop supports --auto-correct.
