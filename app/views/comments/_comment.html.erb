@@ -2,7 +2,7 @@
   <% if comment.user.image? %>
     <%= link_to image_tag(comment.user.image.url, width: '100'), comment.user %>
   <% else %>
-    <%= link_to image_tag("/assets/default.jpeg", width: '100'), comment.user %>
+    <%= link_to image_tag(asset_path("default.jpg"), width: '100'), comment.user %>
   <% end %>
   <div class="ml-2 my-auto">
     <p class="user">
