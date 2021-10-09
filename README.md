@@ -1,7 +1,7 @@
 # ◯TENNIS COURT SEARCH
 リンク：https://tennis-court-app.com/
 
-<img width="1680" alt="tennis_court_search" src="https://user-images.githubusercontent.com/75520329/136331752-0afcbcf3-73e6-43a4-82e6-27a3bfde520b.png">
+![tennnis_court_search](https://user-images.githubusercontent.com/75520329/136653573-807a31a8-b3f6-4393-87a2-cbe8f2426890.jpeg)
 
 # ◯アプリ概要
 より好条件なテニスコートの検索を便利にするアプリです。検索した住所から半径10km以内のテニスコートを検索できます。現在地からの住所の取得、現在地から近い順・価格が安い順・コート数多い順のテニスコート検索が可能です。
