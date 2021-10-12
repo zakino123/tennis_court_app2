@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  test:
+  build:
     docker:
       - image: circleci/ruby:2.7.4-node
         environment:
@@ -38,27 +38,20 @@ jobs:
       - run:
           name: Rubocop
           command: bundle exec rubocop
-  
-  deploy:
-    docker:
-      - image: circleci/ruby:2.7.4-node
-    steps:
-      - checkout
+
       - add_ssh_keys:
           fingerprints:
             - "ee:29:0c:82:2f:81:48:bd:e2:0f:c4:80:fa:b0:ad:e4"
       - deploy:
           name: Capistrano deploy
-          command: bundle exec cap production deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy
 
 workflows:
   version: 2
   workflows:
     jobs:
-      - test
-      - deploy:
-         requires:
-           - test
-         filters:
-           branches:
-             only: master
+      - build
