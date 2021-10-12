@@ -57,7 +57,7 @@
 server '52.198.215.207', user: 'satoshi', roles: %w[app db web]
 
 set :ssh_options, {
-  keys: %w[~/.ssh/tennis_court_app2.pem],
+  keys: [ENV.fetch('PRODUCTION_SSH_KEY').to_s],
   forward_agent: true,
   auth_methods: %w[publickey],
   keepalive: true,
