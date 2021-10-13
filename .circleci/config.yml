@@ -12,7 +12,6 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: 'password'
-          # MYSQL_DATABASE: circleci_parctice_test
           MYSQL_DATABASE: myapp_test
     working_directory: ~/tennis_court_app
     steps:
