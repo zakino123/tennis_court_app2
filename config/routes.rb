@@ -23,4 +23,10 @@ Rails.application.routes.draw do
     end
   end
   resources :follow_relationships, only: %i[create destroy]
+
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      resources :users
+    end
+  end
 end
