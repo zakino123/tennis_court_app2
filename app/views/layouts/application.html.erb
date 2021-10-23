@@ -12,7 +12,7 @@
     <%= render 'layouts/shim' %>
   </head>
 
-  <body>  
+  <body>
     <%= render 'layouts/header' %>
     <div class="bg-gray-100">
       <% flash.each do |message_type, message| %>
@@ -22,5 +22,7 @@
     </div>
     <%= render 'layouts/footer' %>
     <span class=""><%= debug(params) if Rails.env.development? %></span>
+    <%# <%= javascript_pack_tag 'hello_vue' %>
+    <%# <%= stylesheet_pack_tag 'hello_vue' %>
   </body>
 </html>
