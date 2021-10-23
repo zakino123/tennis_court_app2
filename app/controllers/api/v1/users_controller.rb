@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < ApiController
   before_action :logged_in_user, only: %i[index edit update destroy]
   before_action :correct_user,   only: %i[edit update]
 
