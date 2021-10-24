@@ -6,7 +6,7 @@ import CourtIndex from './src/pages/courts/index.vue'
 // import UserShow from './src/components/Users/show.vue'
 // import UserIndex from './src/components/Users/index.vue'
 // import CourtSearch from './src/pages/courts/courtsearch.vue'
-// import Login from './src/pages/login.vue'
+import Login from './src/pages/login.vue'
 import UserNew from './src/pages/user_new.vue'
 // import ContactNew from './src/pages/contact_new.vue'
 
@@ -16,6 +16,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {path: '/', component: CourtIndex}, 
+    {path: '/login', component: Login},
     // {path: '/login', component: Login, beforeEnter(to, from, next) {
     //   if (store.getters.token) {
     //     console.log('yes');
