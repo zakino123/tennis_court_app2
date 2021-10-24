@@ -7,7 +7,7 @@ import CourtIndex from './src/pages/courts/index.vue'
 // import UserIndex from './src/components/Users/index.vue'
 // import CourtSearch from './src/pages/courts/courtsearch.vue'
 // import Login from './src/pages/login.vue'
-// import UserNew from './src/pages/user_new.vue'
+import UserNew from './src/pages/user_new.vue'
 // import ContactNew from './src/pages/contact_new.vue'
 
 Vue.use(Router)
@@ -25,6 +25,7 @@ export default new Router({
     //     next();
     //   }
     // }},
+    {path: '/users/new', component: UserNew},
     // {path: '/users/new', component: UserNew, beforeEnter(to, from, next) {
     //   if (store.getters.token) {
     //     next('/');
