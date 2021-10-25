@@ -17,15 +17,21 @@ class Api::V1::CourtsController < ApiController
 
   def index
     # @tag_list = Tag.all.page(params[:page])
-    # courts = Court.all.page(params[:page])
-    # render json: courts
-    all_ranks = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(4).pluck(:court_id))
-    render json: all_ranks
-    # @latest_courts = Court.includes(:user).order(created_at: :desc).limit(4)
+    courts = Court.all.page(params[:page]).per(12)
+    render json: courts.as_json(include: :user)
+    # all_ranks = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(4).pluck(:court_id))
+    # latest_courts = Court.includes(:user).order(created_at: :desc).limit(4)
+    
+    # render json: {latest_courts: latest_courts, all_ranks: all_ranks}
+    
+    # jsonHash = [ all_ranks, latest_courts ]
+
+    # render json: jsonHash
+    
   end
 
   def search
-    @tag_list = Tag.all
+    # @tag_list = Tag.all
     results = Geocoder.search(params[:location])
     if results.empty?
       flash[:danger] = '検索結果は見つかりませんでした。'
