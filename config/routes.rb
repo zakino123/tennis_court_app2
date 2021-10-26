@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :courts do
         resources :favorites, only: %i[create destroy]
       end
+      resources :contacts
     end
   end
 end
