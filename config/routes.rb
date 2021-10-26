@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :courts
+      resources :courts do
+        resources :favorites, only: %i[create destroy]
+      end
     end
   end
 end
