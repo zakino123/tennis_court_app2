@@ -1,0 +1,87 @@
+<template>
+  <div class="grid lg:grid-cols-4">
+  <div class="user-info col-span-1 container mx-auto my-auto w-64">
+    <div class="user-image justify-items-center mt-6 w-64 justify-center">
+      <img
+        v-if="user.image.url"
+        :src="user.image.url"
+        alt="ユーザーアイコン"
+        width="200"
+        height="200"
+      />
+      <img
+        v-else
+        src="../../assets/default.jpg"
+        alt="ユーザーアイコン"
+        width="200"
+        height="200"
+      />
+      <div class="text-center text-gray-700 text-xl font-bold mt-3">
+        {{ user.name }}さんのマイページ
+      </div>
+      <div class="text-center">
+        <p class="text-xl h-6 mt-1">投稿数：{{ user.courts.count }}</p>
+        </div>
+      <div class="text-center my-2 flex">
+        <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
+        <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
+      </div>
+      <!-- <% if logged_in? && @user != current_user%>
+        <div id="follow_form" class="text-center my-3">
+          <% if current_user.following?(@user) %>
+            <%= render "unfollow" %>
+          <% else %>
+            <%= render "follow" %>
+          <% end %>
+        </div>
+      <% end %> -->
+      <!-- <% if current_user == @user %>
+        <div class="text-center my-2">
+          <%= link_to 'ユーザー情報編集', edit_user_path(current_user), class: "inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="lg:col-span-3 mb-4 lg:mt-4">
+    <h2 class="text-2xl text-center font-bold mb-4">お気に入りコート</h2>
+    <% if @favorites.present? %>
+      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
+        <% @favorites.each do |court| %>
+          <%= render partial: "courts/court", locals: { court: court } %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
+    <% end %>
+    <h2 class="text-2xl text-center font-bold my-3">投稿したコート</h2>
+    <% if @courts.present? %>
+      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
+        <% @courts.each do |court| %>
+          <%= render partial: "courts/court", locals: { court: court } %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
+    <% end %>
+    <%= paginate @courts %>
+  </div> -->
+</div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      user: [],
+      goods: [],
+    };
+  },
+  created() {
+    axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
+      this.user = response.data;
+      console.log(response);
+    });
+  }
+}

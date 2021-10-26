@@ -3,7 +3,7 @@ import Router from 'vue-router';
 // import store from './store.js';
 import CourtIndex from './src/pages/courts/index.vue'
 // import CourtNew from './src/pages/courts/new.vue'
-// import UserShow from './src/components/Users/show.vue'
+import UserShow from './src/pages/users/show.vue'
 // import UserIndex from './src/components/Users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
 import Login from './src/pages/login.vue'
@@ -45,7 +45,7 @@ export default new Router({
     // },
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
-    // {path: '/users/:id', component: UserShow},
+    {path: '/users/:id', component: UserShow},
     // {path: '/users', component: UserIndex},
   ]
 });

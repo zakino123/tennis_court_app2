@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApiController
   before_action :logged_in_user, only: %i[index edit update destroy]
   before_action :correct_user,   only: %i[edit update]
+  before_action :set_user, only: %i[show]
 
   def new
     @user = User.new
@@ -11,10 +12,11 @@ class Api::V1::UsersController < ApiController
   end
 
   def show
-    @user = User.find(params[:id])
-    @courts = @user.courts.page(params[:page]).per(3)
-    favorites = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:court_id)
-    @favorites = Court.page(params[:page]).per(3).find(favorites)
+    # @user = User.find(params[:id])
+    # @courts = @user.courts.page(params[:page]).per(3)
+    # favorites = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:court_id)
+    # @favorites = Court.page(params[:page]).per(3).find(favorites)
+    render json: @user.as_json(include: :court)
   end
 
   def create
@@ -62,6 +64,10 @@ class Api::V1::UsersController < ApiController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def correct_user
