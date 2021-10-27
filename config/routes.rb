@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :users
       resources :courts
       resources :courts do
+        resources :comments, only: %i[create destroy]
         resources :favorites, only: %i[create destroy]
       end
       resources :contacts
