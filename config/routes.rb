@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         resources :favorites, only: %i[create destroy]
       end
       resources :contacts
+      resources :follow_relationships, only: %i[create destroy]
     end
   end
 end
