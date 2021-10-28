@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import store from './store.js';
+import store from './store.js';
 import CourtIndex from './src/pages/courts/index.vue'
 // import CourtNew from './src/pages/courts/new.vue'
 import UserShow from './src/pages/users/show.vue'
@@ -16,16 +16,15 @@ export default new Router({
   mode: 'history',
   routes: [
     {path: '/', component: CourtIndex}, 
-    {path: '/login', component: Login},
-    // {path: '/login', component: Login, beforeEnter(to, from, next) {
-    //   if (store.getters.token) {
-    //     console.log('yes');
-    //     next('/');
-    //   } else {
-    //     console.log('no');
-    //     next();
-    //   }
-    // }},
+    {path: '/login', component: Login, beforeEnter(to, from, next) {
+      if (store.getters.token) {
+        console.log('yes');
+        next('/');
+      } else {
+        console.log('no');
+        next();
+      }
+    }},
     {path: '/users/new', component: UserNew},
     // {path: '/users/new', component: UserNew, beforeEnter(to, from, next) {
     //   if (store.getters.token) {

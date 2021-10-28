@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   namespace :api, { format: 'json' } do
     namespace :v1 do
+      get '/login', to: 'sessions#new'
+      post '/login', to: 'sessions#create'
       resources :users
       resources :courts
       resources :courts do
