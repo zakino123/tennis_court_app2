@@ -25,14 +25,14 @@ export default new Router({
         next();
       }
     }},
-    {path: '/users/new', component: UserNew},
-    // {path: '/users/new', component: UserNew, beforeEnter(to, from, next) {
-    //   if (store.getters.token) {
-    //     next('/');
-    //   } else {
-    //     next();
-    //   }
-    // }},
+    // {path: '/users/new', component: UserNew},
+    {path: '/user_create', component: UserNew, beforeEnter(to, from, next) {
+      if (store.getters.token) {
+        next('/');
+      } else {
+        next();
+      }
+    }},
     // {
     //   path: '/courts/new', component: CourtNew, beforeEnter(to, from, next) {
     //     if (store.getters.token) {

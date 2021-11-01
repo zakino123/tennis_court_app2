@@ -14,7 +14,7 @@
             </template>
             <template v-if="!isAuthenticated">
               <router-link to="/login" class="m-1 hover:text-blue-400">ログイン</router-link>
-              <router-link to="/users/new" class="m-1 hover:text-blue-400">新規登録</router-link>
+              <router-link to="/user_create" class="m-1 hover:text-blue-400">新規登録</router-link>
             </template>
           </nav>
         </div>

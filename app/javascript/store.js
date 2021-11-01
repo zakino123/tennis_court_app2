@@ -35,7 +35,7 @@ export default new Vuex.Store({
   actions: {
     login({ commit }, authData) {
       axios
-        .post("api/v1/login", {
+        .post("/api/v1/login", {
           user: {
             email: authData.email,
             password: authData.password,
@@ -47,7 +47,8 @@ export default new Vuex.Store({
           commit('updateUserId', response.data.id);
           commit('updateSpecialty', response.data.specialty)
           router.push('/');
-        }).catch((error) => {
+        })
+        .catch((error) => {
           console.log(error);
           alert("入力内容に誤りがあります");
         })

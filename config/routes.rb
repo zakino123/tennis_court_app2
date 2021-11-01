@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/login', to: 'sessions#new'
       post '/login', to: 'sessions#create'
+      get '/user_create', to: 'users#new'
       resources :users
       resources :courts
       resources :courts do

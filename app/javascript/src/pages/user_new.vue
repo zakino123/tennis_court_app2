@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -38,7 +39,7 @@ export default {
       password: "",
       password_confirmation: "",
       image: "",
-      alertOpen: false,
+      // alertOpen: false,
     };
   },
   methods: {
@@ -51,24 +52,24 @@ export default {
           password_confirmation: this.password_confirmation,
           image: this.image,
         })
-        // .then((response) => {
-        //   console.log(response);
-        //   this.login();
-        // })
-        // .catch((error) => {
-        //   console.log(error);
-        //   this.alertOpen = true;
-        // });
+        .then((response) => {
+          console.log(response);
+          this.login();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.alertOpen = true;
+        });
     },
     // closeAlert: function () {
     //   this.alertOpen = false;
     // },
-    // login() {
-    //   this.$store.dispatch("login", {
-    //     email: this.email,
-    //     password: this.password,
-    //   });
-    // },
+    login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
+    },
   },
 }
 </script>

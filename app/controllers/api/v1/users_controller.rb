@@ -21,12 +21,15 @@ class Api::V1::UsersController < ApiController
 
   def create
     @user = User.new(user_params)
+    @user.image = "default.jpg"
     if @user.save
-      log_in @user
-      flash[:success] = 'テニスコートサーチにようこそ！'
-      redirect_back_or @user
+      # log_in @user
+      # flash[:success] = 'テニスコートサーチにようこそ！'
+      # redirect_back_or @user
+      render json: @user
     else
-      render 'new'
+      # render 'new'
+      render json: { message: '登録できませんでした'}
     end
   end
 
