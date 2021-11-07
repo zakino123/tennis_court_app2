@@ -1,10 +1,12 @@
 class Api::V1::SessionsController < ApiController
+  wrap_parameters :user, include: [:email, :password]
+
   def new
   end
 
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user&.authenticate(params[:session][:password])
+    user = User.find_by(email: params[:user][:email])
+    if !user.nil? && user.authenticate(params[:user][:password])
       # log_in user
       # params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # redirect_back_or user
