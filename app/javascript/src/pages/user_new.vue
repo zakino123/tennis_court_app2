@@ -39,7 +39,6 @@ export default {
       password: "",
       password_confirmation: "",
       image: "",
-      // alertOpen: false,
     };
   },
   methods: {
@@ -58,7 +57,6 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.alertOpen = true;
         });
     },
     // closeAlert: function () {

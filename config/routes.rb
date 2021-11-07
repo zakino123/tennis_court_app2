@@ -28,8 +28,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/login', to: 'sessions#new'
       post '/login', to: 'sessions#create'
+      delete '/logout', to: 'sessions#destroy'
       get '/user_create', to: 'users#new'
-      resources :users
+      resources :users, only: [:create]
       resources :courts
       resources :courts do
         resources :comments, only: %i[create destroy]

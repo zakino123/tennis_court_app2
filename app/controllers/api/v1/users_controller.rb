@@ -2,9 +2,10 @@ class Api::V1::UsersController < ApiController
   before_action :logged_in_user, only: %i[index edit update destroy]
   before_action :correct_user,   only: %i[edit update]
   before_action :set_user, only: %i[show]
+  wrap_parameters :user, include: [:name, :email, :password, :password_confirmation]
 
   def new
-    @user = User.new
+    user = User.new
   end
 
   def index
@@ -20,15 +21,14 @@ class Api::V1::UsersController < ApiController
   end
 
   def create
-    @user = User.new(user_params)
-    @user.image = "default.jpg"
-    if @user.save
+    user = User.new(user_params)
+    user.image = "default.jpg"
+    if user.save
       # log_in @user
       # flash[:success] = 'テニスコートサーチにようこそ！'
       # redirect_back_or @user
-      render json: @user
+      render json: user
     else
-      # render 'new'
       render json: { message: '登録できませんでした'}
     end
   end

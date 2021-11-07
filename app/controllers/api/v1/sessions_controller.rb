@@ -12,7 +12,8 @@ class Api::V1::SessionsController < ApiController
     else
       # flash.now[:danger] = 'メールアドレスかパスワードが間違っています。'
       # render 'new'
-      render status: :internal_server_error
+      # render status: :internal_server_error
+      render json: { message: 'ログイン出来ませんでした'}
     end
   end
 
