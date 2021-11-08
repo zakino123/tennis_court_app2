@@ -53,13 +53,13 @@ export default new Vuex.Store({
           console.log(error);
           alert("入力内容に誤りがあります");
         })
-    }
-    // logout({ commit }) {
-    //   commit('updateToken', null);
-    //   commit('updateUserId', null);
-    //   commit('updateSpecialty', null);
-    //   router.push('/login');
-    // },
+    },
+    logout({ commit }) {
+      commit('updateToken', null);
+      commit('updateUserId', null);
+      // commit('updateSpecialty', null);
+      router.push('/login');
+    },
     // search({ commit }, searchWord) {
     //   console.log(searchWord);
     //   commit('updateSearchWord', searchWord.searchWord);

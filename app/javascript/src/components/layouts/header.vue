@@ -35,11 +35,11 @@ export default {
       return this.$store.getters.password_digest != null;
     },
   },
-//   methods: {
-//     logout() {
-//       return this.$store.dispatch("logout");
-//     },
-//   },
+  methods: {
+    logout() {
+      return this.$store.dispatch("logout");
+    },
+  },
 }
 </script>
 
