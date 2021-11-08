@@ -17,7 +17,7 @@ export default new Router({
   routes: [
     {path: '/', component: CourtIndex}, 
     {path: '/login', component: Login, beforeEnter(to, from, next) {
-      if (store.getters.token) {
+      if (store.getters.password_digest) {
         console.log('yes');
         next('/');
       } else {
@@ -27,7 +27,7 @@ export default new Router({
     }},
     // {path: '/users/new', component: UserNew},
     {path: '/user_create', component: UserNew, beforeEnter(to, from, next) {
-      if (store.getters.token) {
+      if (store.getters.password_digest) {
         next('/');
       } else {
         next();

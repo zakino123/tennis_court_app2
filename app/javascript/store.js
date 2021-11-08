@@ -8,20 +8,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: null,
+    password_digest: null,
     userId: null,
     // searchWord: null,
     // specialty: null,
   },
   getters: {
-    token: state => state.token,
+    password_digest: state => state.password_digest,
     userId: state => state.id,
     // searchWord: state => state.keyword,
     // specialty: state => state.specialty,
   },
   mutations: {
-    updateToken(state, token) {
-      state.token = token;
+    updateToken(state, password_digest) {
+      state.password_digest = password_digest;
     },
     updateUserId(state, userId) {
       state.userId = userId;
@@ -44,7 +44,7 @@ export default new Vuex.Store({
         })
         .then((response) => {
           console.log(response);
-          commit('updateToken', response.data.token);
+          commit('updateToken', response.data.password_digest);
           commit('updateUserId', response.data.id);
           // commit('updateSpecialty', response.data.specialty)
           router.push('/');

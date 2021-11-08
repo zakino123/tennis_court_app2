@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isAuthenticated() {
-      return this.$store.getters.token != null;
+      return this.$store.getters.password_digest != null;
     },
   },
 //   methods: {
