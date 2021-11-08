@@ -24,23 +24,23 @@
 </template>
 
 <script>
-// export default {
-//   data: function () {
-//     return {
-//       keyword: "",
-//     };
-//   },
-//   computed: {
-//     isAuthenticated() {
-//       return this.$store.getters.token != null;
-//     },
-//   },
+export default {
+  data: function () {
+    return {
+      keyword: "",
+    };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.token != null;
+    },
+  },
 //   methods: {
 //     logout() {
 //       return this.$store.dispatch("logout");
 //     },
 //   },
-// }
+}
 </script>
 
 <style scoped>

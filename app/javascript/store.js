@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from './router';
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
@@ -9,14 +10,14 @@ export default new Vuex.Store({
   state: {
     token: null,
     userId: null,
-    searchWord: null,
-    specialty: null,
+    // searchWord: null,
+    // specialty: null,
   },
   getters: {
     token: state => state.token,
     userId: state => state.id,
-    searchWord: state => state.keyword,
-    specialty: state => state.specialty,
+    // searchWord: state => state.keyword,
+    // specialty: state => state.specialty,
   },
   mutations: {
     updateToken(state, token) {
@@ -25,12 +26,12 @@ export default new Vuex.Store({
     updateUserId(state, userId) {
       state.userId = userId;
     },
-    updateSearchWord(state, searchword) {
-      state.searchWord = searchword;
-    },
-    updateSpecialty(state, specialty) {
-      state.specialty = specialty;
-    }
+    // updateSearchWord(state, searchword) {
+    //   state.searchWord = searchword;
+    // },
+    // updateSpecialty(state, specialty) {
+    //   state.specialty = specialty;
+    // }
   },
   actions: {
     login({ commit }, authData) {
@@ -45,7 +46,7 @@ export default new Vuex.Store({
           console.log(response);
           commit('updateToken', response.data.token);
           commit('updateUserId', response.data.id);
-          commit('updateSpecialty', response.data.specialty)
+          // commit('updateSpecialty', response.data.specialty)
           router.push('/');
         })
         .catch((error) => {
@@ -69,5 +70,5 @@ export default new Vuex.Store({
   modules: {
 
   },
-  // plugins: [createPersistedState()]
+  plugins: [createPersistedState()]
 });
