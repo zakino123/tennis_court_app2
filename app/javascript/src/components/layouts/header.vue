@@ -8,6 +8,7 @@
             <router-link to="/" class="ml-2 m-2 hover:text-blue-400">ホーム</router-link>
             <template v-if="isAuthenticated">
               <router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="m-1 hover:text-blue-400">マイページ</router-link>
+              <!-- <router-link to="/users/:id" class="m-1 hover:text-blue-400">マイページ</router-link> -->
               <router-link to="/courts/new" class="m-1 hover:text-blue-400">コート投稿</router-link>
               <router-link to="/users" class="m-1 hover:text-blue-400">ユーザー一覧</router-link>
               <button @click="logout()" class="m-1 hover:text-blue-400">ログアウト</button>

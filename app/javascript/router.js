@@ -44,7 +44,7 @@ export default new Router({
     // },
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
-    {path: '/users/:id', component: UserShow},
+    {path: '/users/:id', component: UserShow, name: 'UserShow'},
     // {path: '/users', component: UserIndex},
   ]
 });

@@ -22,10 +22,10 @@
       <div class="text-center">
         <p class="text-xl h-6 mt-1">投稿数：{{ user.courts.count }}</p>
         </div>
-      <div class="text-center my-2 flex">
+      <!-- <div class="text-center my-2 flex">
         <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
         <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
-      </div>
+      </div> -->
       <!-- <% if logged_in? && @user != current_user%>
         <div id="follow_form" class="text-center my-3">
           <% if current_user.following?(@user) %>
@@ -75,7 +75,6 @@ export default {
   data() {
     return {
       user: [],
-      goods: [],
     };
   },
   created() {
