@@ -34,19 +34,19 @@ jobs:
       - run:
           name: RSpec
           command: bundle exec rspec
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
-      - add_ssh_keys:
-          fingerprints:
-            - "ee:29:0c:82:2f:81:48:bd:e2:0f:c4:80:fa:b0:ad:e4"
-      - deploy:
-          name: Capistrano deploy
-          command: |
-            if [ "${CIRCLE_BRANCH}" != "master" ]; then
-              exit 0
-            fi
-            bundle exec cap production deploy
+      # - run:
+      #     name: Rubocop
+      #     command: bundle exec rubocop
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "ee:29:0c:82:2f:81:48:bd:e2:0f:c4:80:fa:b0:ad:e4"
+      # - deploy:
+      #     name: Capistrano deploy
+      #     command: |
+      #       if [ "${CIRCLE_BRANCH}" != "master" ]; then
+      #         exit 0
+      #       fi
+      #       bundle exec cap production deploy
 
 workflows:
   version: 2
