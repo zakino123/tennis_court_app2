@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
       get '/user_create', to: 'users#new'
-      resources :users, only: [:create]
+      resources :users
       resources :courts
       resources :courts do
         resources :comments, only: %i[create destroy]
