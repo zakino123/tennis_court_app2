@@ -1,6 +1,7 @@
 class Api::V1::CourtsController < ApiController
   before_action :logged_in_user, only: %i[new edit create destroy]
   before_action :permit_update_delete, only: [:edit]
+  wrap_parameters :court, include: [:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve]
 
   def new
     @court = Court.new
@@ -65,14 +66,15 @@ class Api::V1::CourtsController < ApiController
   end
 
   def create
-    @court = current_user.courts.new(court_params)
-    tag_list = params[:court][:tag_name].split(nil)
-    if @court.save
-      @court.save_tag(tag_list)
-      flash[:success] = 'コート情報を受け付けました！'
-      redirect_to @court
+    court = current_user.courts.new(court_params)
+    # tag_list = params[:court][:tag_name].split(nil)
+    if court.save
+      # @court.save_tag(tag_list)
+      # flash[:success] = 'コート情報を受け付けました！'
+      # redirect_to @court
+      render json: court
     else
-      render 'new'
+      render json: { message: 'コート投稿出来ませんでした'}
     end
   end
 

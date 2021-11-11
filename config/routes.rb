@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get '/user_create', to: 'users#new'
       resources :users
       resources :courts
+      post '/courts', to: 'courts#create'
       resources :courts do
         resources :comments, only: %i[create destroy]
         resources :favorites, only: %i[create destroy]
