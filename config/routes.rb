@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :courts
+  get '/court_create', to: 'courts#new'
   post '/courts', to: 'courts#create'
   post '/guest_login', to: 'guest_sessions#create'
   resources :contacts
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
       get '/user_create', to: 'users#new'
       resources :users
       resources :courts
+      get '/court_create', to: 'courts#new'
       post '/courts', to: 'courts#create'
       resources :courts do
         resources :comments, only: %i[create destroy]

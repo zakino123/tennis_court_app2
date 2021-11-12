@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store.js';
 import CourtIndex from './src/pages/courts/index.vue'
-// import CourtNew from './src/pages/courts/new.vue'
+import CourtNew from './src/components/courts/new.vue'
 import UserShow from './src/pages/users/show.vue'
 // import UserIndex from './src/components/Users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
@@ -33,15 +33,15 @@ export default new Router({
         next();
       }
     }},
-    // {
-    //   path: '/courts/new', component: CourtNew, beforeEnter(to, from, next) {
-    //     if (store.getters.token) {
-    //       next();
-    //     } else {
-    //       next('/login');
-    //     }
-    //   }
-    // },
+    {
+      path: '/court_create', component: CourtNew, beforeEnter(to, from, next) {
+        if (store.getters.password_digest) {
+          next();
+        } else {
+          next('/login');
+        }
+      }
+    },
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
     {path: '/users/:id', component: UserShow, name: 'UserShow'},

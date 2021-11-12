@@ -1,10 +1,10 @@
 class Api::V1::CourtsController < ApiController
-  before_action :logged_in_user, only: %i[new edit create destroy]
+  before_action :logged_in_user, only: %i[edit destroy]
   before_action :permit_update_delete, only: [:edit]
-  wrap_parameters :court, include: [:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve]
+  wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve]
 
   def new
-    @court = Court.new
+    court = Court.new
   end
 
   def show
@@ -66,9 +66,9 @@ class Api::V1::CourtsController < ApiController
   end
 
   def create
-    court = current_user.courts.new(court_params)
+    court = Court.new(court_params)
     # tag_list = params[:court][:tag_name].split(nil)
-    if court.save
+    if court.save!
       # @court.save_tag(tag_list)
       # flash[:success] = 'コート情報を受け付けました！'
       # redirect_to @court
@@ -105,7 +105,7 @@ class Api::V1::CourtsController < ApiController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = 'ログインをお願いします。'
+      # flash[:danger] = 'ログインをお願いします。'
       redirect_to login_url
     end
   end
