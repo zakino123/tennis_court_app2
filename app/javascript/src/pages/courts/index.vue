@@ -23,7 +23,7 @@
               width="200"
               height="200"
             />
-            <p class="font-bold underline mt-2">{{ e.name }}</p>
+            <router-link :to="{ name: 'CourtShow', params: { id: e.id } }" class="font-bold underline mt-2">{{ e.name }}</router-link>
             <p class="text-xl h-6 mt-1">料金：{{ e.price }}円/時間</p>
             <div class="mt-2">
               <!-- <span><i class="fas fa-star fa-lg fill-current text-yellow-500"></i>{{ e.favorite.count }}</span> -->
