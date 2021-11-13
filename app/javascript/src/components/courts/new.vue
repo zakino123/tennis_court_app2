@@ -70,6 +70,7 @@ export default {
           reserve: this.reserve,
           // tag_name: this.tag_name,
           remarks: this.remarks,
+          user_id: this.$store.state.userId,
         })
         .then((response) => {
           console.log(response);

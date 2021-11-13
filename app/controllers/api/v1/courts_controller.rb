@@ -1,7 +1,7 @@
 class Api::V1::CourtsController < ApiController
   before_action :logged_in_user, only: %i[edit destroy]
   before_action :permit_update_delete, only: [:edit]
-  wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve]
+  wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve, :user_id]
 
   def new
     court = Court.new
@@ -99,7 +99,7 @@ class Api::V1::CourtsController < ApiController
   private
 
   def court_params
-    params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve)
+    params.require(:court).permit(:name, :address, :price, :hour, :image, :number, :remarks, :latitude, :longitude, :reserve, :user_id)
   end
 
   def logged_in_user
