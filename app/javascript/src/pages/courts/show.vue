@@ -15,7 +15,7 @@
         <% end %> -->
       </div>
       <div class="mb-4">
-        <p>ユーザー：<span class="hover:underline">{{ court.user.name }}</span></p>
+        <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="hover:underline">{{ court.user.name }}</router-link></p>
       </div>
       <div class="flex mb-2">
         <!-- <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded' id="favorite_<%= @court.id %>">
@@ -90,7 +90,7 @@ export default {
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    var contentString = '住所：<%= @court.address %>';
+    var contentString = '住所：{{ court.address }}';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -104,11 +104,6 @@ export default {
       infowindow.open(map, marker);
     });
   },
-  // computed: {
-  //   mapURL: function () {
-  //     return "https://www.google.com/maps/search/?api=1&query=" + court.latitude, + court.longitude
-  //   }
-  // },
 }
 </script>
 

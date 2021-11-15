@@ -10,6 +10,8 @@ import App from '../src/app.vue'
 import router from '../router'
 import store from '../store.js';
 
+// Vue.prototype.$gm = window.google.maps;
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router,
