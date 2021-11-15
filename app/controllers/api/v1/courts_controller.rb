@@ -1,6 +1,5 @@
 class Api::V1::CourtsController < ApiController
-  before_action :logged_in_user, only: %i[edit destroy]
-  before_action :permit_update_delete, only: [:edit]
+  before_action :logged_in_user, only: %i[destroy]
   wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve, :user_id]
 
   def new
@@ -63,7 +62,7 @@ class Api::V1::CourtsController < ApiController
   end
 
   def edit
-    @court = Court.find(params[:id])
+    court = Court.find(params[:id])
   end
 
   def create
@@ -80,14 +79,15 @@ class Api::V1::CourtsController < ApiController
   end
 
   def update
-    @court = Court.find(params[:id])
-    tag_list = params[:court][:tag_name].split(nil)
-    if @court.update(court_params)
-      @court.save_tag(tag_list)
-      flash[:success] = 'アカウント情報を更新しました。'
-      redirect_to @court
+    court = Court.find(params[:id])
+    # tag_list = params[:court][:tag_name].split(nil)
+    if court.update(court_params)
+      # @court.save_tag(tag_list)
+      # flash[:success] = 'アカウント情報を更新しました。'
+      # redirect_to @court
+      render json: court
     else
-      render 'edit'
+      render json: { message: 'コート投稿出来ませんでした'}
     end
   end
 

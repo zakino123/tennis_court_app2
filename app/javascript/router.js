@@ -5,6 +5,7 @@ import CourtIndex from './src/pages/courts/index.vue'
 import CourtNew from './src/components/courts/new.vue'
 import UserShow from './src/pages/users/show.vue'
 import CourtShow from './src/pages/courts/show.vue'
+import CourtEdit from './src/components/courts/edit.vue'
 // import UserIndex from './src/components/Users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
 import Login from './src/pages/login.vue'
@@ -43,6 +44,18 @@ export default new Router({
         }
       }
     },
+    {
+      path: '/courts/:id/edit', component: CourtEdit, name: 'CourtEdit'
+    },
+    // {
+    //   path: '/courts/:id/edit', component: CourtEdit, name: 'CourtEdit', beforeEnter(to, from, next) {
+    //     if (court.user_id === this.$store.state.userId) {
+    //       next();
+    //     } else {
+    //       next('/login');
+    //     }
+    //   }
+    // },
     {path: '/courts/:id', component: CourtShow, name: 'CourtShow'},
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},

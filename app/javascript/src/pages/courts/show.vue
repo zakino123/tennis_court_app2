@@ -21,11 +21,12 @@
         <!-- <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded' id="favorite_<%= @court.id %>">
           <%= render "favorites/favorite", court: @court %>
         </div> -->
-        <button
-          v-if="court.user_id === this.$store.state.userId" 
+        <router-link
+          v-if="court.user_id === this.$store.state.userId"
+          :to="{ name: 'CourtEdit', params: { id: court.id } }" 
           class="inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base">
           コート情報変更
-        </button>
+        </router-link>
       </div>
       <img size='1000x1000' class='border-2' v-if="court.image.url" :src="court.image.url"/>
       <img size='1000x1000' class='border-2' v-else src="../../assets/default_court.png"/>
