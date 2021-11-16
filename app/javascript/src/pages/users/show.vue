@@ -2,7 +2,7 @@
   <div class="grid lg:grid-cols-4">
     <div class="user-info col-span-1 container mx-auto my-auto w-64">
       <div class="user-image justify-items-center mt-6 w-64 justify-center">
-        <!-- <img
+        <img
           v-if="user.image.url"
           :src="user.image.url"
           alt="ユーザーアイコン"
@@ -15,7 +15,7 @@
           alt="ユーザーアイコン"
           width="200"
           height="200"
-        /> -->
+        />
         <div class="text-center text-gray-700 text-xl font-bold mt-3">
           {{ user.name }}さんのマイページ
         </div>
@@ -35,11 +35,10 @@
             <% end %>
           </div>
         <% end %> -->
-        <!-- <% if current_user == @user %>
-          <div class="text-center my-2">
-            <%= link_to 'ユーザー情報編集', edit_user_path(current_user), class: "inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base" %>
-          </div>
-        <% end %> -->
+        <div v-if="user.id === this.$store.state.userId" class="text-center my-2">
+          <router-link v-if="user.id === this.$store.state.userId"
+          :to="{ name: 'UserEdit', params: { id: this.$store.state.userId } }" class="inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base">ユーザー情報編集</router-link>
+        </div>
       </div>
     </div>
   <!-- <div class="lg:col-span-3 mb-4 lg:mt-4">

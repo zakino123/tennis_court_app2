@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApiController
-  before_action :logged_in_user, only: %i[index edit update destroy]
-  before_action :correct_user,   only: %i[edit update]
+  before_action :logged_in_user, only: %i[index destroy]
   before_action :set_user, only: %i[show]
   wrap_parameters :user, include: [:name, :email, :password, :password_confirmation]
 
@@ -39,12 +38,12 @@ class Api::V1::UsersController < ApiController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
+    user = User.find(params[:id])
+    if user.update(user_params)
       flash[:success] = 'アカウント情報を更新しました。'
-      redirect_to @user
+      redirect_to uuser
     else
-      render 'edit'
+      render json: { message: 'ユーザー更新できませんでした'}
     end
   end
 

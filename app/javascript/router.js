@@ -4,6 +4,7 @@ import store from './store.js';
 import CourtIndex from './src/pages/courts/index.vue'
 import CourtNew from './src/components/courts/new.vue'
 import UserShow from './src/pages/users/show.vue'
+import UserEdit from './src/pages/users/edit.vue'
 import CourtShow from './src/pages/courts/show.vue'
 import CourtEdit from './src/components/courts/edit.vue'
 // import UserIndex from './src/components/Users/index.vue'
@@ -45,7 +46,7 @@ export default new Router({
       }
     },
     {
-      path: '/courts/:id/edit', component: CourtEdit, name: 'CourtEdit'
+      path: '/courts/edit/:id', component: CourtEdit, name: 'CourtEdit'
     },
     // {
     //   path: '/courts/:id/edit', component: CourtEdit, name: 'CourtEdit', beforeEnter(to, from, next) {
@@ -56,6 +57,7 @@ export default new Router({
     //     }
     //   }
     // },
+    {path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
     {path: '/courts/:id', component: CourtShow, name: 'CourtShow'},
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
