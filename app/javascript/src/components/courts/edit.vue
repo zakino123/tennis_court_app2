@@ -48,14 +48,28 @@ export default {
       price: "",
       number: "",
       reserve: "",
-      tag_name: "",
+      // tag_name: "",
       remarks: "",
     };
+  },
+  created() {
+    axios.get(`/api/v1/courts/${this.$route.params.id}`).then((response) => {
+      this.name = response.data.name;
+      this.address = response.data.address;
+      this.latitude = response.data.latitude;
+      this.longitude = response.data.longitude;
+      this.price = response.data.price;
+      this.number = response.data.number;
+      // this.tag_name = response.data.tag_name;
+      this.reserve = response.data.reserve;
+      this.remarks = response.data.remarks;
+      console.log(response);
+    });
   },
   methods: {
     editCourt() {
       axios
-        .put("/api/v1/courts/${this.$route.params.id}", {
+        .put(`/api/v1/courts/${this.$route.params.id}`, {
           name: this.name,
           address: this.address,
           latitude: this.latitude,
@@ -69,38 +83,13 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.$router.push(`/courts/${this.$route.params.id}`);
         })
         .catch((error) => {
           console.log(error);
+          this.$router.push(`/courts/${this.$route.params.id}`);
         });
     },
-    // checkForm: function (e) {
-    //   if (this.name && this.address && this.price && this.number && this.reserve) {
-    //     this.editCourt();
-    //     console.log("コート情報を変更しました");
-    //   }
-    //   this.errors = [];
-    //   if (!this.name) {
-    //     this.errors.push("施設名を入力してください");
-    //     this.alert = true;
-    //   }
-    //   if (!this.address) {
-    //     this.errors.push("住所を入力してください");
-    //     this.alert = true;
-    //   }
-    //   if (!this.price) {
-    //     this.errors.push("1時間あたりの料金を入力して下さい");
-    //     this.alert = true;
-    //   }
-    //   if (!this.number) {
-    //     this.errors.push("コート数を入力して下さい");
-    //     this.alert = true;
-    //   }
-    //   if (!this.reserve) {
-    //     this.errors.push("予約URLを入力して下さい");
-    //     this.alert = true;
-    //   }
-    // },
   },
 }
 </script>
