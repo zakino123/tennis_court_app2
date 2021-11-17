@@ -21,6 +21,9 @@
             <button @click="checkForm()" class="inline-block text-gray-100 bg-blue-500 border border-yellow-500 hover:text-blue-500 hover:bg-white font-base px-4 py-2 rounded text-base">変更</button>
           </div>
         </div>
+        <div v-if="id === this.$store.state.userId" class="text-center my-2">
+          <button @click="deleteUser()" class="inline-block text-red-500 bg-gray-100 border-2 hover:text-gray-100 hover:bg-red-500 hover:shadow font-base px-4 py-2 rounded text-base">ユーザー削除</button>
+        </div>
       </div>
     </div>
   </div>
@@ -31,6 +34,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
+      id: "",
       name: "",
       email: "",
       password: "",
@@ -40,6 +44,7 @@ export default {
   },
   created() {
     axios.get(`/api/v1/users/${this.$route.params.id}`).then((response) => {
+      this.id = response.data.id;
       this.name = response.data.name;
       this.email = response.data.email;
       this.password = response.data.password;
@@ -70,6 +75,25 @@ export default {
         this.updateUser();
       }
       console.log("パスワードを入力して下さい");
+    },
+    deleteUser() {
+      if (confirm("削除しますか？")) {
+        axios
+          .delete(`/api/v1/users/${this.$route.params.id}`)
+          .then((response) => {
+            console.log(response);
+            this.logoutUser();
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("失敗しました");
+          });
+      }
+    },
+    logoutUser() {
+      this.$store.state.userId = null;
+      this.$store.state.password_digest = null;
+      this.$router.push("/login");
     },
   },
 };

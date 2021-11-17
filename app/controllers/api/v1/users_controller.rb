@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApiController
-  before_action :logged_in_user, only: %i[index destroy]
   before_action :set_user, only: %i[show]
   wrap_parameters :user, include: [:name, :email, :password, :password_confirmation]
 
@@ -48,9 +47,9 @@ class Api::V1::UsersController < ApiController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = 'アカウントを削除しました。'
-    redirect_to root_url
+    user = User.find(params[:id])
+    user.destroy
+    render json: { status: "SUCCESS", message: "ユーザー情報は削除されました", data: user }
   end
 
   def following
