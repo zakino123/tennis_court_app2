@@ -31,6 +31,9 @@
         <div class="text-center my-4">
           <button @click="editCourt()" class="inline-block text-gray-100 bg-blue-500 border border-yellow-500 hover:text-blue-500 hover:bg-white font-base px-4 py-2 rounded text-base">コート情報変更</button>
         </div>
+        <div v-if="user_id === this.$store.state.userId" class="text-center my-2">
+          <button type="button" @click="deleteCourt()" class="inline-block text-red-500 bg-gray-100 border-2 hover:text-gray-100 hover:bg-red-500 hover:shadow font-base px-4 py-2 rounded text-base">コート情報削除</button>
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +53,7 @@ export default {
       reserve: "",
       // tag_name: "",
       remarks: "",
+      user_id: "",
     };
   },
   created() {
@@ -63,6 +67,7 @@ export default {
       // this.tag_name = response.data.tag_name;
       this.reserve = response.data.reserve;
       this.remarks = response.data.remarks;
+      this.user_id = response.data.user_id;
       console.log(response);
     });
   },
@@ -90,7 +95,22 @@ export default {
           this.$router.push(`/courts/${this.$route.params.id}`);
         });
     },
+    deleteCourt() {
+      if (confirm("削除しますか？")) {
+        axios
+          .delete(`/api/v1/courts/${this.$route.params.id}`)
+          .then((response) => {
+            console.log(response);
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("失敗しました");
+          });
+      }
+    },
   },
+  
 }
 </script>
 

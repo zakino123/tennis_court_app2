@@ -1,5 +1,5 @@
 class Api::V1::CourtsController < ApiController
-  before_action :logged_in_user, only: %i[destroy]
+  # before_action :logged_in_user, only: %i[destroy]
   wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve, :user_id]
 
   def new
@@ -92,9 +92,9 @@ class Api::V1::CourtsController < ApiController
   end
 
   def destroy
-    Court.find(params[:id]).destroy
-    flash[:success] = 'コート情報を削除しました。'
-    redirect_to root_url
+    court = Court.find(params[:id])
+    court.destroy
+    render json: { status: "SUCCESS", message: "コート情報は削除されました", data: court }
   end
 
   private
