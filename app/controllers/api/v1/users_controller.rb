@@ -7,7 +7,8 @@ class Api::V1::UsersController < ApiController
   end
 
   def index
-    @users = User.all.page(params[:page]).per(12)
+    users = User.all.page(params[:page]).per(12)
+    render json: users
   end
 
   def show

@@ -7,7 +7,7 @@ import UserShow from './src/pages/users/show.vue'
 import UserEdit from './src/pages/users/edit.vue'
 import CourtShow from './src/pages/courts/show.vue'
 import CourtEdit from './src/components/courts/edit.vue'
-// import UserIndex from './src/components/Users/index.vue'
+import UserIndex from './src/pages/users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
 import Login from './src/pages/login.vue'
 import UserNew from './src/pages/user_new.vue'
@@ -28,7 +28,6 @@ export default new Router({
         next();
       }
     }},
-    // {path: '/users/new', component: UserNew},
     {path: '/user_create', component: UserNew, beforeEnter(to, from, next) {
       if (store.getters.password_digest) {
         next('/');
@@ -62,6 +61,6 @@ export default new Router({
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
     {path: '/users/:id', component: UserShow, name: 'UserShow'},
-    // {path: '/users', component: UserIndex},
+    {path: '/users', component: UserIndex},
   ]
 });
