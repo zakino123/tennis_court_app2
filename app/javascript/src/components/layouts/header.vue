@@ -13,6 +13,7 @@
               <button @click="logout()" class="m-1 hover:text-blue-400">ログアウト</button>
             </template>
             <template v-if="!isAuthenticated">
+              <button @click="guestLogin()" class="m-1 hover:text-blue-400">ゲストログイン</button>
               <router-link to="/login" class="m-1 hover:text-blue-400">ログイン</router-link>
               <router-link to="/user_create" class="m-1 hover:text-blue-400">新規登録</router-link>
             </template>
@@ -38,6 +39,12 @@ export default {
   methods: {
     logout() {
       return this.$store.dispatch("logout");
+    },
+    guestLogin() {
+      this.$store.dispatch("login", {
+        email: "guest@exapmle.com",
+        password: "foobar",
+      });
     },
   },
 }
