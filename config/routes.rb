@@ -40,6 +40,9 @@ Rails.application.routes.draw do
         resources :comments, only: %i[create destroy]
         resources :favorites, only: %i[create destroy]
       end
+      resources :tags do
+        get 'courts', to: 'courts#tagsearch'
+      end
       resources :contacts
       resources :follow_relationships, only: %i[create destroy]
     end
