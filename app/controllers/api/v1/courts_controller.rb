@@ -1,6 +1,6 @@
 class Api::V1::CourtsController < ApiController
   # before_action :logged_in_user, only: %i[destroy]
-  wrap_parameters :court, include: [:name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve, :user_id]
+  wrap_parameters :court, include: [:name, :tag_name, :address, :latitude, :longitude, :price, :image, :number, :remarks, :reserve, :user_id]
 
   def new
     court = Court.new
@@ -67,9 +67,9 @@ class Api::V1::CourtsController < ApiController
 
   def create
     court = Court.new(court_params)
-    # tag_list = params[:court][:tag_name].split(nil)
+    tag_list = params[:court][:tag_name].split(nil)
     if court.save!
-      # @court.save_tag(tag_list)
+      court.save_tag(tag_list)
       # flash[:success] = 'コート情報を受け付けました！'
       # redirect_to @court
       render json: court

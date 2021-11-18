@@ -22,8 +22,17 @@
         <label for="reserve" class="text-lg font-bold">予約URL</label>
         <input type="text" v-model="reserve" id="reserve" class="mb-4 form-control" placeholder='予約URLを貼り付けてください。'/>
 
-        <!-- <label for="tag_name" class="text-lg font-bold">タグ付け(半角スペースで複数可能)</label>
-        <input type="text" v-model="tag_name" id="tag_name" class="mb-4 form-control" placeholder='例：オムニ 埼玉 クレー'/> -->
+        <!-- <label for="tag" class="text-lg font-bold">タグ付け</label>
+        <v-select
+          placeholder="選択してください"
+          name="hoge"
+          :options="options"
+          v-model="tag"
+          class="bg-white shadow appearance-none border rounded w-11/12 md:w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-b-2 focus:border-blue-400 block mx-auto"
+        ></v-select> -->
+
+        <label for="tag_name" class="text-lg font-bold">タグ付け(半角スペースで複数可能)</label>
+        <input type="text" v-model=" tag_name" id="tag_name" class="mb-4 form-control" placeholder='例：オムニ 埼玉 クレー'/>
 
         <label for="remarks" class="text-lg font-bold">備考</label>
         <input type="text" v-model="remarks" id="remarks" class="mb-4 form-control" placeholder='他に何かあればご記入下さい。'/>
@@ -43,7 +52,9 @@
 
 <script>
 import axios from 'axios';
+// import vSelect from "vue-select";
 export default {
+  // components: { "v-select": vSelect },
   data() {
     return {
       name: "",
@@ -55,6 +66,7 @@ export default {
       reserve: "",
       tag_name: "",
       remarks: "",
+      // options: ["オムニ", "クレー", "ハード", "シャワーあり", "駐車場あり", "照明あり", "更衣室あり", "レンタルあり", "クラブハウスあり", "休憩スペースあり", "インドア"]
     };
   },
   methods: {
@@ -68,12 +80,13 @@ export default {
           price: this.price,
           number: this.number,
           reserve: this.reserve,
-          // tag_name: this.tag_name,
+          tag_name: this.tag_name,
           remarks: this.remarks,
           user_id: this.$store.state.userId,
         })
         .then((response) => {
           console.log(response);
+          this.$router.push("/");
         })
         .catch((error) => {
           console.log(error);
