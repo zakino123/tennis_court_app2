@@ -44,11 +44,12 @@
 <script>
 // import axios from "axios";
 // import CourtResult from "../../components/courts/result.vue";
+
 import SearchForm from '../../components/courts/searchform.vue'
 
 export default {
   components: {
-    SearchForm//, CourtResult
+    SearchForm //, CourtResult
   },
   // created() {
   //   this.renderResearchResult();

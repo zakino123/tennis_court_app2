@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import store from './store.js';
 import CourtIndex from './src/pages/courts/index.vue'
 import CourtNew from './src/components/courts/new.vue'
+import TagSearchResult from './src/pages/courts/TagSearchResult.vue'
 import UserShow from './src/pages/users/show.vue'
 import UserEdit from './src/pages/users/edit.vue'
 import CourtShow from './src/pages/courts/show.vue'
@@ -62,5 +63,6 @@ export default new Router({
     {path: '/courts/search/:params', component: CourtSearch},
     {path: '/users/:id', component: UserShow, name: 'UserShow'},
     {path: '/users', component: UserIndex},
+    {path: '/tags/:id', component:  TagSearchResult, name: 'TagSearchResult'},
   ]
 });

@@ -16,6 +16,11 @@ class Api::V1::CourtsController < ApiController
     # @favorite = Favorite.new
   end
 
+  def taglist
+    taglist = Tag.all.page(params[:page])
+    render json: taglist
+  end
+
   def index
     # @tag_list = Tag.all.page(params[:page])
     courts = Court.all.page(params[:page]).per(12)
