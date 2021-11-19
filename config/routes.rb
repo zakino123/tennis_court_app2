@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get '/court_create', to: 'courts#new'
       post '/courts', to: 'courts#create'
       get '/taglist', to: 'courts#taglist'
+      get '/court_rank', to: 'courts#court_rank'
       resources :courts do
         resources :comments, only: %i[create destroy]
         resources :favorites, only: %i[create destroy]

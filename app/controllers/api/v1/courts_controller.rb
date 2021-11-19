@@ -21,6 +21,12 @@ class Api::V1::CourtsController < ApiController
     render json: taglist
   end
 
+  def court_rank
+    court_rank = Court.includes(:user).unscope(:order).find(Favorite.group(:court_id).order('count(court_id) desc').limit(4).pluck(:court_id))
+
+    render json: court_rank.as_json(include: :user)
+  end
+
   def index
     # @tag_list = Tag.all.page(params[:page])
     courts = Court.all.page(params[:page]).per(12)

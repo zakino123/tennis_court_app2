@@ -7,12 +7,10 @@
     <div class="col-span-1">
       <div class="mt-2">
         <h2 class="font-bold mb-2 text-4xl">{{ court.name }}</h2>
-        <!-- <% if @court_tags.any? %>
+        <!-- <span v-for="e in court_tags" :key="e.id">
           <span>タグ:</span>
-          <% @court_tags.each do |tag| %>
-            <span class="inline-block my-2 px-3 py-1 border-2 border-indigo-500 rounded-full font-semibold cursor-pointer hover:text-white hover:bg-indigo-500"><%= link_to(tag.tag_name, tag_courts_path(tag_id: tag.id), {class: "hover:text-white"})  %></span>
-          <% end %>
-        <% end %> -->
+            <router-link :to="{ name: 'TagSearchResult', params: { id: e.id } }" class="inline-block my-2 px-3 py-1 border-2 border-indigo-500 rounded-full font-semibold cursor-pointer hover:text-white hover:bg-indigo-500">{{ e.tag_name }}</router-link>
+        </span> -->
       </div>
       <div class="mb-4">
         <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="hover:underline">{{ court.user.name }}</router-link></p>
