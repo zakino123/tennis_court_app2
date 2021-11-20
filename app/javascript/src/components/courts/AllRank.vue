@@ -1,6 +1,6 @@
 <template>
   <div class="container py-4 ">
-  <h2 class="text-lg text-center font-bold mb-2">コート一覧</h2>
+  <h2 class="text-lg text-center font-bold mb-2">お気に入り数が多いコート</h2>
     <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <li v-for="e in court_rank" :key="e.id" class="bg-green-100 mx-auto hover:bg-white border-2 border-gray-300 px-4 pt-2 list-none hover:shadow card">
         <div class="text-center">
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data: function () {
     return {
