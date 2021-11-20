@@ -21,7 +21,7 @@
           <router-link :to="{ name: 'CourtShow', params: { id: e.id } }" class="font-bold underline mt-2">{{ e.name }}</router-link>
           <p class="text-xl h-6 mt-1">料金：{{ e.price }}円/時間</p>
           <div class="mt-2">
-            <!-- <span><i class="fas fa-star fa-lg fill-current text-yellow-500"></i>{{ e.favorite.count }}</span> -->
+            <span><i class="fas fa-star fa-lg fill-current text-yellow-500"></i>{{ count }}</span>
             <span class="font-bold underline"><i class="far fa-user mr-2"></i>{{ e.user.name }}</span>
           </div>
           <p class="text-xl h-6 mt-1">コート数：{{ e.number }}面</p>
@@ -37,13 +37,17 @@ import axios from 'axios';
 export default {
   data: function () {
     return {
-      latest_court: []
+      latest_court: [],
+      count: ""
     }
   },
   mounted () {
     axios
       .get('/api/v1/latest_court')
       .then(response => (this.latest_court = response.data))
+    axios
+      .get(`/api/v1/favorite_count/${this.latest_court.id}`)
+      .then(response => (this.count = response.data))
   },
 }
 </script>
