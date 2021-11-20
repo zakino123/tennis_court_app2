@@ -35,6 +35,7 @@
       </ul>
     </div>
     <AllRank></AllRank>
+    <LatestCourt></LatestCourt>
   </div>
 </template>
 
@@ -42,6 +43,7 @@
 import axios from 'axios';
 import SearchForm from '../../components/courts/searchform.vue'
 import AllRank from '../../components/courts/AllRank.vue'
+import LatestCourt from '../../components/courts/LatestCourt.vue'
 
 export default {
   data: function () {
@@ -55,7 +57,7 @@ export default {
       .then(response => (this.courts = response.data))
   },
   components: {
-    SearchForm, AllRank
+    SearchForm, AllRank, LatestCourt
   }
 }
 </script>

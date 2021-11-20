@@ -27,6 +27,11 @@ class Api::V1::CourtsController < ApiController
     render json: court_rank.as_json(include: :user)
   end
 
+  def latest_court
+    latest_court = Court.includes(:user).order(created_at: :desc).limit(4)
+    render json: latest_court.as_json(include: :user)
+  end
+
   def index
     # @tag_list = Tag.all.page(params[:page])
     courts = Court.all.page(params[:page]).per(12)
