@@ -16,9 +16,28 @@
         <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="hover:underline">{{ court.user.name }}</router-link></p>
       </div>
       <div class="flex mb-2">
-        <!-- <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded' id="favorite_<%= @court.id %>">
-          <%= render "favorites/favorite", court: @court %>
-        </div> -->
+        <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded'>
+          <div v-if="isAuthenticated">
+            <!-- <% if current_user.already_liked?(@court) %>
+              <%= link_to court_favorite_path(@court), method: :delete, remote: true, class: "test" do %>
+                <i class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
+              <% end %>
+            <% else %>
+              <%= link_to court_favorites_path(@court), method: :post, remote: true, class: "test" do %>
+                <i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
+              <% end %>
+            <% end %>
+            <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
+            <span class="my-auto pr-2">保存</span> -->
+            <i v-if="isFavorited" class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
+            <i v-else class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
+            <span class="my-auto pr-1">{{ count }}</span>
+            <span class="my-auto pr-2">保存</span>
+          </div>
+          <div v-else>
+            <span class="my-auto pr-2">ログイン後、お気に入り登録可能です。</span>
+          </div>
+        </div>
         <router-link
           v-if="court.user_id === this.$store.state.userId"
           :to="{ name: 'CourtEdit', params: { id: court.id } }" 
@@ -72,13 +91,25 @@ export default {
   data() {
     return {
       court: [],
+      count: ""
     };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.password_digest != null;
+    },
+    isFavorited() {
+
+    },
   },
   mounted() {
     axios.get(`/api/v1/courts/${this.$route.params.id}`).then((response) => {
       this.court = response.data;
       console.log(response);
     });
+    axios
+      .get(`/api/v1/favorite_count/${this.court.id}`)
+      .then(response => (this.count = response.data))
   },
   initMap() {
     var test ={lat: court.latitude, lng: court.longitude};
