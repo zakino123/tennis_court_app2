@@ -29,10 +29,12 @@
             <% end %>
             <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
             <span class="my-auto pr-2">保存</span> -->
-            <i v-if="isFavorited" class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
-            <i v-else class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
-            <span class="my-auto pr-1">{{ count }}</span>
-            <span class="my-auto pr-2">保存</span>
+            <button @click="createFavorite()">
+              <i v-if="isFavorited" class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
+              <i v-else class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
+              <span class="my-auto pr-1">{{ count }}</span>
+              <span class="my-auto pr-2">保存</span>
+            </button>
           </div>
           <div v-else>
             <span class="my-auto pr-2">ログイン後、お気に入り登録可能です。</span>
@@ -111,29 +113,44 @@ export default {
       .get(`/api/v1/favorite_count/${this.court.id}`)
       .then(response => (this.count = response.data))
   },
-  initMap() {
-    var test ={lat: court.latitude, lng: court.longitude};
-    var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15, 
-              center: test
-              });
-    var transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+  methods: {
+    createFavorite() {
+      axios
+        .post(`/api/v1/courts/${this.court.id}/favorites`, {
+          court_id: this.court.id,
+          user_id: this.$store.state.userId,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  // initMap() {
+  //   var test ={lat: court.latitude, lng: court.longitude};
+  //   var map = new google.maps.Map(document.getElementById('map'), {
+  //             zoom: 15, 
+  //             center: test
+  //             });
+  //   var transitLayer = new google.maps.TransitLayer();
+  //   transitLayer.setMap(map);
 
-    var contentString = '住所：{{ court.address }}';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-    var marker = new google.maps.Marker({
-                  position:test,
-                  map: map,
-                  title: contentString
-                });
+  //   var contentString = '住所：{{ court.address }}';
+  //   var infowindow = new google.maps.InfoWindow({
+  //     content: contentString
+  //   });
+  //   var marker = new google.maps.Marker({
+  //                 position:test,
+  //                 map: map,
+  //                 title: contentString
+  //               });
 
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-  },
+  //   marker.addListener('click', function() {
+  //     infowindow.open(map, marker);
+  //   });
+  // },
+  }
 }
 </script>
 
