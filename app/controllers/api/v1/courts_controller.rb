@@ -72,8 +72,7 @@ class Api::V1::CourtsController < ApiController
   end
 
   def tagsearch
-    @tag_list = Tag.all
-    tag = Tag.find(params[:tag_id])
+    tag = Tag.find(params[:id])
     courts = tag.courts.all.page(params[:page]).per(12)
 
     render json: courts.as_json(include: :user)

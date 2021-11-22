@@ -41,12 +41,10 @@ Rails.application.routes.draw do
       get '/court_rank', to: 'courts#court_rank'
       get '/latest_court', to: 'courts#latest_court'
       get '/favorite_count/:id', to: 'favorites#favorite_count'
+      get '/tags/:id', to: 'courts#tagsearch'
       resources :courts do
         resources :comments, only: %i[create destroy]
         resources :favorites, only: %i[create destroy]
-      end
-      resources :tags do
-        get 'courts', to: 'courts#tagsearch'
       end
       resources :contacts
       resources :follow_relationships, only: %i[create destroy]

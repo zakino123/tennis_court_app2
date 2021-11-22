@@ -49,7 +49,7 @@ export default {
   },
   mounted () {
     axios
-      .get(`/api/v1/tags/${this.$route.params.id}/courts`)
+      .get(`/api/v1/tags/${this.$route.params.id}`)
       .then(response => (this.courts = response.data))
   },
   components: {
