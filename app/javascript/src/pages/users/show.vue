@@ -41,36 +41,32 @@
         </div>
       </div>
     </div>
-  <!-- <div class="lg:col-span-3 mb-4 lg:mt-4">
-    <h2 class="text-2xl text-center font-bold mb-4">お気に入りコート</h2>
-    <% if @favorites.present? %>
-      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
-        <% @favorites.each do |court| %>
-          <%= render partial: "courts/court", locals: { court: court } %>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
-    <% end %>
-    <h2 class="text-2xl text-center font-bold my-3">投稿したコート</h2>
-    <% if @courts.present? %>
-      <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
-        <% @courts.each do |court| %>
-          <%= render partial: "courts/court", locals: { court: court } %>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
-    <% end %>
-    <%= paginate @courts %>
-  </div> -->
+    <div class="lg:col-span-3 mb-4 lg:mt-4">
+      <UserFavoriteCourt></UserFavoriteCourt>
+      <!-- <h2 class="text-2xl text-center font-bold my-3">投稿したコート</h2>
+      <div v-if="existPostCourt">
+        <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
+          <% @courts.each do |court| %>
+            <%= render partial: "courts/court", locals: { court: court } %>
+          <% end %>
+        </ul>
+      </div>
+      <div v-else>
+        <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
+      </div>
+      <%= paginate @courts %> -->
+    </div>
 </div>
 </template>
 
 <script>
 import axios from "axios";
+import UserFavoriteCourt from "../../components/users/UserFavoriteCourt.vue";
 
 export default {
+  components: {
+    UserFavoriteCourt
+  },
   data() {
     return {
       user: [],

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
       get '/user_create', to: 'users#new'
+      get '/favorite_court/:id', to: 'users#favorite_court'
       resources :users
       resources :courts
       get '/court_create', to: 'courts#new'

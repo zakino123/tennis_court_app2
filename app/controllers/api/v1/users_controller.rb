@@ -20,6 +20,13 @@ class Api::V1::UsersController < ApiController
     render json: @user
   end
 
+  def favorite_court
+    user = User.find(params[:id])
+    favorites = Favorite.where(user_id: user.id).order(created_at: :desc).pluck(:court_id)
+    favorite_court = Court.page(params[:page]).per(3).find(favorites)
+    render json: favorite_court.as_json(include: :user)
+  end
+
   def create
     user = User.new(user_params)
     user.image = "default.jpg"
