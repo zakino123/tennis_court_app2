@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       delete '/logout', to: 'sessions#destroy'
       get '/user_create', to: 'users#new'
       get '/favorite_court/:id', to: 'users#favorite_court'
+      get '/post_court/:id', to: 'users#post_court'
       resources :users
       resources :courts
       get '/court_create', to: 'courts#new'

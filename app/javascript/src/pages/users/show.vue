@@ -43,18 +43,7 @@
     </div>
     <div class="lg:col-span-3 mb-4 lg:mt-4">
       <UserFavoriteCourt></UserFavoriteCourt>
-      <!-- <h2 class="text-2xl text-center font-bold my-3">投稿したコート</h2>
-      <div v-if="existPostCourt">
-        <ul class="mb-2 mx-auto grid gap-x-2 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">        
-          <% @courts.each do |court| %>
-            <%= render partial: "courts/court", locals: { court: court } %>
-          <% end %>
-        </ul>
-      </div>
-      <div v-else>
-        <p class="text-lg sm:text-2xl text-center">該当のコートはありません。</p>
-      </div>
-      <%= paginate @courts %> -->
+      <UserPostCourt></UserPostCourt>
     </div>
 </div>
 </template>
@@ -62,10 +51,11 @@
 <script>
 import axios from "axios";
 import UserFavoriteCourt from "../../components/users/UserFavoriteCourt.vue";
+import UserPostCourt from "../../components/users/UserPostCourt.vue";
 
 export default {
   components: {
-    UserFavoriteCourt
+    UserFavoriteCourt, UserPostCourt
   },
   data() {
     return {
