@@ -29,12 +29,19 @@
             <% end %>
             <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
             <span class="my-auto pr-2">保存</span> -->
-            <button @click="createFavorite()">
-              <i v-if="isFavorited" class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
-              <i v-else class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
+            <div v-if="isFavorited">
+              <button @click="createFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i></button>
               <span class="my-auto pr-1">{{ count }}</span>
               <span class="my-auto pr-2">保存</span>
-            </button>
+            </div>
+            <div v-else>
+              <button @click="destroyFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i></button>
+              <span class="my-auto pr-1">{{ count }}</span>
+              <span class="my-auto pr-2">保存</span>
+            </div>
+            <!-- <button v-else @click="createFavorite()" class="m-2 fas fa-star fa-lg fill-current text-gray-700"></button> -->
+            <!-- <span class="my-auto pr-1">{{ count }}</span>
+            <span class="my-auto pr-2">保存</span> -->
           </div>
           <div v-else>
             <span class="my-auto pr-2">ログイン後、お気に入り登録可能です。</span>
@@ -110,7 +117,7 @@ export default {
       console.log(response);
     });
     axios
-      .get(`/api/v1/favorite_count/${this.court.id}`)
+      .get(`/api/v1/favorite_count/${this.$route.params.id}`)
       .then(response => (this.count = response.data))
   },
   methods: {
@@ -125,6 +132,17 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    destroyFavorite() {
+      axios
+        .delete(`/api/v1/courts/${this.court.id}/favorites/`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("失敗しました");
         });
     },
   // initMap() {

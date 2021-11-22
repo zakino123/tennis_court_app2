@@ -3,7 +3,7 @@ class Api::V1::FavoritesController < ApiController
   wrap_parameters :favorite, include: [:court_id, :user_id]
   def favorite_count
     favorite_count = Favorite.where(court_id: params[:id]).count
-    render json: favorite_count
+    render json: favorite_count.as_json(include: :court)
   end
 
   def create
@@ -12,9 +12,9 @@ class Api::V1::FavoritesController < ApiController
   end
 
   def destroy
-    @favorite = current_user.favorites.find_by(court_id: @court.id)
-    @favorite.destroy
-    redirect_to court_path(@court)
+    favorite = Favorite.find_by(court_id: @court.id)
+    favorite.destroy
+    render json: favorite
   end
 
   private
