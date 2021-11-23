@@ -136,7 +136,7 @@ export default {
     },
     destroyFavorite() {
       axios
-        .delete(`/api/v1/courts/${this.court.id}/favorites/`)
+        .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
         .then((response) => {
           console.log(response);
         })
