@@ -6,6 +6,12 @@ class Api::V1::CourtsController < ApiController
     court = Court.new
   end
 
+  def court_tag
+    court = Court.find(params[:id])
+    court_tags = court.tags
+    render json: court_tags
+  end
+
   def show
     court = Court.find(params[:id])
     render json: court.as_json(include: :user)

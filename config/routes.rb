@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get '/taglist', to: 'courts#taglist'
       get '/court_rank', to: 'courts#court_rank'
       get '/latest_court', to: 'courts#latest_court'
+      get '/court_tag/:id', to: 'courts#court_tag'
       get '/favorite_count/:id', to: 'favorites#favorite_count'
       get '/tagsearch/:id', to: 'courts#tagsearch'
       delete '/court/:court_id/user/:user_id/favorite', to: 'favorites#destroy'

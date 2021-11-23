@@ -26,7 +26,7 @@
           <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
           <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
         </div> -->
-        <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
+        <!-- <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
           <div v-if="UserFollowing">
             <input type="hidden" v-model="following_id" id="following_id"/>
             <button @click="UserFollow()" class="inline-block text-gray-100 bg-yellow-400 border border-yellow-400 hover:text-yellow-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー</button>
@@ -35,7 +35,7 @@
             <input type="hidden" v-model="following_id" id="following_id"/>
             <button @click="UserUnFollow()" class="inline-block text-gray-100 bg-red-500 border border-yellow-500 hover:text-red-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー解除</button>
           </div>
-        </div>
+        </div> -->
         <!-- <% if logged_in? && @user != current_user%>
           <div id="follow_form" class="text-center my-3">
             <% if current_user.following?(@user) %>
@@ -45,11 +45,11 @@
             <% end %>
           </div>
         <% end %> -->
-        <div v-if="user.id === this.$store.state.userId" class="text-center my-2">
+        <!-- <div v-if="user.id === this.$store.state.userId" class="text-center my-2">
           <router-link v-if="user.id === this.$store.state.userId"
           :to="{ name: 'UserEdit', params: { id: this.$store.state.userId } }" class="inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base">ユーザー情報編集</router-link>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="lg:col-span-3 mb-4 lg:mt-4">
       <UserFavoriteCourt></UserFavoriteCourt>

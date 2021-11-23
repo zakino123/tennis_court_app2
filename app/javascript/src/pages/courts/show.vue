@@ -7,10 +7,10 @@
     <div class="col-span-1">
       <div class="mt-2">
         <h2 class="font-bold mb-2 text-4xl">{{ court.name }}</h2>
-        <!-- <span v-for="e in court_tags" :key="e.id">
-          <span>タグ:</span>
-            <router-link :to="{ name: 'TagSearchResult', params: { id: e.id } }" class="inline-block my-2 px-3 py-1 border-2 border-indigo-500 rounded-full font-semibold cursor-pointer hover:text-white hover:bg-indigo-500">{{ e.tag_name }}</router-link>
-        </span> -->
+        <span>タグ:</span>
+        <span v-for="e in court_tags" :key="e.id">
+          <router-link :to="{ name: 'TagSearchResult', params: { id: e.id } }" class="inline-block my-2 px-3 py-1 border-2 border-indigo-500 rounded-full font-semibold cursor-pointer hover:text-white hover:bg-indigo-500">{{ e.tag_name }}</router-link>
+        </span>
       </div>
       <div class="mb-4">
         <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="hover:underline">{{ court.user.name }}</router-link></p>
@@ -87,7 +87,8 @@ export default {
     return {
       court: [],
       count: "",
-      favorite: []
+      favorite: [],
+      court_tags: []
     };
   },
   computed: {
@@ -111,6 +112,9 @@ export default {
     axios
       .get(`/api/v1/court/${this.$route.params.id}/user/${this.$store.state.userId}/favorite`)
       .then(response => (this.favorite = response.data))
+    axios
+      .get(`/api/v1/court_tag/${this.$route.params.id}`)
+      .then(response => (this.court_tags = response.data))
   },
   methods: {
     createFavorite() {
