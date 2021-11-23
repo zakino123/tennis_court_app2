@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get '/favorite_count/:id', to: 'favorites#favorite_count'
       get '/tagsearch/:id', to: 'courts#tagsearch'
       delete '/court/:court_id/user/:user_id/favorite', to: 'favorites#destroy'
+      get '/court/:court_id/user/:user_id/favorite', to: 'favorites#show'
       resources :courts do
         resources :comments, only: %i[create destroy]
         # resources :favorites, only: %i[create destroy]

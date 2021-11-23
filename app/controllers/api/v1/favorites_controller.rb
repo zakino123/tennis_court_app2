@@ -1,9 +1,14 @@
 class Api::V1::FavoritesController < ApiController
-  before_action :set_court, only: %i[create destroy]
+  before_action :set_court, only: %i[show create destroy]
   wrap_parameters :favorite, include: [:court_id, :user_id]
   def favorite_count
     favorite_count = Favorite.where(court_id: params[:id]).count
     render json: favorite_count.as_json(include: :court)
+  end
+
+  def show
+    favorite = Favorite.find_by(court_id: @court.id, user_id: params[:user_id])
+    render json: favorite
   end
 
   def create

@@ -30,12 +30,12 @@
             <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
             <span class="my-auto pr-2">保存</span> -->
             <div v-if="isFavorited">
-              <button @click="createFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i></button>
+              <button @click="destroyFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-yellow-400"></i></button>
               <span class="my-auto pr-1">{{ count }}</span>
               <span class="my-auto pr-2">保存</span>
             </div>
             <div v-else>
-              <button @click="destroyFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i></button>
+              <button @click="createFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i></button>
               <span class="my-auto pr-1">{{ count }}</span>
               <span class="my-auto pr-2">保存</span>
             </div>
@@ -100,7 +100,8 @@ export default {
   data() {
     return {
       court: [],
-      count: ""
+      count: "",
+      favorite: []
     };
   },
   computed: {
@@ -108,7 +109,9 @@ export default {
       return this.$store.getters.password_digest != null;
     },
     isFavorited() {
-
+      if (this.favorite != null){
+        return this.favorite.user_id === this.$store.state.userId
+      }
     },
   },
   mounted() {
@@ -119,6 +122,9 @@ export default {
     axios
       .get(`/api/v1/favorite_count/${this.$route.params.id}`)
       .then(response => (this.count = response.data))
+    axios
+      .get(`/api/v1/court/${this.$route.params.id}/user/${this.$store.state.userId}/favorite`)
+      .then(response => (this.favorite = response.data))
   },
   methods: {
     createFavorite() {
