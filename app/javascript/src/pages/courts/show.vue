@@ -18,17 +18,6 @@
       <div class="flex mb-2">
         <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded'>
           <div v-if="isAuthenticated">
-            <!-- <% if current_user.already_liked?(@court) %>
-              <%= link_to court_favorite_path(@court), method: :delete, remote: true, class: "test" do %>
-                <i class="m-2 fas fa-star fa-lg fill-current text-yellow-500"></i>
-              <% end %>
-            <% else %>
-              <%= link_to court_favorites_path(@court), method: :post, remote: true, class: "test" do %>
-                <i class="m-2 fas fa-star fa-lg fill-current text-gray-700"></i>
-              <% end %>
-            <% end %>
-            <span class="my-auto pr-1"><%= @court.favorited_users.count %> </span>
-            <span class="my-auto pr-2">保存</span> -->
             <div v-if="isFavorited">
               <button @click="destroyFavorite()"><i class="m-2 fas fa-star fa-lg fill-current text-yellow-400"></i></button>
               <span class="my-auto pr-1">{{ count }}</span>
@@ -39,9 +28,6 @@
               <span class="my-auto pr-1">{{ count }}</span>
               <span class="my-auto pr-2">保存</span>
             </div>
-            <!-- <button v-else @click="createFavorite()" class="m-2 fas fa-star fa-lg fill-current text-gray-700"></button> -->
-            <!-- <span class="my-auto pr-1">{{ count }}</span>
-            <span class="my-auto pr-2">保存</span> -->
           </div>
           <div v-else>
             <span class="my-auto pr-2">ログイン後、お気に入り登録可能です。</span>
