@@ -19,10 +19,10 @@
         <div class="text-center text-gray-700 text-xl font-bold mt-3">
           {{ user.name }}さんのマイページ
         </div>
-        <!-- <div class="text-center">
-          <p class="text-xl h-6 mt-1">投稿数：{{ user.courts.count }}</p>
+        <div class="text-center">
+          <p class="text-xl h-6 mt-1">投稿数：{{ court_count }}</p>
         </div>
-        <div class="text-center my-2 flex">
+        <!-- <div class="text-center my-2 flex">
           <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
           <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
         </div> -->
@@ -45,11 +45,11 @@
             <% end %>
           </div>
         <% end %> -->
-        <!-- <div v-if="user.id === this.$store.state.userId" class="text-center my-2">
+        <div v-if="user.id === this.$store.state.userId" class="text-center my-2">
           <router-link v-if="user.id === this.$store.state.userId"
           :to="{ name: 'UserEdit', params: { id: this.$store.state.userId } }" class="inline-block text-gray-100 bg-green-500 border border-yellow-500 hover:text-green-500 hover:bg-white font-base px-4 py-2 rounded text-base">ユーザー情報編集</router-link>
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="lg:col-span-3 mb-4 lg:mt-4">
       <UserFavoriteCourt></UserFavoriteCourt>
@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       user: [],
+      court_count: ""
     };
   },
   mounted() {
@@ -77,39 +78,43 @@ export default {
       this.user = response.data;
       console.log(response);
     });
+    axios.get(`/api/v1/court_count/${this.$route.params.id}`).then((response) => {
+      this.court_count = response.data;
+      console.log(response);
+    });
   },
-  methods: {
-    UserFollow() {
-      axios
-        .post(`/api/v1/courts/${this.court.id}/favorites`, {
-          following_id: this.this.$store.state.userId,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    Userunfollow() {
-      axios
-        .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("失敗しました");
-        });
-    },
-  },
-  computed: {
-    isAuthenticated() {
-      return this.$store.getters.password_digest != null;
-    },
-    UserFollowing() {
+  // methods: {
+  //   UserFollow() {
+  //     axios
+  //       .post(`/api/v1/courts/${this.court.id}/favorites`, {
+  //         following_id: this.this.$store.state.userId,
+  //       })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   },
+  //   Userunfollow() {
+  //     axios
+  //       .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         alert("失敗しました");
+  //       });
+  //   },
+  // },
+  // computed: {
+  //   isAuthenticated() {
+  //     return this.$store.getters.password_digest != null;
+  //   },
+  //   UserFollowing() {
 
-    }
-  },
+  //   }
+  // },
 }
 </script>

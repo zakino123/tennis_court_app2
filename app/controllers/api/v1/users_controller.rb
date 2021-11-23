@@ -11,6 +11,11 @@ class Api::V1::UsersController < ApiController
     render json: users
   end
 
+  def court_count
+    court_count = Court.where(user_id: params[:id]).count
+    render json: court_count
+  end
+
   def show
     # user = User.find(params[:id])
     # @courts = @user.courts.page(params[:page]).per(3)
