@@ -1,6 +1,11 @@
 class Api::V1::CommentsController < ApiController
   before_action :logged_in_user, only: %i[create destroy]
 
+  def comment_count
+    comment_count = Comment.where(court_id: params[:id]).count
+    render json: comment_count
+  end
+
   def create
     @court = Court.find(params[:court_id])
     @comment = Comment.new(comment_params)
