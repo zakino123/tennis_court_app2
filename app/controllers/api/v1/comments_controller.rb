@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApiController
-  before_action :logged_in_user, only: %i[create destroy]
+  wrap_parameters :comment, include: [:context, :court_id, :user_id]
 
   def comment_count
     comment_count = Comment.where(court_id: params[:id]).count
@@ -7,14 +7,11 @@ class Api::V1::CommentsController < ApiController
   end
 
   def create
-    @court = Court.find(params[:court_id])
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      flash[:success] = 'コメントを投稿しました！'
-      redirect_to @court
+    comment = Comment.new(comment_params)
+    if comment.save
+      render json: comment
     else
-      flash[:danger] = '投稿に失敗しました！'
-      render 'courts/index'
+      render json: { message: 'コメント投稿出来ませんでした'}
     end
   end
 
@@ -28,6 +25,6 @@ class Api::V1::CommentsController < ApiController
   private
 
   def comment_params
-    params.require(:comment).permit(:context).merge(user_id: current_user.id, court_id: params[:court_id])
+    params.require(:comment).permit(:context).merge(user_id: params[:user_id], court_id: params[:court_id])
   end
 end
