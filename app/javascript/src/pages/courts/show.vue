@@ -99,9 +99,9 @@
             <div class="ml-2 my-auto">
               <div class="user">
                 <router-link :to="{ name: 'UserShow', params: { id: e.user_id } }" class="hover:underline">{{ e.user.name }}</router-link>
-                <!-- <span class="timestamp">
-                <%= time_ago_in_words(comment.created_at) %> 前に投稿
-                </span> -->
+                <span class="timestamp">
+                  <p>{{ moment(e.created_at) }}に投稿</p>
+                </span>
               </div>
               <p class="content">{{ e.context }}</p>
               <!-- <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
@@ -119,6 +119,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data() {
@@ -201,6 +202,10 @@ export default {
           console.log(error);
           alert("失敗しました");
         });
+    },
+    moment: function(date) {
+      moment.locale("ja");
+      return moment(date).fromNow();
     },
   // initMap() {
   //   var test ={lat: court.latitude, lng: court.longitude};
