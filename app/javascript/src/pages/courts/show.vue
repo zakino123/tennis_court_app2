@@ -14,7 +14,7 @@
             </span>
           </div>
           <div class="mb-4">
-            <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }" class="hover:underline">{{ court.user.name }}</router-link></p>
+            <p>ユーザー：<router-link :to="{ name: 'UserShow', params: { id: this.court.user_id } }" class="hover:underline">{{ court.user.name }}</router-link></p>
           </div>
           <div class="flex mb-2">
             <div class='flex star-btn mt-1 mr-2 border-2 border-yellow-400 bg-red-100 hover:bg-white rounded'>
@@ -92,12 +92,26 @@
         <div v-else>
           <h4>ログイン後、コメント可能になります。</h4>
         </div>
-        <!-- <% if @court.comments.any? %>
-          <ol class="microposts">
-            <%= render @comments %>
-          </ol>
-          <%= paginate @comments %>
-        <% end %> -->
+        <ol class="microposts">
+          <li v-for="e in court_comment" :key="e.id" class="flex py-2 border-t-2 border-black border-b-2">
+            <img width='100' class='border-2' v-if="e.user.image.url" :src="e.user.image.url"/>
+            <img width='100' class='border-2' v-else src="../../assets/default.jpg"/>
+            <div class="ml-2 my-auto">
+              <div class="user">
+                <router-link :to="{ name: 'UserShow', params: { id: e.user_id } }" class="hover:underline">{{ e.user.name }}</router-link>
+                <!-- <span class="timestamp">
+                <%= time_ago_in_words(comment.created_at) %> 前に投稿
+                </span> -->
+              </div>
+              <p class="content">{{ e.context }}</p>
+              <!-- <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
+                <%= link_to court_comment_path(comment.court.id, comment.id), method: :delete, data: { confirm: "削除してよろしいですか?" } do %>
+                  <span class="text-red-500 hover:text-red-700">削除</span>
+                <% end %>
+              <% end %> -->
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </div>
@@ -113,7 +127,8 @@ export default {
       count: "",
       favorite: [],
       court_tags: [],
-      comment_count: ""
+      comment_count: "",
+      court_comment: []
     };
   },
   computed: {
@@ -143,6 +158,9 @@ export default {
     axios
       .get(`/api/v1/comment_count/${this.$route.params.id}`)
       .then(response => (this.comment_count = response.data))
+    axios
+      .get(`/api/v1/court_comment/${this.$route.params.id}`)
+      .then(response => (this.court_comment = response.data))
   },
   methods: {
     createFavorite() {

@@ -22,6 +22,12 @@ class Api::V1::CourtsController < ApiController
     # @favorite = Favorite.new
   end
 
+  def court_comment
+    court = Court.find(params[:id])
+    court_comment = court.comments.includes(:user).page(params[:page])
+    render json: court_comment.as_json(include: :user)
+  end
+
   def taglist
     taglist = Tag.all.page(params[:page])
     render json: taglist
