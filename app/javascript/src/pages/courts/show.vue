@@ -104,11 +104,9 @@
                 </span>
               </div>
               <p class="content">{{ e.context }}</p>
-              <!-- <% if logged_in? && (current_user.id == comment.user.id or current_user.admin) %>
-                <%= link_to court_comment_path(comment.court.id, comment.id), method: :delete, data: { confirm: "削除してよろしいですか?" } do %>
-                  <span class="text-red-500 hover:text-red-700">削除</span>
-                <% end %>
-              <% end %> -->
+              <span v-if="e.user_id === $store.state.userId">
+                <button @click="deleteComment()" class="text-red-500 hover:text-red-700">削除</button>
+              </span>
             </div>
           </li>
         </ol>
@@ -195,6 +193,17 @@ export default {
           user_id: this.$store.state.userId,
           context: this.context
         })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("失敗しました");
+        });
+    },
+    deleteComment() {
+      axios
+        .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/comment`)
         .then((response) => {
           console.log(response);
         })

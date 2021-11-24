@@ -16,10 +16,9 @@ class Api::V1::CommentsController < ApiController
   end
 
   def destroy
-    @court = Court.find(params[:court_id])
-    Comment.find_by(id: params[:id], court_id: params[:court_id]).destroy
-    flash[:success] = 'コメントを削除しました。'
-    redirect_to @court
+    comment = Comment.find_by(court_id: params[:court_id], user_id: params[:user_id])
+    comment.destroy
+    render json: { status: "SUCCESS", message: "コメントは削除されました", data: comment }
   end
 
   private
