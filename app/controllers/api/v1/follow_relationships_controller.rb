@@ -14,16 +14,23 @@ class Api::V1::FollowRelationshipsController < ApiController
     #   format.js
     # end
   end
-  # def follow(other_user)
-  #   self.following_relationships.create(following_id: other_user.id)
-  # end
 
   def destroy
-    @user = User.find(params[:follow_relationship][:following_id])
-    current_user.unfollow(@user)
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_url) }
-      format.js
-    end
+    user = User.find_by(id: params[:follower_id])
+    other_user = User.find_by(id: params[:following_id])
+    # follow_relationship = FollowRelationship.destroy(follower_id: user.id, following_id: other_user.id)
+    follow_relationship = FollowRelationship.find_by(follower_id: user.id, following_id: other_user.id)
+    follow_relationship.destroy
+    render json: follow_relationship
+
+
+    # current_user.unfollow(@user)
+    # respond_to do |format|
+    #   format.html { redirect_back(fallback_location: root_url) }
+    #   format.js
+    # end
   end
+  # def unfollow(other_user)
+  #   self.following_relationships.find_by(following_id: other_user.id).destroy
+  # end
 end
