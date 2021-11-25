@@ -14,9 +14,9 @@ class Api::V1::CourtsController < ApiController
 
   def show
     court = Court.find(params[:id])
+    # gon.court = court
     render json: court.as_json(include: :user)
     # @court_tags = @court.tags
-    # gon.court = @court
     # @comment = Comment.new
     # @comments = @court.comments.includes(:user).page(params[:page])
     # @favorite = Favorite.new
