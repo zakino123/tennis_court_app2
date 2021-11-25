@@ -26,16 +26,17 @@
           <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
           <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
         </div> -->
-        <!-- <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
-          <div v-if="UserFollowing">
+        <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
+          <!-- <div v-if="UserFollowing"> -->
+          <div>
             <input type="hidden" v-model="following_id" id="following_id"/>
             <button @click="UserFollow()" class="inline-block text-gray-100 bg-yellow-400 border border-yellow-400 hover:text-yellow-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー</button>
           </div>
-          <div v-else>
+          <!-- <div v-else>
             <input type="hidden" v-model="following_id" id="following_id"/>
             <button @click="UserUnFollow()" class="inline-block text-gray-100 bg-red-500 border border-yellow-500 hover:text-red-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー解除</button>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
         <!-- <% if logged_in? && @user != current_user%>
           <div id="follow_form" class="text-center my-3">
             <% if current_user.following?(@user) %>
@@ -83,38 +84,39 @@ export default {
       console.log(response);
     });
   },
-  // methods: {
-  //   UserFollow() {
-  //     axios
-  //       .post(`/api/v1/courts/${this.court.id}/favorites`, {
-  //         following_id: this.this.$store.state.userId,
-  //       })
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
-  //   Userunfollow() {
-  //     axios
-  //       .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         alert("失敗しました");
-  //       });
-  //   },
-  // },
-  // computed: {
-  //   isAuthenticated() {
-  //     return this.$store.getters.password_digest != null;
-  //   },
-  //   UserFollowing() {
+  methods: {
+    UserFollow() {
+      axios
+        .post(`/api/v1/follow_relationships`, {
+          follower_id: this.$store.state.userId,
+          following_id: this.user.id
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // Userunfollow() {
+    //   axios
+    //     .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       alert("失敗しました");
+    //     });
+    // },
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.password_digest != null;
+    },
+    UserFollowing() {
 
-  //   }
-  // },
+    }
+  },
 }
 </script>
