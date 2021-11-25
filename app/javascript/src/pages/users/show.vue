@@ -22,10 +22,10 @@
         <div class="text-center">
           <p class="text-xl h-6 mt-1">投稿数：{{ court_count }}</p>
         </div>
-        <!-- <div class="text-center my-2 flex">
-          <a href="following_user_path(@user)" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{user.followings.count}}</a>
-          <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
-        </div> -->
+        <div class="text-center my-2 flex">
+          <p class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{ follow_count }}</p>
+          <!-- <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a> -->
+        </div>
         <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
           <div v-if="UserFollowing">
             <input type="hidden" v-model="following_id" id="following_id"/>
@@ -71,7 +71,8 @@ export default {
     return {
       user: [],
       court_count: "",
-      follow: []
+      follow: [],
+      follow_count: ""
     };
   },
   mounted() {
@@ -86,6 +87,9 @@ export default {
     axios
       .get(`/api/v1/follower/${this.$store.state.userId}/following/${this.$route.params.id}/follow`)
       .then(response => (this.follow = response.data))
+    axios
+      .get(`/api/v1/follow_count/${this.$route.params.id}`)
+      .then(response => (this.follow_count = response.data))
   },
   methods: {
     UserFollow() {

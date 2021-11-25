@@ -1,6 +1,11 @@
 class Api::V1::FollowRelationshipsController < ApiController
   wrap_parameters :favorite, include: [:following_id, :follower_id]
 
+  def follow_count
+    follow_count = FollowRelationship.where(follower_id: params[:id]).count
+    render json: follow_count
+  end
+
   def show
     follow = FollowRelationship.find_by(follower_id: params[:follower_id], following_id: params[:following_id])
     render json: follow
