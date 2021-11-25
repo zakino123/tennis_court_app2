@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       delete '/court/:court_id/user/:user_id/favorite', to: 'favorites#destroy'
       delete '/court/:court_id/user/:user_id/comment', to: 'comments#destroy'
       get '/court/:court_id/user/:user_id/favorite', to: 'favorites#show'
+      get '/follower/:follower_id/following/:following_id/follow', to: 'follow_relationships#show'
       delete '/follower/:follower_id/following/:following_id/unfollow', to: 'follow_relationships#destroy'
       resources :courts do
         resources :comments, only: %i[create destroy]

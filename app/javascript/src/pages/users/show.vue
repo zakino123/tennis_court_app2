@@ -27,15 +27,13 @@
           <a href=followers_user_path(@user) class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ user.followers.count }}</a>
         </div> -->
         <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
-          <!-- <div v-if="UserFollowing"> -->
-          <!-- <div>
-            <input type="hidden" v-model="following_id" id="following_id"/>
-            <button @click="UserFollow()" class="inline-block text-gray-100 bg-yellow-400 border border-yellow-400 hover:text-yellow-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー</button>
-          </div> -->
-          <!-- <div v-else> -->
-          <div>
+          <div v-if="UserFollowing">
             <input type="hidden" v-model="following_id" id="following_id"/>
             <button @click="UserUnFollow()" class="inline-block text-gray-100 bg-red-500 border border-yellow-500 hover:text-red-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー解除</button>
+          </div>
+          <div v-else>
+            <input type="hidden" v-model="following_id" id="following_id"/>
+            <button @click="UserFollow()" class="inline-block text-gray-100 bg-yellow-400 border border-yellow-400 hover:text-yellow-500 hover:bg-white font-base px-4 py-2 rounded text-base">フォロー</button>
           </div>
         </div>
         <!-- <% if logged_in? && @user != current_user%>
@@ -72,7 +70,8 @@ export default {
   data() {
     return {
       user: [],
-      court_count: ""
+      court_count: "",
+      follow: []
     };
   },
   mounted() {
@@ -84,21 +83,24 @@ export default {
       this.court_count = response.data;
       console.log(response);
     });
+    axios
+      .get(`/api/v1/follower/${this.$store.state.userId}/following/${this.$route.params.id}/follow`)
+      .then(response => (this.follow = response.data))
   },
   methods: {
-    // UserFollow() {
-    //   axios
-    //     .post(`/api/v1/follow_relationships`, {
-    //       follower_id: this.$store.state.userId,
-    //       following_id: this.user.id
-    //     })
-    //     .then((response) => {
-    //       console.log(response);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
+    UserFollow() {
+      axios
+        .post(`/api/v1/follow_relationships`, {
+          follower_id: this.$store.state.userId,
+          following_id: this.user.id
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     UserUnFollow() {
       axios
         .delete(`/api/v1/follower/${this.$store.state.userId}/following/${this.user.id}/unfollow`)
@@ -116,7 +118,9 @@ export default {
       return this.$store.getters.password_digest != null;
     },
     UserFollowing() {
-
+      if (this.follow != null){
+        return this.follow.follower_id === this.$store.state.userId
+      }
     }
   },
 }
