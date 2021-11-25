@@ -6,6 +6,11 @@ class Api::V1::FollowRelationshipsController < ApiController
     render json: follow_count
   end
 
+  def follower_count
+    follower_count = FollowRelationship.where(following_id: params[:id]).count
+    render json: follower_count
+  end
+
   def show
     follow = FollowRelationship.find_by(follower_id: params[:follower_id], following_id: params[:following_id])
     render json: follow
