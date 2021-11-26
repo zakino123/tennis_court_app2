@@ -59,6 +59,11 @@ Rails.application.routes.draw do
       end
       resources :contacts
       resources :follow_relationships, only: %i[create]
+      resources :users do
+        member do
+          get :following, :followers
+        end
+      end
     end
   end
 end
