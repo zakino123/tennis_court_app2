@@ -8,6 +8,7 @@ import UserShow from './src/pages/users/show.vue'
 import UserEdit from './src/pages/users/edit.vue'
 import CourtShow from './src/pages/courts/show.vue'
 import CourtEdit from './src/components/courts/edit.vue'
+import FollowerIndex from './src/components/users/UserFollowerIndex.vue'
 import UserIndex from './src/pages/users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
 import Login from './src/pages/login.vue'
@@ -62,7 +63,7 @@ export default new Router({
     {path: '/contacts/new', component: ContactNew},
     {path: '/courts/search/:params', component: CourtSearch},
     {path: '/users/:id', component: UserShow, name: 'UserShow'},
-    {path: '/follow/:id', component: UserShow, name: 'UserShow'},
+    {path: '/users/:id/followers', component: FollowerIndex, name: 'FollowerIndex'},
     {path: '/users', component: UserIndex},
     {path: '/tags/:id', component:  TagSearchResult, name: 'TagSearchResult'},
   ]

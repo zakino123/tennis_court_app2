@@ -24,7 +24,7 @@
         </div>
         <div class="text-center my-2 flex">
           <p class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-3 py-2 text-base mx-2" >フォロー{{ follow_count }}</p>
-          <p class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ follower_count }}</p>
+          <router-link :to="{ name: 'FollowerIndex', params: { id: user.id } }" class="text-gray-100 bg-indigo-500 border border-yellow-500 hover:text-indigo-400 hover:bg-white font-base rounded px-2 py-2 text-base mx-2">フォロワー{{ follower_count }}</router-link>
         </div>
         <div v-if="isAuthenticated && user.id != this.$store.state.userId" class="text-center my-3">
           <div v-if="UserFollowing">
