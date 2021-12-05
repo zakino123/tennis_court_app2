@@ -32,7 +32,6 @@
 import axios from 'axios';
 
 export default {
-  props: ["user"],
   data: function () {
     return {
       users: []
@@ -40,7 +39,7 @@ export default {
   },
   mounted () {
     axios
-      .get(`/api/v1/users//followers`)
+      .get(`/api/v1/users/${this.$route.params.id}/followers`)
       .then(response => (this.users = response.data))
   },
 }
