@@ -73,7 +73,8 @@ class Api::V1::UsersController < ApiController
 
   def following
     user = User.find(params[:id])
-    users = @user.followings.page(params[:page]).per(12)
+    users = user.followings.page(params[:page]).per(12)
+    render json: users
   end
 
   def followers
