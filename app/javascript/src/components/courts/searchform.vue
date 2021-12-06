@@ -25,28 +25,13 @@ export default {
   data: function () {
     return {
       location: '',
-      keyword:'Near',
+      keyword:'near',
       options: [
-        { value: 'Near', name: '距離が近い順' },
+        { value: 'near', name: '距離が近い順' },
         { value: 'inexpensive', name: '1時間当たりのコート料金が安い順' },
         { value: 'number', name: 'コート数が多い順' }
       ]
     };
-  },
-  // computed: {
-  //   isAuthenticated() {
-  //     return this.$store.getters.token != null;
-  //   },
-  // },
-  // methods: {
-  //   logout() {
-  //     return this.$store.dispatch("logout");
-  //   },
-  //   search() {
-  //     return this.$store.dispatch("search", {
-  //       searchWord: this.location,
-  //     });
-  //   },
-  // },
+  }
 }
 </script>
