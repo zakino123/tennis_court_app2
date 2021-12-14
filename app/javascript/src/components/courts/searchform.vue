@@ -32,6 +32,13 @@ export default {
         { value: 'number', name: 'コート数が多い順' }
       ]
     };
-  }
+  },
+  methods: {
+    search() {
+      return this.$store.dispatch("search", {
+        searchWord: this.location,
+      });
+    },
+  },
 }
 </script>

@@ -10,14 +10,12 @@ export default new Vuex.Store({
   state: {
     password_digest: null,
     userId: null,
-    // searchWord: null,
-    // specialty: null,
+    searchWord: null,
   },
   getters: {
     password_digest: state => state.password_digest,
     userId: state => state.id,
-    // searchWord: state => state.keyword,
-    // specialty: state => state.specialty,
+    searchWord: state => state.location,
   },
   mutations: {
     updateToken(state, password_digest) {
@@ -26,12 +24,9 @@ export default new Vuex.Store({
     updateUserId(state, userId) {
       state.userId = userId;
     },
-    // updateSearchWord(state, searchword) {
-    //   state.searchWord = searchword;
-    // },
-    // updateSpecialty(state, specialty) {
-    //   state.specialty = specialty;
-    // }
+    updateSearchWord(state, searchword) {
+      state.searchWord = searchword;
+    },
   },
   actions: {
     login({ commit }, authData) {
@@ -46,7 +41,6 @@ export default new Vuex.Store({
           console.log(response);
           commit('updateToken', response.data.password_digest);
           commit('updateUserId', response.data.id);
-          // commit('updateSpecialty', response.data.specialty)
           router.push('/');
         })
         .catch((error) => {
@@ -57,15 +51,14 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('updateToken', null);
       commit('updateUserId', null);
-      // commit('updateSpecialty', null);
       router.push('/login');
     },
-    // search({ commit }, searchWord) {
-    //   console.log(searchWord);
-    //   commit('updateSearchWord', searchWord.searchWord);
-    //   this.keyword = '';
-    //   router.push(`/question/search/${searchWord.searchWord}`)
-    // }
+    search({ commit }, searchWord) {
+      console.log(searchWord);
+      commit('updateSearchWord', searchWord.searchWord);
+      this.location = '';
+      router.push(`/courts/search/${searchWord.searchWord}`)
+    }
   },
   modules: {
 

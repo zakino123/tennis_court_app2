@@ -12,6 +12,7 @@ import FollowerIndex from './src/components/users/UserFollowerIndex.vue'
 import FollowingIndex from './src/components/users/UserFollowingIndex.vue'
 import UserIndex from './src/pages/users/index.vue'
 import CourtSearch from './src/pages/courts/search.vue'
+import CourtSearchResult from './src/components/courts/CourtSearchResult.vue'
 import Login from './src/pages/login.vue'
 import UserNew from './src/pages/user_new.vue'
 import ContactNew from './src/pages/contact_new.vue'
@@ -50,23 +51,14 @@ export default new Router({
     {
       path: '/courts/edit/:id', component: CourtEdit, name: 'CourtEdit'
     },
-    // {
-    //   path: '/courts/:id/edit', component: CourtEdit, name: 'CourtEdit', beforeEnter(to, from, next) {
-    //     if (court.user_id === this.$store.state.userId) {
-    //       next();
-    //     } else {
-    //       next('/login');
-    //     }
-    //   }
-    // },
     {path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
     {path: '/courts/:id', component: CourtShow, name: 'CourtShow'},
     {path: '/contacts/new', component: ContactNew},
-    {path: '/courts/search/:params', component: CourtSearch},
     {path: '/users/:id', component: UserShow, name: 'UserShow'},
     {path: '/users/:id/followers', component: FollowerIndex, name: 'FollowerIndex'},
     {path: '/users/:id/following', component: FollowingIndex, name: 'FollowingIndex'},
     {path: '/users', component: UserIndex},
     {path: '/tags/:id', component:  TagSearchResult, name: 'TagSearchResult'},
+    {path: '/courts/search/:params', component: CourtSearchResult, name: 'CourtSearchResult'},
   ]
 });
