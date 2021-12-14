@@ -63,14 +63,13 @@ class Api::V1::CourtsController < ApiController
     # @tag_list = Tag.all
     results = Geocoder.search(params[:location])
     if results.empty?
-      flash[:danger] = '検索結果は見つかりませんでした。'
-      redirect_to root_path
+      render json: { message: 'コート情報を取得できませんでした'}
     else
       selection = params[:keyword]
       latitude = results.first.coordinates[0]
       longitude = results.first.coordinates[1]
       courts = Court.within_box(20, latitude, longitude)
-      @courts = case selection
+      search_courts = case selection
                 when 'near'
                   Court.near(results.first.coordinates, 20).page(params[:page]).per(12)
                 when 'inexpensive'
@@ -80,6 +79,7 @@ class Api::V1::CourtsController < ApiController
                 else
                   courts.page(params[:page]).per(12)
                 end
+      render json: search_courts.as_json(include: :user)
     end
   end
 
