@@ -65,20 +65,21 @@ class Api::V1::CourtsController < ApiController
     if results.empty?
       render json: { message: 'コート情報を取得できませんでした'}
     else
-      selection = params[:keyword]
+      # selection = params[:keyword]
       latitude = results.first.coordinates[0]
       longitude = results.first.coordinates[1]
       courts = Court.within_box(20, latitude, longitude)
-      search_courts = case selection
-                when 'near'
-                  Court.near(results.first.coordinates, 20).page(params[:page]).per(12)
-                when 'inexpensive'
-                  courts.order(price: :asc).page(params[:page]).per(12)
-                when 'number'
-                  courts.order(number: :desc).page(params[:page]).per(12)
-                else
-                  courts.page(params[:page]).per(12)
-                end
+      # search_courts = case selection
+      #           when 'near'
+      #             Court.near(results.first.coordinates, 20).page(params[:page]).per(12)
+      #           when 'inexpensive'
+      #             courts.order(price: :asc).page(params[:page]).per(12)
+      #           when 'number'
+      #             courts.order(number: :desc).page(params[:page]).per(12)
+      #           else
+      #             courts.page(params[:page]).per(12)
+      #           end
+      search_courts = courts.page(params[:page]).per(12)
       render json: search_courts.as_json(include: :user)
     end
   end
