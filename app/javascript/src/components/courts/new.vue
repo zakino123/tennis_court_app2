@@ -55,7 +55,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      image: null,
+      image: "",
       name: "",
       address: "",
       latitude: "",
@@ -69,17 +69,14 @@ export default {
   },
   methods: {
     onImageUploaded(e) {
-      // event(=e)から画像データを取得する
       const image = e.target.files[0]
       this.createImage(image)
     },
     createImage(image) {
       const reader = new FileReader()
-      // imageをreaderにDataURLとしてattachする
       reader.readAsDataURL(image)
-      // readAdDataURLが完了したあと実行される処理
       reader.onload = () => {
-        this.submittedArticle.image = reader.result
+        this.image = reader.result
       }
     },
     createCourt() {
