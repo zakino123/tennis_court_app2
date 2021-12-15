@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get '/favorite_court/:id', to: 'users#favorite_court'
       get '/post_court/:id', to: 'users#post_court'
       get '/court_count/:id', to: 'users#court_count'
+      # get '/courts/search/:location/:keyword', to: 'courts#search'
       get '/courts/search/:location', to: 'courts#search'
       resources :users
       resources :courts

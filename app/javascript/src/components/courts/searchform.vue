@@ -20,7 +20,7 @@ import TagList from "./taglist.vue"
 
 export default {
   components: {
-    TagList //, CourtResult
+    TagList
   },
   data: function () {
     return {
@@ -37,6 +37,7 @@ export default {
     search() {
       return this.$store.dispatch("search", {
         searchWord: this.location,
+        // searchSelection: this.keyword,
       });
     },
   },

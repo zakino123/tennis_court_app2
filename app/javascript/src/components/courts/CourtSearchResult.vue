@@ -47,7 +47,6 @@ export default {
   data: function () {
     return {
       search_courts: [],
-      // create: false,
     };
   },
   created() {
@@ -56,10 +55,10 @@ export default {
   methods: {
     renderResearchResult: function () {
       axios
-        .get(`/api/v1/courts/search/${this.$store.state.searchWord}`)
+        // .get(`/api/v1/courts/search/${this.$store.state.searchWord}/${this.$store.state.searchSelection}`)
+        .get(`/api/v1/courts/search/${this.$store.state.searchWord}/`)
         .then((response) => {
           this.search_courts = response.data;
-          // this.create = true;
           console.log(response.data);
         });
     },
@@ -67,6 +66,7 @@ export default {
   mounted() {
     this.$store.watch(
       () => this.$store.state.searchWord,
+      // () => this.$store.state.searchSelection,
       () => {
         this.renderResearchResult();
       }

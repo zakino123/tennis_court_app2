@@ -11,11 +11,13 @@ export default new Vuex.Store({
     password_digest: null,
     userId: null,
     searchWord: null,
+    // searchSelection: null,
   },
   getters: {
     password_digest: state => state.password_digest,
     userId: state => state.id,
     searchWord: state => state.location,
+    // searchSelection: state => state.keyword,
   },
   mutations: {
     updateToken(state, password_digest) {
@@ -27,6 +29,9 @@ export default new Vuex.Store({
     updateSearchWord(state, searchword) {
       state.searchWord = searchword;
     },
+    // updateSearchSelection(state, searchselection) {
+    //   state.searchSelection = searchselection;
+    // },
   },
   actions: {
     login({ commit }, authData) {
@@ -54,9 +59,14 @@ export default new Vuex.Store({
       router.push('/login');
     },
     search({ commit }, searchWord) {
+    // search({ commit }, {searchWord, searchSelection}) {
       console.log(searchWord);
+      // console.log(searchSelection);
       commit('updateSearchWord', searchWord.searchWord);
+      // commit('updateSearchSelection', searchSelection.searchSelection);
       this.location = '';
+      // this.keyword = '';
+      // router.push(`/courts/search/${searchWord.searchWord}/${searchSelection.searchSelection}`)
       router.push(`/courts/search/${searchWord.searchWord}`)
     }
   },

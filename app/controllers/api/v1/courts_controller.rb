@@ -65,7 +65,7 @@ class Api::V1::CourtsController < ApiController
     if results.empty?
       render json: { message: 'コート情報を取得できませんでした'}
     else
-      # selection = params[:keyword]
+      selection = params[:keyword]
       latitude = results.first.coordinates[0]
       longitude = results.first.coordinates[1]
       courts = Court.within_box(20, latitude, longitude)

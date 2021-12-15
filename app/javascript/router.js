@@ -59,6 +59,7 @@ export default new Router({
     {path: '/users/:id/following', component: FollowingIndex, name: 'FollowingIndex'},
     {path: '/users', component: UserIndex},
     {path: '/tags/:id', component:  TagSearchResult, name: 'TagSearchResult'},
+    // {path: '/courts/search/:location/:keyword', component: CourtSearchResult, name: 'CourtSearchResult'},
     {path: '/courts/search/:location', component: CourtSearchResult, name: 'CourtSearchResult'},
   ]
 });
