@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApiController
   before_action :set_user, only: %i[show]
-  wrap_parameters :user, include: [:name, :email, :password, :password_confirmation]
+  wrap_parameters :user, include: [:name, :email, :password, :password_confirmation, :image]
 
   def new
     user = User.new

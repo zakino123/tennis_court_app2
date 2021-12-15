@@ -3,6 +3,15 @@
     <div class="py-2 user-form mx-auto  border-2 bg-white shadow-md">
       <h1 class="text-2xl sm:text-3xl text-center py-4 font-bold">新規登録</h1>
       <div class="form-wide mx-auto">
+        <label for="image" class="text-lg font-bold">ユーザー画像</label>
+        <img
+          src="../assets/default.jpg"
+          alt="ユーザーアイコン"
+          width="150"
+          height="150"
+          class="border-2"
+        />
+        <input type="file" @change="onImageUploaded" class="btn btn-sm my-2 btn-outline-secondary rounded-pill mr-8" accept="image/jpeg,image/gif,image/png"/>
         <label for="name" class="text-lg font-bold">ニックネーム
         </label>
         <input type="text" v-model="name" id="name" class="mb-4 form-control" placeholder='30文字以内で入力してください。'/>
@@ -42,6 +51,17 @@ export default {
     };
   },
   methods: {
+    onImageUploaded(e) {
+      const image = e.target.files[0]
+      this.createImage(image)
+    },
+    createImage(image) {
+      const reader = new FileReader()
+      reader.readAsDataURL(image)
+      reader.onload = () => {
+        this.image = reader.result
+      }
+    },
     register() {
       axios
         .post("/api/v1/users", {
@@ -59,9 +79,6 @@ export default {
           console.log(error);
         });
     },
-    // closeAlert: function () {
-    //   this.alertOpen = false;
-    // },
     login() {
       this.$store.dispatch("login", {
         email: this.email,
