@@ -3,6 +3,15 @@
     <div class="py-2 user-form mx-auto  border-2 bg-white shadow-md">
       <h1 class="text-2xl sm:text-3xl text-center py-4 font-bold">コート投稿</h1>
       <div class="form-wide mx-auto">
+        <label for="image" class="text-lg font-bold">施設画像</label>
+        <img
+          src="../../assets/default_court.png"
+          alt="コートアイコン"
+          width="150"
+          height="150"
+          class="border-2"
+        />
+        <input type="file" @change="onImageUploaded" class="btn btn-sm my-2 btn-outline-secondary rounded-pill mr-8" accept="image/jpeg,image/gif,image/png"/>
         <label for="name" class="text-lg font-bold">施設名(テニスコート名)
         </label>
         <input type="text" v-model="name" id="name" class="mb-4 form-control" placeholder='施設名を入力して下さい。'/>
@@ -21,15 +30,6 @@
 
         <label for="reserve" class="text-lg font-bold">予約URL</label>
         <input type="text" v-model="reserve" id="reserve" class="mb-4 form-control" placeholder='予約URLを貼り付けてください。'/>
-
-        <!-- <label for="tag" class="text-lg font-bold">タグ付け</label>
-        <v-select
-          placeholder="選択してください"
-          name="hoge"
-          :options="options"
-          v-model="tag"
-          class="bg-white shadow appearance-none border rounded w-11/12 md:w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-b-2 focus:border-blue-400 block mx-auto"
-        ></v-select> -->
 
         <label for="tag_name" class="text-lg font-bold">タグ付け(半角スペースで複数可能)</label>
         <input type="text" v-model=" tag_name" id="tag_name" class="mb-4 form-control" placeholder='例：オムニ 埼玉 クレー'/>
@@ -52,11 +52,10 @@
 
 <script>
 import axios from 'axios';
-// import vSelect from "vue-select";
 export default {
-  // components: { "v-select": vSelect },
   data() {
     return {
+      image: null,
       name: "",
       address: "",
       latitude: "",
@@ -66,13 +65,27 @@ export default {
       reserve: "",
       tag_name: "",
       remarks: "",
-      // options: ["オムニ", "クレー", "ハード", "シャワーあり", "駐車場あり", "照明あり", "更衣室あり", "レンタルあり", "クラブハウスあり", "休憩スペースあり", "インドア"]
     };
   },
   methods: {
+    onImageUploaded(e) {
+      // event(=e)から画像データを取得する
+      const image = e.target.files[0]
+      this.createImage(image)
+    },
+    createImage(image) {
+      const reader = new FileReader()
+      // imageをreaderにDataURLとしてattachする
+      reader.readAsDataURL(image)
+      // readAdDataURLが完了したあと実行される処理
+      reader.onload = () => {
+        this.submittedArticle.image = reader.result
+      }
+    },
     createCourt() {
       axios
         .post("/api/v1/courts", {
+          image: this.image,
           name: this.name,
           address: this.address,
           latitude: this.latitude,
