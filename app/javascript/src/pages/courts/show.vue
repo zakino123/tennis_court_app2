@@ -170,6 +170,12 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          axios
+            .get(`/api/v1/court/${this.$route.params.id}/user/${this.$store.state.userId}/favorite`)
+            .then(response => (this.favorite = response.data))
+          axios
+            .get(`/api/v1/favorite_count/${this.$route.params.id}`)
+            .then(response => (this.count = response.data))
         })
         .catch((error) => {
           console.log(error);
@@ -180,6 +186,12 @@ export default {
         .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/favorite`)
         .then((response) => {
           console.log(response);
+          axios
+            .get(`/api/v1/court/${this.$route.params.id}/user/${this.$store.state.userId}/favorite`)
+            .then(response => (this.favorite = response.data))
+          axios
+            .get(`/api/v1/favorite_count/${this.$route.params.id}`)
+            .then(response => (this.count = response.data))
         })
         .catch((error) => {
           console.log(error);
