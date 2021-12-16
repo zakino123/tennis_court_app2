@@ -4,7 +4,7 @@
       <p>Copyright © 2021 Tennis court search All Rights Reserved.</p>
     </div>
     <nav class="float-right">
-    <router-link to="/contacts/new" class="m-4 fs-3 hover:text-blue-400">お問い合わせ</router-link>
+    <router-link to="/contact_create" class="m-4 fs-3 hover:text-blue-400">お問い合わせ</router-link>
   </nav>
   </footer>
 </template>

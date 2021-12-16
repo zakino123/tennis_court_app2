@@ -1,16 +1,17 @@
 class Api::V1::ContactsController < ApiController
+  wrap_parameters :contact, include: [:name, :email, :message]
+
   def new
     @contact = Contact.new
   end
 
   def create
-    @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.send_mail(@contact).deliver
-      flash[:success] = 'お問合せ内容を受け付けました。'
-      redirect_to new_contact_path
+    contact = Contact.new(contact_params)
+    if contact.save
+      ContactMailer.send_mail(contact).deliver
+      render json: contact
     else
-      render 'new'
+      render json: { message: '問い合わせ出来ませんでした'}
     end
   end
 

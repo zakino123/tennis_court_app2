@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       resources :courts
       get '/court_create', to: 'courts#new'
       post '/courts', to: 'courts#create'
+      get '/contact_create', to: 'contacts#new'
+      post '/contacts', to: 'contacts#create'
       get '/taglist', to: 'courts#taglist'
       get '/court_rank', to: 'courts#court_rank'
       get '/latest_court', to: 'courts#latest_court'
