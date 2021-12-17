@@ -67,7 +67,7 @@
             </tr>
             <tr class="border-2">
               <th class="py-2 font-bold border-r-2">マップ確認</th>
-              <th id="map"></th>
+              <th id="map"><button @click="initMup()">マップ作成</button></th>
             </tr>
             <tr class="border-2">
               <th class="py-2 font-bold border-r-2">備考</th>
