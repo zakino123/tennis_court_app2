@@ -207,6 +207,9 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          axios
+            .get(`/api/v1/comment_count/${this.$route.params.id}`)
+            .then(response => (this.comment_count = response.data))
         })
         .catch((error) => {
           console.log(error);
@@ -218,6 +221,9 @@ export default {
         .delete(`/api/v1/court/${this.court.id}/user/${this.$store.state.userId}/comment`)
         .then((response) => {
           console.log(response);
+          axios
+            .get(`/api/v1/comment_count/${this.$route.params.id}`)
+            .then(response => (this.comment_count = response.data))
         })
         .catch((error) => {
           console.log(error);
