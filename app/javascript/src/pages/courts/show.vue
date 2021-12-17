@@ -210,6 +210,9 @@ export default {
           axios
             .get(`/api/v1/comment_count/${this.$route.params.id}`)
             .then(response => (this.comment_count = response.data))
+          axios
+            .get(`/api/v1/court_comment/${this.$route.params.id}`)
+            .then(response => (this.court_comment = response.data))
         })
         .catch((error) => {
           console.log(error);
@@ -224,6 +227,9 @@ export default {
           axios
             .get(`/api/v1/comment_count/${this.$route.params.id}`)
             .then(response => (this.comment_count = response.data))
+          axios
+            .get(`/api/v1/court_comment/${this.$route.params.id}`)
+            .then(response => (this.court_comment = response.data))
         })
         .catch((error) => {
           console.log(error);
